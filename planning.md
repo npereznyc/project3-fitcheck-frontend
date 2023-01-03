@@ -16,19 +16,41 @@
 - Remove followers
 - Username
 
+<br>
+
+## Responsibilities:
+
+### Documentation / Project Management: 
+- Natalie
+
+### Front-End:
+- Mary
+### Back-End:
+- Jordan
+
+### Styling:
+- Natalie
+
+### Git Flow/Version Control:
+- Jordan
+
+<br>
+
 ## Wireframe Images:
 ![Homepage/Feed](assets/Feed.jpg)
 ![Detail Page](assets/Post-detail.jpg)
-![Delete Post](assets/Delete-post.png)
-![Profile Page](assets/Profile.jpg)
 ![Create Post](assets/Create-Post.jpg)
 ![Delete Post](assets/Delete-post.png)
+![Profile Page](assets/Profile.jpg)
+![Delete Profile](assets/Delete-profile.png)
+
+<br>
 
 ## User Story:
 
 User opens app and lands on the Homepage, which is a feed of posts. Underneath each post is the text and a space to write and post a comment.
 
-There is a nav bar at the top with menu items: 
+There is a nav bar at the bottom with menu items: 
 - Profile
 - Post
 
@@ -53,9 +75,13 @@ User can edit or delete a post by clicking into the post and selecting 'edit' or
 
 When a user clicks on a post in their feed, it opens up and shows the detail page, including the tags and the workout ratings.
 
+<br>
+
 ## User Flow Map:
 
 ![User Flow Map](assets/User-Flow.png)
+
+<br>
 
 ## ERD:
 ![ERD](assets/ERD.png)
