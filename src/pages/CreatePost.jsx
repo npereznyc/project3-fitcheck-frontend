@@ -91,10 +91,12 @@ const CreatePost = (props) => {
                         <br />
 
                         <input type="submit" value="Post" />
-                        
+
                     </div>
                 </form>
             </section>
         </div>
     )
 }
+
+export default CreatePost
