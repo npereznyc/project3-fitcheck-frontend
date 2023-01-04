@@ -26,7 +26,7 @@ const CreatePost = (props) => {
                             // type="text" 
                             // id="image"
                             // name="image" 
-                            // placeholder="image url" 
+                            placeholder="image url" 
                             // value={}
                             // onChange={}
                             />
@@ -40,7 +40,7 @@ const CreatePost = (props) => {
                             // type="text" 
                             // id="description"
                             // name="description" 
-                            // placeholder="description" 
+                            placeholder="description" 
                             // value={}
                             // onChange={}
                             />
@@ -54,7 +54,7 @@ const CreatePost = (props) => {
                             // type="text" 
                             // id="tags"
                             // name="tags" 
-                            // placeholder="tags" 
+                            placeholder="tags" 
                             // value={}
                             // onChange={}
                             />
@@ -68,7 +68,7 @@ const CreatePost = (props) => {
                             // type=??
                             // id="rating"
                             // name="rating" 
-                            // placeholder="workout rating" 
+                            placeholder="workout rating" 
                             // value={}
                             // onChange={}
                             />
@@ -82,7 +82,7 @@ const CreatePost = (props) => {
                             // type=??
                             // id="difficulty"
                             // name="difficulty" 
-                            // placeholder="workout difficulty" 
+                            placeholder="workout difficulty" 
                             // value={}
                             // onChange={}
                             />
