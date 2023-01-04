@@ -17,13 +17,16 @@ const Posts= (props) => {
     }
   };
 
+//currently cannot gain any information, May need to 
+//somehow connect to another page to gain access to information
+
   const loaded = () => {
     return (
       <>
         <section className="post-list">
           {posts?.map((post) => {
             return (
-              <Link key={post._id} to={`/posts/${posts._id}`}>
+              <Link key={posts._id} to={`/${posts._id}`}>
                 <div className="person-card">
                   <h1>{posts.name}</h1>
                   <img alt="" src={posts.image} />
