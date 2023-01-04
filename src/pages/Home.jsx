@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Posts = (props) => {
   const [posts, setPosts] = useState([]);
-  
 
   const BASE_URL = "http://localhost:4000/";
   //Base Url suggestion
@@ -18,32 +17,6 @@ const Posts = (props) => {
     }
   };
 
- 
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const currentState = { ...newForm };
-    try {
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "content-Type": "application/json",
-        },
-        body: JSON.stringify(currentState),
-      };
-      const response = await fetch(BASE_URL, requestOptions);
-      const createdPosts = await response.json();
-      console.log(createdPosts);
-      setPosts([...posts, createdPosts]);
-      setNewForm({
-        name: "",
-        image: "",
-        text: "",
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
   const loaded = () => {
     return (
       <>
@@ -53,7 +26,7 @@ const Posts = (props) => {
               <Link key={post._id} to={`/posts/${posts._id}`}>
                 <div className="person-card">
                   <h1>{posts.name}</h1>
-                  <img src={posts.image} />
+                  <img alt="" src={posts.image} />
                   <h3>{posts.text}</h3>
                 </div>
               </Link>
@@ -66,24 +39,22 @@ const Posts = (props) => {
 
   const loading = () => (
     <section className="people-list">
-        <h1>
-            Loading...
-            <span>
-                {" "}
-                <img alt="spinner"
-                    className="spinner"
-                    src="https://freesvg.org/img/1544764567.png"
-                />
-            </span>
-        </h1>
+      <h1>
+        Loading...
+        <span>
+          {" "}
+          <img
+            alt="spinner"
+            className="spinner"
+            src="https://freesvg.org/img/1544764567.png"
+          />
+        </span>
+      </h1>
     </section>
-);
-useEffect(() => {
-    getPosts()
-}, [])
-
+  );
+  useEffect(() => {
+    getPosts();
+  }, []);
 };
 
-
-
-export default Posts
+export default Posts;
