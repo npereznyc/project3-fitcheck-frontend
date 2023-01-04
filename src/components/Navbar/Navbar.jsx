@@ -8,18 +8,20 @@ const Navbar = (props) => {
         <nav className="nav">
             
             <Link to='/'>
-           
             <FontAwesomeIcon icon={solid ('house')} />
                 <h1>Home</h1>
             </Link>
+
             <Link to='/post'>
             <FontAwesomeIcon icon={solid ('circle-plus')}/>
             <h1>Create Post</h1>
-            </Link>  
+            </Link> 
+
            <Link to='/profile'>
            <FontAwesomeIcon icon={solid ('user')}/>
            <h1>Profile</h1>
            </Link>
+           
         </nav>
     )
 }

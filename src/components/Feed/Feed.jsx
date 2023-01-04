@@ -1,14 +1,14 @@
 import {Routes, Route} from 'react-router-dom'
 import Home from '../../pages/Posts'
+import CreatePost from '../../pages/CreatePost'
 
 
 const Feed = (props) => {
     return(
         <div>
             <Routes>
-                <Route path="/" element={<Home/>}/> 
-                {/* <Route path="/post/:id" element={} */}
-                {/*Path to view single post & need show page */}
+                <Route path="/" element={<Home />}/>
+                <Route path= "/post" element={<CreatePost/>}/>
             </Routes>
         </div>
     )
