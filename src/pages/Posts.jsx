@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const Posts = (props) => {
+const Posts= (props) => {
   const [posts, setPosts] = useState([]);
 
   const BASE_URL = "http://localhost:4000/";
