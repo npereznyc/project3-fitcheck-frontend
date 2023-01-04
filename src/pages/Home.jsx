@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 
 const Posts = (props) => {
   const [posts, setPosts] = useState([]);
-  const [newForm, setNewForm] = useState({
-    name: "",
-    image: "",
-    text: "",
-  });
+  
 
   const BASE_URL = "http://localhost:4000/";
   //Base Url suggestion
@@ -22,11 +18,7 @@ const Posts = (props) => {
     }
   };
 
-  const handleChange = (e) => {
-    const userInput = { ...newForm };
-    userInput[e.target.name] = e.target.value;
-    setNewForm(userInput);
-  };
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,6 +63,25 @@ const Posts = (props) => {
       </>
     );
   };
+
+  const loading = () => (
+    <section className="people-list">
+        <h1>
+            Loading...
+            <span>
+                {" "}
+                <img alt="spinner"
+                    className="spinner"
+                    src="https://freesvg.org/img/1544764567.png"
+                />
+            </span>
+        </h1>
+    </section>
+);
+useEffect(() => {
+    getPosts()
+}, [])
+
 };
 
 
