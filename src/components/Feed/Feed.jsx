@@ -1,4 +1,5 @@
 import {Routes, Route} from 'react-router-dom'
+import CreatePost from '../../pages/CreatePost'
 import Home from '../../pages/Posts'
 import CreatePost from '../../pages/CreatePost'
 
