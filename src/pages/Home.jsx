@@ -52,4 +52,27 @@ const Posts = (props) => {
       console.log(err);
     }
   };
+  const loaded = () => {
+    return (
+      <>
+        <section className="post-list">
+          {posts?.map((post) => {
+            return (
+              <Link key={post._id} to={`/posts/${posts._id}`}>
+                <div className="person-card">
+                  <h1>{posts.name}</h1>
+                  <img src={posts.image} />
+                  <h3>{posts.text}</h3>
+                </div>
+              </Link>
+            );
+          })}
+        </section>
+      </>
+    );
+  };
 };
+
+
+
+export default Posts

@@ -4,7 +4,7 @@ const Feed = (props) => {
     return(
         <div>
             <Routes>
-                <Route path="/details/:id"/> 
+                <Route path="/post/:id"/> 
                 {/*Path to view single post & need show page */}
             </Routes>
         </div>
