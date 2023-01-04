@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 const CreatePost = (props) => {
 
     //form state
-    const [newform, setNewForm] = useState({
+    const [postForm, setPostForm] = useState({
         image: "",
         description: "",
         tags: "",
@@ -12,7 +12,46 @@ const CreatePost = (props) => {
         workout_difficulty: ""
     })
 
-    //handleChange and handleSubmit functions
+    const BASE_URL = "http://localhost:4000/"
+
+   
+     const handleChange = (e) => {
+        const userInput = {...postForm}
+        userInput[e.target.name] = e.target.value
+        console.log(userInput)
+        setPostForm(userInput)
+    }
+
+    const handleSubmit = async (e) => {
+        // 0. prevent default (event object method)
+        e.preventDefault()
+        // 1. capturing our local state
+        const currentState = {...postForm}
+        // check any fields for property data types / truthy value
+        try{
+            const requestOptions = {
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(currentState)
+            } 
+            const response = await fetch(BASE_URL, requestOptions)
+            const newPost = await response.json()
+            console.log(newPost)
+
+            setPostForm({
+                image: "",
+                description: "",
+                tags: "",
+                workout_rating: "",
+                workout_difficulty: ""
+            })
+
+        }catch(err) {
+            console.log(err)
+        }
+    }
 
     return (
         <div>
@@ -23,12 +62,12 @@ const CreatePost = (props) => {
                         <label>
                             Image
                             <input
-                            // type="text" 
-                            // id="image"
-                            // name="image" 
+                            type="text" 
+                            id="image"
+                            name="image" 
                             placeholder="image url" 
-                            // value={}
-                            // onChange={}
+                            value={postForm.image}
+                            onChange={handleChange}
                             />
                         </label>
                     </div>
@@ -37,12 +76,12 @@ const CreatePost = (props) => {
                         <label>
                             Description
                             <input
-                            // type="text" 
-                            // id="description"
-                            // name="description" 
+                            type="text" 
+                            id="description"
+                            name="description" 
                             placeholder="description" 
-                            // value={}
-                            // onChange={}
+                            value={postForm.description}
+                            onChange={handleChange}
                             />
                         </label>
                     </div>
@@ -51,12 +90,12 @@ const CreatePost = (props) => {
                         <label>
                             Tags
                             <input
-                            // type="text" 
-                            // id="tags"
-                            // name="tags" 
+                            type="text" 
+                            id="tags"
+                            name="tags" 
                             placeholder="tags" 
-                            // value={}
-                            // onChange={}
+                            value={postForm.tags}
+                            onChange={handleChange}
                             />
                         </label>
                     </div>
