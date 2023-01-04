@@ -5,20 +5,20 @@ const Update = (props) => {
 
     return (
         <section>
-            <h2>Edit this Person</h2>
+            <h2>Edit this Post</h2>
             <form >
                 <input 
                     // type="text"
                     // value={}
                     // name="image"
-                    // placeholder="image URL"
+                    placeholder="update image URL"
                     // onChange={}
                 />
                 <input 
                     // type="text"
                     // value={}
                     // name="description"
-                    // placeholder="description"
+                    placeholder="update description"
                     // onChange={}
                 />
                 
@@ -26,26 +26,28 @@ const Update = (props) => {
                     // type="text"
                     // value={}
                     // name="tags"
-                    // placeholder="tags"
+                    placeholder="update tags"
                     // onChange={}
                 />
                 <input 
                     // type="???"
                     // value={}
                     // name="rating"
-                    // placeholder="rating"
+                    placeholder="update rating"
                     // onChange={}
                 />
                 <input 
                     // type="???"
                     // value={}
                     // name="difficulty"
-                    // placeholder="difficulty"
+                    placeholder="update difficulty"
                     // onChange={}
                 />
-                <input type="submit" value="Update Post" />
+                <input type="submit" value="Edit Post" />
             </form>
         </section>
     )
 
 }
+
+export default Update

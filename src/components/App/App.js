@@ -1,6 +1,8 @@
 import './App.css';
 import Navbar from '../Navbar/Navbar';
 import Feed from '../Feed/Feed';
+import CreatePost from '../../pages/CreatePost';
+import Update from '../../pages/EditPost';
 
 function App() {
     return (
