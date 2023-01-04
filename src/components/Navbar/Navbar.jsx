@@ -20,6 +20,7 @@ const Navbar = (props) => {
            <FontAwesomeIcon icon={solid ('user')}/>
            <h1>Profile</h1>
            </Link>
+           
         </nav>
     )
 }
