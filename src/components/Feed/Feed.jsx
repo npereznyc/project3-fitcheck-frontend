@@ -1,4 +1,4 @@
-import {Routes, route} from 'react-router-dom'
+import {Routes} from 'react-router-dom'
 
 const Feed = (props) => {
     return(
