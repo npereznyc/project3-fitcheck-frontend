@@ -2,14 +2,37 @@ import {useState, useEffect} from 'react';
 import {useParams} from 'react-router'
 
 const PostDetail = (props) => {
-
+    const [post, setPost] = useState(null)
     //Show route/GET request
+    const { id } = useParams()
+
+    const URL = `http://localhost:4000/post/${id}`
+
+    const getPost = async () => {
+        try {
+            const response = await fetch(URL)
+            const result = await response.json()
+            console.log(result)
+            setPost(result)
+            
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    console.log(`Current post: ${JSON.stringify(post)}`)
+
+    //make a fetch:
+    useEffect(() => {
+        getPost()
+    }, [])
+
     //Destroy route/DELETE request
 
     return (
         <div className="post-container">
-            <h3>Name</h3>
-            <img>Post Image</img>
+            <h4>Name</h4> 
+            {/* Name will need to be {profile.name}? */}
+            {/* <img>Post Image</img> */}
             <div className="details">
                 <p>Post Text</p>
                 <p>Tags</p>
@@ -21,3 +44,5 @@ const PostDetail = (props) => {
         </div>
     )
 }
+
+export default PostDetail
