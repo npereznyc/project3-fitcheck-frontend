@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 import StarRating from "../components/StarRating";
 import '../components/star.css'
 
 const CreatePost = (props) => {
+    
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate()
   //form state
   const [postForm, setPostForm] = useState({
     image: "",
@@ -52,6 +55,7 @@ const CreatePost = (props) => {
         workout_rating: "",
         workout_difficulty: "",
       });
+      navigate("/")
     } catch (err) {
       console.log(err);
     }
