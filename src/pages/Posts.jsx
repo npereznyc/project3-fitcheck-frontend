@@ -5,7 +5,6 @@ const Posts = (props) => {
     const [posts, setPosts] = useState([])
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/"
-    //Base Url suggestion
 
     const getPosts = async () => {
         try {
@@ -23,19 +22,20 @@ const Posts = (props) => {
     const loaded = () => {
         return (
             <>
-                <section className="post-list">
+                {/* <section className="post-list"> */}
                     {posts?.map((post) => {
                         return (
                             <Link key={post._id} to={`/${post._id}`}>
                                 <div className="post-container">
-                                    <h1>{post.name}</h1>
+                                    <p>user's icon/name will go here</p>
                                     <img alt={post.tags} src={post.image} />
-                                    <h3>{post.description}</h3>
+                                    <p className="post-description">{post.description}</p>
+                                    <p className="post-tags">#{post.tags}</p>
                                 </div>
                             </Link>
                         )
                     })}
-                </section>
+                {/* </section> */}
             </>
         )
     }
@@ -60,7 +60,7 @@ const Posts = (props) => {
     }, [])
 
     return (
-        <section className="ShowContainer">
+        <section className="feed-container">
             {posts && posts.length ? loaded() : loading()}
         </section>
     )
