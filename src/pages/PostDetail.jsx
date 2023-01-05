@@ -21,7 +21,7 @@ const PostDetail = (props) => {
             console.log(err)
         }
     }
-    console.log(`Current post: ${JSON.stringify(post)}`)
+    console.log(`Current post(detail): ${JSON.stringify(post)}`)
 
     //make a fetch:
     useEffect(() => {
@@ -43,7 +43,6 @@ const PostDetail = (props) => {
                     <p>Workout Difficulty: {post.difficulty}</p>
                 </div>
                 <EditPost />
-                <button>Delete Post</button>
             </div>
         )
     }
