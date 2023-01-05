@@ -22,7 +22,7 @@ const EditPost = (props) => {
             console.log(err)
         }
     }
-    console.log(`Current persposton: ${JSON.stringify(post)}`)
+    console.log(`Current post: ${JSON.stringify(post)}`)
 
     //make a fetch:
     useEffect(() => {
