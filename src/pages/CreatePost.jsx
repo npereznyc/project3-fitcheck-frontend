@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
+
 
 
 const CreatePost = (props) => {
 
     const [posts, setPosts] = useState([])
+    const navigate = useNavigate()
     //form state
     const [postForm, setPostForm] = useState({
         image: "",
@@ -40,10 +43,7 @@ const CreatePost = (props) => {
                 body: JSON.stringify(currentState)
             } 
             const response = await fetch(BASE_URL, requestOptions)
-            console.log(response)
-
             const newPost = await response.json()
-            console.log(newPost)
 
             setPosts([...posts, newPost])
             setPostForm({
@@ -53,7 +53,7 @@ const CreatePost = (props) => {
                 workout_rating: "",
                 workout_difficulty: ""
             })
-
+            navigate("/")
         }catch(err) {
             console.log(err)
         }
