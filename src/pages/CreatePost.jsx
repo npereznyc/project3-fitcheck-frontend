@@ -58,9 +58,12 @@ const CreatePost = (props) => {
   };
 
   return (
+    
     <div>
+        
       <section>
         <h2>Create New Post</h2>
+        
         <form onSubmit={handleSubmit}>
           <div>
             <label>
@@ -103,10 +106,14 @@ const CreatePost = (props) => {
               />
             </label>
           </div>
-            <StarRating  />
+            
           <div>
+          
             <label>
+
               Workout Rating
+        <StarRating />
+
               <input
                 // type=??
                 // id="rating"
@@ -120,7 +127,10 @@ const CreatePost = (props) => {
 
           <div>
             <label>
+            
               Workout Difficulty
+                <StarRating />
+
               <input
                 // type=??
                 // id="difficulty"
