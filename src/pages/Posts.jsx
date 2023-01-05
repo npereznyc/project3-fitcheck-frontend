@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Posts= (props) => {
   const [posts, setPosts] = useState([]);
 
-  const BASE_URL = "http://localhost:4000/";
+  const BASE_URL = "https://fitness-accountability.herokuapp.com/";
   //Base Url suggestion
 
   const getPosts = async () => {
@@ -26,11 +26,11 @@ const Posts= (props) => {
         <section className="post-list">
           {posts?.map((post) => {
             return (
-              <Link key={posts._id} to={`/${posts._id}`}>
+              <Link key={post._id} to={`/${post._id}`}>
                 <div className="person-card">
-                  <h1>{posts.name}</h1>
-                  <img alt="" src={posts.image} />
-                  <h3>{posts.text}</h3>
+                  <h1>{post.name}</h1>
+                  <img alt="" src={post.image} />
+                  <h3>{post.description}</h3>
                 </div>
               </Link>
             );
@@ -41,7 +41,7 @@ const Posts= (props) => {
   };
 
   const loading = () => (
-    <section className="people-list">
+    <section className="loading">
       <h1>
         Loading...
         <span>
@@ -58,6 +58,12 @@ const Posts= (props) => {
   useEffect(() => {
     getPosts();
   }, []);
+
+  return (
+    <section className="ShowContainer">
+        {posts && posts.length ? loaded() : loading()}
+    </section>
+)
 };
 
 export default Posts;

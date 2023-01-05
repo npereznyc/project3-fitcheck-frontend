@@ -1,14 +1,13 @@
 import {Routes, Route} from 'react-router-dom'
 import CreatePost from '../../pages/CreatePost'
-import Home from '../../pages/Posts'
-import CreatePost from '../../pages/CreatePost'
+import Posts from '../../pages/Posts'
 
 
 const Feed = (props) => {
     return(
         <div>
             <Routes>
-                <Route path="/" element={<Home />}/>
+                <Route path="/" element={<Posts />}/>
                 <Route path= "/post" element={<CreatePost/>}/>
             </Routes>
         </div>

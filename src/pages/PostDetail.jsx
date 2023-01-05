@@ -6,7 +6,7 @@ const PostDetail = (props) => {
     //Show route/GET request
     const { id } = useParams()
 
-    const URL = `http://localhost:4000/post/${id}`
+    const URL = `https://fitness-accountability.herokuapp.com/post/${id}`
 
     const getPost = async () => {
         try {
