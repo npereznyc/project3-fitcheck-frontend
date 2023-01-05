@@ -28,8 +28,6 @@ const PostDetail = (props) => {
         getPost()
     }, [])
 
-    //Destroy route/DELETE request
-
     const loaded = () => {
         return (
             <div className="post-container">

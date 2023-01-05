@@ -51,10 +51,6 @@ const EditPost = (props) => {
             }
             const response = await fetch(URL, options)
             const deletedPost = await response.json()
-            console.log(deletedPost)
-            //make a fetch for a delete endpoint
-            //await response / parse response
-            //navigate() is going to change the current page the browser is at; we're doing client side redirect
             navigate("/")
         } catch (err) {
             console.log(err)
@@ -111,7 +107,7 @@ const EditPost = (props) => {
             </form>
         </section>
         <section className="delete-post">
-            {/* <h1>{person.name}</h1> */}
+            {/* <h1>{profile.name}</h1> ?? will need authentication in order to detect the user's name */}
             <div>
                 <br></br>
                 Delete this Post: 
