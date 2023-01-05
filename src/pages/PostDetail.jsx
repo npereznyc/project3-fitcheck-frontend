@@ -57,7 +57,7 @@ const PostDetail = (props) => {
         </h1>
     }
     return (
-        <section className="ShowPost">
+        <section className="PostDetail">
             {post ? loaded() : loading()}
         </section>
     )

@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react'
+// import { useNavigate } from "react-router-dom"
+// import { useParams } from 'react-router'
+
 
 
 const CreateProfile = (props) => {
 
     const [profile, setProfile] = useState([])
+
     //form state
     const [profileForm, setProfileForm] = useState({
         name: "",
@@ -13,6 +17,26 @@ const CreateProfile = (props) => {
     })
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/profile/"
+    
+    // const navigate = useNavigate()    
+    // const { id } = useParams()
+    // const URL = `https://fitness-accountability.herokuapp.com/profile/${id}`
+
+    // const getProfile = async () => {
+    //     try {
+    //         const response = await fetch(URL)
+    //         const result = await response.json()
+    //         console.log(result)
+    //         setProfile(result)
+
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     getProfile()
+    // }, [])
 
 
     const handleChange = (e) => {
@@ -51,7 +75,7 @@ const CreateProfile = (props) => {
                 location: "",
                 bio: "",
             })
-
+            // navigate(`/${id}`)
         } catch (err) {
             console.log(err)
         }
