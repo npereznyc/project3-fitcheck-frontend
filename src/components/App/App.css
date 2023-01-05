@@ -3,7 +3,19 @@
 }
 
 
+.spinner {
+    width: 24px;
+    animation: loading infinite 3s linear;
+  }
 
+  @keyframes loading{
+    from{
+      transform: rotateZ(0deg);
+    }
+    to{
+      transform: rotateZ(360deg);
+    }
+  }
 
 
 .App-header {

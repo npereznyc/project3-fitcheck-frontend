@@ -10,7 +10,6 @@ function App() {
             <h1>Fitness app</h1>
             <Navbar />
             <Feed />
-            
         </div>
     )
 }

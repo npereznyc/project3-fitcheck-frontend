@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 
 const CreatePost = (props) => {
 
+    const [posts, setPosts] = useState([])
     //form state
     const [postForm, setPostForm] = useState({
         image: "",
@@ -12,7 +13,7 @@ const CreatePost = (props) => {
         workout_difficulty: ""
     })
 
-    const BASE_URL = "http://localhost:4000/"
+    const BASE_URL = "https://fitness-accountability.herokuapp.com/post/"
 
    
      const handleChange = (e) => {
@@ -24,11 +25,13 @@ const CreatePost = (props) => {
 
     const handleSubmit = async (e) => {
         // 0. prevent default (event object method)
+        console.log('handling submit')
         e.preventDefault()
         // 1. capturing our local state
         const currentState = {...postForm}
         // check any fields for property data types / truthy value
         try{
+            console.log('try block')
             const requestOptions = {
                 method: "POST", 
                 headers: {
@@ -37,9 +40,12 @@ const CreatePost = (props) => {
                 body: JSON.stringify(currentState)
             } 
             const response = await fetch(BASE_URL, requestOptions)
+            console.log(response)
+
             const newPost = await response.json()
             console.log(newPost)
 
+            setPosts([...posts, newPost])
             setPostForm({
                 image: "",
                 description: "",
@@ -57,7 +63,7 @@ const CreatePost = (props) => {
         <div>
             <section>
                 <h2>Create New Post</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div>
                         <label>
                             Image
