@@ -1,0 +1,16 @@
+input[type ="radio"]{
+    display: none;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+.star {
+    height: 100px;
+    background-size: 100px;
+    cursor: pointer;
+    font-size: 30px;
+}
