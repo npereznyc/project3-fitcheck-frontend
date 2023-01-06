@@ -1,3 +1,7 @@
+/* * {
+    border: 1px dashed pink;
+} */
+
 body {
     margin: 0;
     font-family: sans-serif;
@@ -17,33 +21,46 @@ a {
 .nav {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    align-items: center;
+    position: fixed;
+    top: 40px;
+    right: 85%;
+    bottom: 0;
+    left: 0;
+    gap: 40px;
     background-color: #444444;
-    padding: 8px;
+    padding: 40px 0;
 }
 
 .nav a {
     color: #FFFFFF;
+    margin: 0 20px;
+    display: flex;
+}
+
+.nav svg {
+    padding-right: 16px;
 }
 
 .feed-container {
-    width: 50%;
-    /* border: 1px dashed red; */
-    /* background-color: yellow; */
+    width: 40%;
     display: flex;
     flex-direction: column;
+    margin-bottom: 96px;
 }
 
 .post-container {
-    /* background-color: orange; */
-    width: 50%;
-    /* border: 1px dashed blue; */
+    border: 2px solid black;
+    border-radius: 16px 16px 0px 0px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: left;
     text-align: left;
-    margin: 20px auto;
+    margin: 24px auto;
+    padding: 4px 0;
+}
+
+.post-container p {
+    margin: 8px 16px;
 }
 
 .post-container img {
@@ -56,15 +73,22 @@ a {
         width: 100%;
     }
     .post-container {
-        width: 90%;
+        border: none;
+        border-radius: 0px;
     }
     .nav {
         flex-direction: row;
-        gap: 0px;
         justify-content: space-around;
-        position: fixed;
-        bottom: 0;
-        left: 0;
+        gap: 0px;
+        padding: 12px 0 36px;
+        top: auto;
         right: 0;
+    }
+    .nav a {
+        flex-direction: column;
+        gap: 2px;
+    }
+    .nav svg {
+        padding: 0;
     }
 }

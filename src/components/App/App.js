@@ -10,7 +10,7 @@ function App() {
     library.add(faHouse, faCirclePlus, faUser)
     return (
         <div className="App">
-            <h1>Fitness app</h1>
+            <h1>Fitness Check</h1>
             <Navbar />
             <Feed />
         </div>

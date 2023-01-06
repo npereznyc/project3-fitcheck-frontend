@@ -8,15 +8,13 @@ import CreateProfile from '../../pages/CreateProfile'
 
 const Feed = (props) => {
     return(
-        <div>
-            <Routes>
-                <Route path="/" element={<Posts />}/>
-                <Route path= "/post" element={<CreatePost/>}/>
-                <Route path="/:id" element={ <PostDetail />} />
-                <Route path= "/profile/:id" element={<Profile/>}/>
-                <Route path= "/profile" element={<CreateProfile/>}/>
-            </Routes>
-        </div>
+        <Routes>
+            <Route path="/" element={ <Posts /> } />
+            <Route path= "/post" element={ <CreatePost /> } />
+            <Route path="/:id" element={ <PostDetail />} />
+            <Route path= "/profile/:id" element={ <Profile /> } />
+            <Route path= "/profile" element={ <CreateProfile /> } />
+        </Routes>
     )
 }
 
