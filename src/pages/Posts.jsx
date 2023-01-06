@@ -22,20 +22,18 @@ const Posts = (props) => {
     const loaded = () => {
         return (
             <>
-                {/* <section className="post-list"> */}
-                    {posts?.map((post) => {
-                        return (
-                            <Link key={post._id} to={`/${post._id}`}>
-                                <div className="post-container">
-                                    <p>user's icon/name will go here</p>
-                                    <img alt={post.tags} src={post.image} />
-                                    <p className="post-description">{post.description}</p>
-                                    <p className="post-tags">#{post.tags}</p>
-                                </div>
-                            </Link>
-                        )
-                    })}
-                {/* </section> */}
+                {posts?.map((post) => {
+                    return (
+                        <Link key={post._id} to={`/${post._id}`}>
+                            <div className="post-container">
+                                <p>user's icon/name will go here</p>
+                                <img alt={post.tags} src={post.image} />
+                                <p className="post-description">{post.description}</p>
+                                <p className="post-tags">#{post.tags}</p>
+                            </div>
+                        </Link>
+                    )
+                })}
             </>
         )
     }
