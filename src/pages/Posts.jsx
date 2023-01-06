@@ -29,7 +29,9 @@ const Posts = (props) => {
                                 <p>user's icon/name will go here</p>
                                 <img alt={post.tags} src={post.image} />
                                 <p className="post-description">{post.description}</p>
-                                <p className="post-tags">#{post.tags}</p>
+                                <p className="post-tags">
+                                    {post.tags?.map((tag) => {return `#${tag} `})}
+                                </p>
                             </div>
                         </Link>
                     )

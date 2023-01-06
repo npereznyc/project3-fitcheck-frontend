@@ -45,15 +45,22 @@ a {
     width: 40%;
     display: flex;
     flex-direction: column;
+    margin-bottom: 96px;
 }
 
 .post-container {
+    border: 2px solid black;
+    border-radius: 16px 16px 0px 0px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: left;
     text-align: left;
-    margin: 20px auto;
+    margin: 24px auto;
+    padding: 4px 0;
+}
+
+.post-container p {
+    margin: 8px 16px;
 }
 
 .post-container img {
@@ -64,6 +71,10 @@ a {
 @media (orientation: portrait) {
     .feed-container {
         width: 100%;
+    }
+    .post-container {
+        border: none;
+        border-radius: 0px;
     }
     .nav {
         flex-direction: row;
