@@ -116,15 +116,19 @@ const CreatePost = (props) => {
             <label>
 
               Workout Rating
-        <StarRating />
+        <StarRating 
+        onChange ={handleChange}
+        value = {postForm.workout_rating}
+    
+        />
 
               <input
                 // type=??
                 // id="rating"
                 // name="rating"
                 placeholder="workout rating"
-                // value={}
-                // onChange={}
+                //  value= {postForm.workout_rating}
+                //  onChange={{handleChange}}
               />
             </label>
           </div>
