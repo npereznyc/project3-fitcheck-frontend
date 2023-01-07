@@ -1,5 +1,5 @@
 import './App.css'
-import Header from '../Header'
+import Header from '../Header/Header'
 import Navbar from '../Navbar/Navbar'
 import Feed from '../Feed/Feed'
 import { library } from '@fortawesome/fontawesome-svg-core'
