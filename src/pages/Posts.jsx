@@ -21,11 +21,11 @@ const Posts = (props) => {
 
     const loaded = () => {
         return (
-            <>
+            <div className="posts-container">
                 {posts?.map((post) => {
                     return (
                         <Link key={post._id} to={`/${post._id}`}>
-                            <div className="post-container">
+                            <div className="post">
                                 <p>user's icon/name will go here</p>
                                 <img alt={post.tags} src={post.image} />
                                 <p className="post-description">{post.description}</p>
@@ -36,7 +36,7 @@ const Posts = (props) => {
                         </Link>
                     )
                 })}
-            </>
+            </div>
         )
     }
 

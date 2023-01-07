@@ -1,4 +1,5 @@
 import './App.css'
+import Header from '../Header'
 import Navbar from '../Navbar/Navbar'
 import Feed from '../Feed/Feed'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -10,7 +11,7 @@ function App() {
     library.add(faHouse, faCirclePlus, faUser)
     return (
         <div className="App">
-            <h1>Fitness Check</h1>
+            <Header />
             <Navbar />
             <Feed />
         </div>
