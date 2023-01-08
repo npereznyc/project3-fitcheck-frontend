@@ -24,13 +24,13 @@ const CreatePost = (props) => {
     const handleChange = (e) => {
         const userInput = { ...postForm }
         userInput[e.target.name] = e.target.value
-        console.log(userInput)
+        // console.log(userInput)
         setPostForm(userInput)
     }
 
     const handleSubmit = async (e) => {
         // 0. prevent default (event object method)
-        console.log("handling submit")
+        // console.log("handling submit")
         e.preventDefault()
         // 1. capturing our local state
         const currentState = { ...postForm }
@@ -44,12 +44,11 @@ const CreatePost = (props) => {
                 },
                 body: JSON.stringify(currentState),
             }
-            console.log(requestOptions)
             const response = await fetch(BASE_URL, requestOptions)
-            console.log(response)
+            // console.log(response)
 
             const newPost = await response.json()
-            console.log(newPost)
+            // console.log(newPost)
 
             setPosts([...posts, newPost])
             setPostForm({
@@ -61,7 +60,7 @@ const CreatePost = (props) => {
             })
             navigate("/")
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 

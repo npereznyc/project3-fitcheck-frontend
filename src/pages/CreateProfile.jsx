@@ -42,19 +42,19 @@ const CreateProfile = (props) => {
     const handleChange = (e) => {
         const userInput = { ...profileForm }
         userInput[e.target.name] = e.target.value
-        console.log(userInput)
+        // console.log(userInput)
         setProfileForm(userInput)
     }
 
     const handleSubmit = async (e) => {
         // 0. prevent default (event object method)
-        console.log('handling submit')
+        // console.log('handling submit')
         e.preventDefault()
         // 1. capturing our local state
         const currentState = { ...profileForm }
         // check any fields for property data types / truthy value
         try {
-            console.log('try block')
+            // console.log('try block')
             const requestOptions = {
                 method: "POST",
                 headers: {
@@ -63,10 +63,10 @@ const CreateProfile = (props) => {
                 body: JSON.stringify(currentState)
             }
             const response = await fetch(BASE_URL, requestOptions)
-            console.log(response)
+            // console.log(response)
 
             const newProfile = await response.json()
-            console.log(newProfile)
+            // console.log(newProfile)
 
             setProfile([...profile, newProfile])
             setProfileForm({
@@ -77,7 +77,7 @@ const CreateProfile = (props) => {
             })
             // navigate(`/${id}`)
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 

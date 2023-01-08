@@ -14,11 +14,11 @@ const Profile = (props) => {
         try {
             const response = await fetch(URL)
             const result = await response.json()
-            console.log(result)
+            // console.log(result)
             setProfile(result)
 
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 

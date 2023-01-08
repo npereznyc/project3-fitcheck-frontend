@@ -15,14 +15,14 @@ const EditPost = (props) => {
         try {
             const response = await fetch(URL)
             const result = await response.json()
-            console.log(result)
+            // console.log(result)
             setPost(result)
 
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
-    console.log(`Current post (edit): ${JSON.stringify(post)}`)
+    // console.log(`Current post (edit): ${JSON.stringify(post)}`)
 
     //make a fetch:
     useEffect(() => {
@@ -39,7 +39,7 @@ const EditPost = (props) => {
             })
             getPost()
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -53,7 +53,7 @@ const EditPost = (props) => {
             const deletedPost = await response.json()
             navigate("/")
         } catch (err) {
-            console.log(err)
+            console.error(err)
             //stretch goal: populate error message on page when delete fails
             //populate some state for 3 seconds, then redirect to a 404 page
         }

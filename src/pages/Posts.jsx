@@ -12,7 +12,7 @@ const Posts = (props) => {
             const allPosts = await response.json()
             setPosts(allPosts)
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
