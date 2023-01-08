@@ -20,6 +20,29 @@ a {
     color: #000000;
 }
 
+span {
+    font-weight: 600;
+}
+
+.logged-in {
+    color: blue;
+}
+
+.not-logged-in {
+    color: red;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #FFFFFF;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .nav {
     width: 200px;
     display: flex;
