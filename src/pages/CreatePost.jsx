@@ -18,6 +18,8 @@ const CreatePost = (props) => {
 
   const BASE_URL = "https://fitness-accountability.herokuapp.com/post/";
 
+
+
   const handleChange = (e) => {
     const userInput = { ...postForm };
     userInput[e.target.name] = e.target.value;
@@ -61,6 +63,22 @@ const CreatePost = (props) => {
     }
   };
 
+
+  const setWorkoutRating = (newRating) => {
+    setPostForm((oldPostFormValues) => {
+        const copyOfPostForm = { ...oldPostFormValues};
+        copyOfPostForm["workout_rating"] = newRating;
+        return copyOfPostForm;
+    })
+ }
+
+ const setDifficultyRating = (newRating) => {
+    setPostForm((oldPostFormValues) => {
+        const copyOfPostForm = { ...oldPostFormValues};
+        copyOfPostForm["Workout_rating"] = newRating;
+        return copyOfPostForm;
+    })
+ }
   return (
     
     <div>
@@ -117,10 +135,9 @@ const CreatePost = (props) => {
 
               Workout Rating
         <StarRating 
-        onChange ={handleChange}
-        value = {postForm.workout_rating}
+        setRating={setWorkoutRating} />
     
-        />
+        
 
               <input
                 // type=??
@@ -137,7 +154,7 @@ const CreatePost = (props) => {
             <label>
             
               Workout Difficulty
-                <StarRating />
+                <StarRating setRating={setDifficultyRating} />
 
               <input
                 // type=??
