@@ -91,7 +91,7 @@ function Auth() {
             <h1>Auth Container</h1>
             <RegisterForm signUp={registerUser} />
             <LoginForm signIn={loginUser} />
-            {token ? <><br/><button onClick={logoutUser} className="logout-button">Log Out</button></> : null }
+            {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null}
         </section>
     )
 }

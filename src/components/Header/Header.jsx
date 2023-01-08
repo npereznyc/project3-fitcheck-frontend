@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { UserContext } from '../../data'
 import { getUserToken } from '../../utils/authToken'
+import { Link } from 'react-router-dom'
 
 const Header = (props) => {
     const { currentUser } = useContext(UserContext)
@@ -9,7 +10,10 @@ const Header = (props) => {
     // console.log(currentUser)
 
     return (
-        <div className="header"><h1>Fitness Check</h1>{token ? <p>Logged in {currentUser ? <span className='logged-in'>({currentUser._id})</span> : <span className='logged-in'>(token)</span>}</p> : <p><span className='not-logged-in'>Not logged in</span></p>}</div>
+        <div className="header">
+            <Link to="/"><h1>Fitness Check</h1></Link>
+            <Link to="/profile">{token ? <p>Logged in: {currentUser ? <span className='logged-in'>{currentUser.username}</span> : <span className='logged-in'>(UserContext, hello...?)</span>}</p> : <p><span className='not-logged-in'>Not logged in</span></p>}</Link>
+        </div>
     )
 }
 

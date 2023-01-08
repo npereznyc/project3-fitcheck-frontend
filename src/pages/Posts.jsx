@@ -26,7 +26,7 @@ const Posts = (props) => {
                     return (
                         <Link key={post._id} to={`/${post._id}`}>
                             <div className="post">
-                                <p>{post.owner || `dummy post`}</p>
+                                <p>{post.owner ? `User ID: ${post.owner}` : `dummy post`}</p>
                                 <img alt={post.tags} src={post.image} />
                                 <p className="post-description">{post.description}</p>
                                 <p className="post-tags">
@@ -60,9 +60,9 @@ const Posts = (props) => {
     }, [])
 
     return (
-        <section className="feed-container">
+        <>
             {posts && posts.length ? loaded() : loading()}
-        </section>
+        </>
     )
 }
 

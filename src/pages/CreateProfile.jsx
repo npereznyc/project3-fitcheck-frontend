@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react'
-// import { useNavigate } from "react-router-dom"
 // import { useParams } from 'react-router'
 
+import { useContext } from "react"
+import { UserContext } from "../data"
+import { useNavigate } from "react-router-dom"
+import { getUserToken, clearUserToken } from "../utils/authToken"
 
 
 const CreateProfile = (props) => {
+    const { setAuth, setUser, currentUser } = useContext(UserContext)
+    const navigate = useNavigate()
 
     const [profile, setProfile] = useState([])
 
@@ -17,7 +22,7 @@ const CreateProfile = (props) => {
     })
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/profile/"
-    
+
     // const navigate = useNavigate()    
     // const { id } = useParams()
     // const URL = `https://fitness-accountability.herokuapp.com/profile/${id}`
@@ -81,8 +86,19 @@ const CreateProfile = (props) => {
         }
     }
 
+    const token = getUserToken()
+    const logoutUser = () => {
+        clearUserToken()
+        setUser(null)
+        setAuth(null)
+        navigate(`/`)
+    }
+
     return (
         <div>
+            <h1>(This page may be refactored, redirect to your own profile/:id, or be deleted)</h1>
+            <p>Your User ID is: {currentUser ? currentUser._id : `unavailable`}</p>
+            {token ? <button onClick={logoutUser} className="logout-button">Log Out</button> : null}
             <section>
                 <h2>Create New Profile</h2>
                 <form onSubmit={handleSubmit}>
@@ -134,10 +150,10 @@ const CreateProfile = (props) => {
                             <input
                                 type="text"
                                 id="bio"
-                                name="bio" 
+                                name="bio"
                                 placeholder="workout bio"
-                            value={profileForm.bio}
-                            onChange={handleChange}
+                                value={profileForm.bio}
+                                onChange={handleChange}
                             />
                         </label>
                     </div>

@@ -118,12 +118,12 @@ const EditPost = (props) => {
         <section className="delete-post">
             {/* <h1>{profile.name}</h1> ?? will need authentication in order to detect the user's name */}
             <div>
-                <br></br>
-                Delete this Post: 
+                <br />
+                Delete this Post:
                 <button onClick={deletePost}> Delete </button>
             </div>
         </section>
-        <br></br>
+        <br />
         <Link to="/">Back to Home</Link>
     </>
     )
