@@ -12,7 +12,7 @@ const Posts = (props) => {
             const allPosts = await response.json()
             setPosts(allPosts)
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -21,12 +21,13 @@ const Posts = (props) => {
 
     const loaded = () => {
         return (
-            <>
+            <div className="posts-container">
                 {posts?.map((post) => {
                     return (
                         <Link key={post._id} to={`/${post._id}`}>
-                            <div className="post-container">
-                                <p>user's icon/name will go here</p>
+                            <div className="post">
+                                <p>{post.owner}</p>
+                                {/* user's icon/name will go here */}
                                 <img alt={post.tags} src={post.image} />
                                 <p className="post-description">{post.description}</p>
                                 <p className="post-tags">
@@ -36,7 +37,7 @@ const Posts = (props) => {
                         </Link>
                     )
                 })}
-            </>
+            </div>
         )
     }
 

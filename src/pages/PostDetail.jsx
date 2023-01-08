@@ -14,14 +14,14 @@ const PostDetail = (props) => {
         try {
             const response = await fetch(URL)
             const result = await response.json()
-            console.log(result)
+            // console.log(result)
             setPost(result)
 
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
-    console.log(`Current post(detail): ${JSON.stringify(post)}`)
+    // console.log(`Current post(detail): ${JSON.stringify(post)}`)
 
     //make a fetch:
     useEffect(() => {
