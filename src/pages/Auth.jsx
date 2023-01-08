@@ -16,7 +16,7 @@ function Auth() {
                     "Content-Type": "application/json",
                 },
             }
-            const newUser = await fetch("http://localhost:4000/auth/register", configs)
+            const newUser = await fetch("https://fitness-accountability.herokuapp.com/auth/register", configs)
 
             const parsedUser = await newUser.json()
             // console.log(parsedUser)
@@ -52,10 +52,10 @@ function Auth() {
                 },
             }
 
-            const response = await fetch("http://localhost:4000/auth/login", configs)
+            const response = await fetch("https://fitness-accountability.herokuapp.com/auth/login", configs)
 
             const currentUser = await response.json()
-            //console.log(currentUser)
+            // console.log(currentUser)
 
             if (currentUser.token) {
                 // sets local storage
@@ -66,7 +66,7 @@ function Auth() {
 
                 return currentUser
             } else {
-                throw `Server Error: ${currentUser.statusText}`
+                console.error(`Server Error: ${currentUser.error}`)
             }
         }
         catch (err) {
