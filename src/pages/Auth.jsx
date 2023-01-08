@@ -1,11 +1,14 @@
 import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import { UserContext } from "../data"
-import { setUserToken, clearUserToken } from "../utils/authToken"
+import { getUserToken, setUserToken, clearUserToken } from "../utils/authToken"
 import RegisterForm from "../components/RegisterForm"
 import LoginForm from "../components/LoginForm"
 
 function Auth() {
     const { setAuth, setUser } = useContext(UserContext)
+    const navigate = useNavigate()
+    const token = getUserToken()
 
     const registerUser = async (data) => {
         try {
@@ -76,11 +79,19 @@ function Auth() {
         }
     }
 
+    const logoutUser = () => {
+        clearUserToken()
+        setUser(null)
+        setAuth(null)
+        navigate(`/`)
+    }
+
     return (
         <section>
             <h1>Auth Container</h1>
             <RegisterForm signUp={registerUser} />
             <LoginForm signIn={loginUser} />
+            {token ? <><br/><button onClick={logoutUser} className="logout-button">Log Out</button></> : null }
         </section>
     )
 }

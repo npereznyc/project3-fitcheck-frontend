@@ -97,6 +97,13 @@ span {
     height: auto;
 }
 
+.logout-button {
+    background-color: red;
+    color: white;
+    font-weight: 600;
+    padding: 8px 16px;
+}
+
 @media (orientation: portrait), (max-width: 959px) {
     .feed-container {
         width: 100%;
