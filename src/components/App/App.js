@@ -10,7 +10,7 @@ import Feed from '../Feed/Feed'
 function App() {
     library.add(faHouse, faCirclePlus, faUser)
 
-    const { Provider : UserInfo } = UserContext
+    const { Provider: UserInfo } = UserContext
 
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)

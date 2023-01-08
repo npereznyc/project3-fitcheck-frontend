@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
 import { useParams, Link, useNavigate } from "react-router-dom"
+import { getUserToken } from "../utils/authToken"
 
 const EditPost = (props) => {
+    const token = getUserToken()
 
     //Update route/PUT request
     const [post, setPost] = useState(null)
@@ -31,13 +33,18 @@ const EditPost = (props) => {
 
     const updatePost = async (e) => {
         e.preventDefault()
+        const updatedPost = { ...editForm }
         try {
-            await fetch(URL, {
+            const requestOptions = {
                 method: "PUT",
-                headers: { "Content-Type": "application/json", },
-                body: JSON.stringify(editForm)
-            })
-            getPost()
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(updatedPost)
+            }
+            await fetch(URL, requestOptions)
+            navigate(`/`)
         } catch (err) {
             console.error(err)
         }
@@ -47,11 +54,13 @@ const EditPost = (props) => {
         try {
             //configure our delete request
             const options = {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             }
-            const response = await fetch(URL, options)
-            const deletedPost = await response.json()
-            navigate("/")
+            await fetch(URL, options)
+            navigate(`/`)
         } catch (err) {
             console.error(err)
             //stretch goal: populate error message on page when delete fails
@@ -109,12 +118,12 @@ const EditPost = (props) => {
         <section className="delete-post">
             {/* <h1>{profile.name}</h1> ?? will need authentication in order to detect the user's name */}
             <div>
-                <br></br>
-                Delete this Post: 
+                <br />
+                Delete this Post:
                 <button onClick={deletePost}> Delete </button>
             </div>
         </section>
-        <br></br>
+        <br />
         <Link to="/">Back to Home</Link>
     </>
     )
