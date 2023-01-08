@@ -30,7 +30,7 @@ const Posts = (props) => {
                                 <img alt={post.tags} src={post.image} />
                                 <p className="post-description">{post.description}</p>
                                 <p className="post-tags">
-                                    {post.tags?.map((tag) => {return `#${tag} `})}
+                                    {post.tags?.map((tag) => `#${tag} `)}
                                 </p>
                             </div>
                         </Link>

@@ -71,6 +71,11 @@ span {
     margin: 24px 0;
 }
 
+.feed-container img {
+    width: 100%;
+    height: auto;
+}
+
 .posts-container {
     display: flex;
     flex-direction: column-reverse;
@@ -90,11 +95,6 @@ span {
 
 .post p {
     margin: 8px 16px;
-}
-
-.post img {
-    width: 100%;
-    height: auto;
 }
 
 .logout-button {

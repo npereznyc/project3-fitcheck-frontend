@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useContext } from 'react'
 // import { useParams } from 'react-router'
 
-import { useContext } from "react"
 import { UserContext } from "../data"
 import { useNavigate } from "react-router-dom"
 import { getUserToken, clearUserToken } from "../utils/authToken"
