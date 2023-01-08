@@ -59,11 +59,7 @@ const Posts = (props) => {
         getPosts()
     }, [])
 
-    return (
-        <>
-            {posts && posts.length ? loaded() : loading()}
-        </>
-    )
+    return posts && posts.length ? loaded() : loading()
 }
 
 export default Posts

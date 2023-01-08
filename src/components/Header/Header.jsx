@@ -12,7 +12,7 @@ const Header = (props) => {
     return (
         <div className="header">
             <Link to="/"><h1>Fitness Check</h1></Link>
-            <Link to="/profile">{token ? <p>Logged in: {currentUser ? <span className='logged-in'>{currentUser.username}</span> : <span className='logged-in'>(UserContext, hello...?)</span>}</p> : <p><span className='not-logged-in'>Not logged in</span></p>}</Link>
+            <Link to="/profile">{token ? <p>Logged in: {currentUser ? <span className='logged-in'>{currentUser.username}</span> : <span className='logged-in'>(null??)</span>}</p> : <p><span className='not-logged-in'>Not logged in</span></p>}</Link>
         </div>
     )
 }
