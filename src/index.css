@@ -17,29 +17,7 @@ p {
 
 a {
     text-decoration: none;
-}
-
-span {
-    font-weight: 600;
-}
-
-.logged-in {
-    color: blue;
-}
-
-.not-logged-in {
-    color: red;
-}
-
-.header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #FFFFFF;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    color: #000000;
 }
 
 .nav {
@@ -70,9 +48,14 @@ span {
     margin: 24px 0;
 }
 
+.feed-container img {
+    width: 100%;
+    height: auto;
+}
+
 .posts-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 40px;
 }
 
@@ -83,7 +66,6 @@ span {
     display: flex;
     flex-direction: column;
     text-align: left;
-    /* margin: 24px auto; */
     padding: 4px 0;
     background-color: #FFFFFF;
 }
@@ -92,15 +74,17 @@ span {
     margin: 8px 16px;
 }
 
-.post img {
-    width: 100%;
-    height: auto;
+.logout-button {
+    background-color: red;
+    color: white;
+    font-weight: 600;
+    padding: 8px 16px;
 }
 
 @media (orientation: portrait), (max-width: 959px) {
     .feed-container {
         width: 100%;
-        margin: 0 0 96px;
+        margin: 0 0 88px;
     }
     .post {
         border: none;

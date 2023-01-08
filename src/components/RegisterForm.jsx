@@ -13,7 +13,8 @@ const RegisterForm = ({ signUp }) => {
 
         if (createdUserToken) {
             navigate("/")
-        } else {
+        }
+        else {
             navigate("/auth")
         }
         setInput(initialState)
