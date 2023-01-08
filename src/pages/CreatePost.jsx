@@ -64,27 +64,43 @@ const CreatePost = (props) => {
         }
     }
 
-    return (
 
-        <div>
+  const setWorkoutRating = (newRating) => {
+    setPostForm((oldPostFormValues) => {
+        const copyOfPostForm = { ...oldPostFormValues};
+        copyOfPostForm["workout_rating"] = newRating;
+        return copyOfPostForm;
+    })
+ }
 
-            <section>
-                <h2>Create New Post</h2>
-
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>
-                            Image
-                            <input
-                                type="text"
-                                id="image"
-                                name="image"
-                                placeholder="image url"
-                                value={postForm.image}
-                                onChange={handleChange}
-                            />
-                        </label>
-                    </div>
+ const setDifficultyRating = (newRating) => {
+    setPostForm((oldPostFormValues) => {
+        const copyOfPostForm = { ...oldPostFormValues};
+        copyOfPostForm["Workout_rating"] = newRating;
+        return copyOfPostForm;
+    })
+ }
+  return (
+    
+    <div>
+        
+      <section>
+        <h2>Create New Post</h2>
+        
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>
+              Image
+              <input
+                type="text"
+                id="image"
+                name="image"
+                placeholder="image url"
+                value={postForm.image}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
 
                     <div>
                         <label>
@@ -135,11 +151,11 @@ const CreatePost = (props) => {
                         </label>
                     </div>
 
-                    <div>
-                        <label>
-
-                            Workout Difficulty
-                            <StarRating />
+          <div>
+            <label>
+            
+              Workout Difficulty
+                <StarRating setRating={setDifficultyRating} />
 
                             <input
                                 // type=??
