@@ -26,8 +26,7 @@ const Posts = (props) => {
                     return (
                         <Link key={post._id} to={`/${post._id}`}>
                             <div className="post">
-                                <p>{post.owner}</p>
-                                {/* user's icon/name will go here */}
+                                <p>{post.owner || `dummy post`}</p>
                                 <img alt={post.tags} src={post.image} />
                                 <p className="post-description">{post.description}</p>
                                 <p className="post-tags">

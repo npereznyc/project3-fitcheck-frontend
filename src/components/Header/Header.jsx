@@ -9,7 +9,7 @@ const Header = (props) => {
     // console.log(currentUser)
 
     return (
-        <div className="header"><h1>Fitness Check</h1>{token ? <p>Logged in {currentUser ? <span className='logged-in'>({currentUser.username})</span> : <span className='logged-in'>(token)</span>}</p> : <p><span className='not-logged-in'>Not logged in</span></p>}</div>
+        <div className="header"><h1>Fitness Check</h1>{token ? <p>Logged in {currentUser ? <span className='logged-in'>({currentUser._id})</span> : <span className='logged-in'>(token)</span>}</p> : <p><span className='not-logged-in'>Not logged in</span></p>}</div>
     )
 }
 
