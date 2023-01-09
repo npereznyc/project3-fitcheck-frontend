@@ -16,32 +16,26 @@ function App() {
     const { Provider: UserInfo } = UserContext
 
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [currentUser, setCurrentUser] = useState(null)
+    const [currentUserName, setCurrentUserName] = useState(null)
+    const [currentUserID, setCurrentUserID] = useState(null)
+
     useEffect(() => {
-        if(token) {
-            getUserToken()
-            console.log(decodeToken(token))
-            setCurrentUser(decodeToken(token).username)
+        if (token) {
+            // getUserToken()
+            const { id, username } = decodeToken(token)
+            setCurrentUserName(username)
+            setCurrentUserID(id)
         }
-    }, [])
-    console.log(`currentUser:`, currentUser)
-
-    /*
-    Two solutions:
-    1) useEffect - token ? decode token (modify jwt auth payload to include username) -> set state to user (only sets username to state). current user would NOT be an object.
-    ^^^^^^^^^^^^^
-
-    2) have a useEffect and make a fetch request to a yet-to-exist route to a getUser lookup-function (in the backend auth controller)
-    */
-
+    }, [token])
 
     return (
         <div className="App">
             <UserInfo value={{
                 isAuthenticated,
-                currentUser,
+                currentUserName,
+                currentUserID,
                 setAuth: setIsAuthenticated,
-                setUser: setCurrentUser
+                setUser: setCurrentUserName
             }}>
                 <Header />
                 <Navbar />
