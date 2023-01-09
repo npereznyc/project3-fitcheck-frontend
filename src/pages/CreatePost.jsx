@@ -15,8 +15,8 @@ const CreatePost = (props) => {
         image: "",
         description: "",
         tags: "",
-        workout_rating: "",
-        workout_difficulty: "",
+        rating: "",
+        difficulty: "",
     })
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/post/"
@@ -55,8 +55,8 @@ const CreatePost = (props) => {
                 image: "",
                 description: "",
                 tags: "",
-                workout_rating: "",
-                workout_difficulty: "",
+                rating: "",
+                difficulty: "",
             })
             navigate("/")
         } catch (err) {
@@ -68,7 +68,7 @@ const CreatePost = (props) => {
   const setWorkoutRating = (newRating) => {
     setPostForm((oldPostFormValues) => {
         const copyOfPostForm = { ...oldPostFormValues};
-        copyOfPostForm["workout_rating"] = newRating;
+        copyOfPostForm.rating = newRating;
         console.log("Post form is now: ", copyOfPostForm)
         return copyOfPostForm;
     })
@@ -77,7 +77,7 @@ const CreatePost = (props) => {
  const setDifficultyRating = (newRating) => {
     setPostForm((oldPostFormValues) => {
         const copyOfPostForm = { ...oldPostFormValues};
-        copyOfPostForm["Workout_difficulty"] = newRating;
+        copyOfPostForm.difficulty = newRating;
         console.log("Post form is now: ", copyOfPostForm)
         return copyOfPostForm;
     })
