@@ -69,6 +69,7 @@ const CreatePost = (props) => {
     setPostForm((oldPostFormValues) => {
         const copyOfPostForm = { ...oldPostFormValues};
         copyOfPostForm["workout_rating"] = newRating;
+        console.log("Post form is now: ", copyOfPostForm)
         return copyOfPostForm;
     })
  }
@@ -76,7 +77,8 @@ const CreatePost = (props) => {
  const setDifficultyRating = (newRating) => {
     setPostForm((oldPostFormValues) => {
         const copyOfPostForm = { ...oldPostFormValues};
-        copyOfPostForm["Workout_rating"] = newRating;
+        copyOfPostForm["Workout_difficulty"] = newRating;
+        console.log("Post form is now: ", copyOfPostForm)
         return copyOfPostForm;
     })
  }
@@ -136,8 +138,7 @@ const CreatePost = (props) => {
 
                             Workout Rating
                             <StarRating
-                                onChange={handleChange}
-                                value={postForm.workout_rating}
+                                setRating={setWorkoutRating}
                             />
 
                             <input
