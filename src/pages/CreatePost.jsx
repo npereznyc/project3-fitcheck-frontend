@@ -141,14 +141,6 @@ const CreatePost = (props) => {
                                 setRating={setWorkoutRating}
                             />
 
-                            <input
-                                // type=??
-                                // id="rating"
-                                // name="rating"
-                                placeholder="workout rating"
-                            //  value= {postForm.workout_rating}
-                            //  onChange={{handleChange}}
-                            />
                         </label>
                     </div>
 
@@ -158,15 +150,7 @@ const CreatePost = (props) => {
               Workout Difficulty
                 <StarRating setRating={setDifficultyRating} />
 
-                            <input
-                                // type=??
-                                // id="difficulty"
-                                // name="difficulty"
-
-                                placeholder="workout difficulty"
-                            // value={}
-                            // onChange={}
-                            />
+                          
                         </label>
 
                         <br />
