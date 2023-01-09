@@ -15,8 +15,8 @@ const CreatePost = (props) => {
         image: "",
         description: "",
         tags: "",
-        workout_rating: "",
-        workout_difficulty: "",
+        rating: "",
+        difficulty: "",
     })
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/post/"
@@ -55,8 +55,8 @@ const CreatePost = (props) => {
                 image: "",
                 description: "",
                 tags: "",
-                workout_rating: "",
-                workout_difficulty: "",
+                rating: "",
+                difficulty: "",
             })
             navigate("/")
         } catch (err) {
@@ -68,7 +68,8 @@ const CreatePost = (props) => {
   const setWorkoutRating = (newRating) => {
     setPostForm((oldPostFormValues) => {
         const copyOfPostForm = { ...oldPostFormValues};
-        copyOfPostForm["workout_rating"] = newRating;
+        copyOfPostForm.rating = newRating;
+        console.log("Post form is now: ", copyOfPostForm)
         return copyOfPostForm;
     })
  }
@@ -76,7 +77,8 @@ const CreatePost = (props) => {
  const setDifficultyRating = (newRating) => {
     setPostForm((oldPostFormValues) => {
         const copyOfPostForm = { ...oldPostFormValues};
-        copyOfPostForm["Workout_rating"] = newRating;
+        copyOfPostForm.difficulty = newRating;
+        console.log("Post form is now: ", copyOfPostForm)
         return copyOfPostForm;
     })
  }
@@ -136,18 +138,9 @@ const CreatePost = (props) => {
 
                             Workout Rating
                             <StarRating
-                                onChange={handleChange}
-                                value={postForm.workout_rating}
+                                setRating={setWorkoutRating}
                             />
 
-                            <input
-                                // type=??
-                                // id="rating"
-                                // name="rating"
-                                placeholder="workout rating"
-                            //  value= {postForm.workout_rating}
-                            //  onChange={{handleChange}}
-                            />
                         </label>
                     </div>
 
@@ -157,15 +150,7 @@ const CreatePost = (props) => {
               Workout Difficulty
                 <StarRating setRating={setDifficultyRating} />
 
-                            <input
-                                // type=??
-                                // id="difficulty"
-                                // name="difficulty"
-
-                                placeholder="workout difficulty"
-                            // value={}
-                            // onChange={}
-                            />
+                          
                         </label>
 
                         <br />
