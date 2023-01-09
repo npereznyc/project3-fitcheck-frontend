@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode"
+
 // check the local storage api for a token key and return the token
 const getUserToken = () => {
     return localStorage.getItem('token')
@@ -12,4 +14,8 @@ const clearUserToken = () => {
     return localStorage.setItem('token', "")
 }
 
-export { getUserToken, setUserToken, clearUserToken }
+const decodeToken = (token) => {
+    return jwt_decode(token)
+}
+
+export { getUserToken, setUserToken, clearUserToken, decodeToken }
