@@ -1,18 +1,13 @@
 import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../data'
-// import { getUserToken } from '../utils/authToken'
 import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import EditPost from '../components/EditPost'
-// import { useCallback } from 'react'
 
 const PostDetail = (props) => {
     const { currentUserID } = useContext(UserContext)
-    // const token = getUserToken()
-
     const [post, setPost] = useState(null)
     const [users, setUsers] = useState([])
-
-    //Show route/GET request
     const { id } = useParams()
     const BASE_URL = `https://fitness-accountability.herokuapp.com/`
 
@@ -37,12 +32,10 @@ const PostDetail = (props) => {
         }
     }
 
-    //make a fetch:
     useEffect(() => {
         getPost()
         getUsers()
     }, [])
-    // Needs empty dependency array, otherwise causes an infinite loop
 
     const isOwner = currentUserID === post?.owner
 
@@ -57,7 +50,7 @@ const PostDetail = (props) => {
 
         return (
             <div className="post-container">
-                <h4>Posted by: {post.owner ? findUsernameByOwner(post.owner) : `dummy`}</h4>
+                {post.owner ? <h4>Posted by: <Link to={"/profile/" + post.owner}>{findUsernameByOwner(post.owner)} (see profile)</Link></h4> : null}
                 <img src={post.image} alt={post.description} />
                 <div className="details">
                     <p>{post.description}</p>
@@ -65,7 +58,7 @@ const PostDetail = (props) => {
                     <p>Workout Rating: {post.rating}</p>
                     <p>Workout Difficulty: {post.difficulty}</p>
                 </div>
-                {isOwner ? <EditPost /> : null}
+                {isOwner ? <EditPost data={post} /> : null}
             </div>
         )
     }
