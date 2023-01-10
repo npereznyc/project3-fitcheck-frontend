@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
+
 const RegisterForm = ({ signUp }) => {
 
-    const [profile, setProfile] = useState([])
+    // const [profile, setProfile] = useState([])
     const [registerForm, setRegisterForm] = useState({
         username: "",
         password: "",
@@ -12,9 +13,7 @@ const RegisterForm = ({ signUp }) => {
         bio: "",
     })
 
-    const BASE_URL = "https://fitness-accountability.herokuapp.com/profile/"
 
-    // const [input, setInput] = useState(initialState)
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -22,35 +21,14 @@ const RegisterForm = ({ signUp }) => {
         const createdUserToken = await signUp(registerForm)
 
         if (createdUserToken) {
-            // navigate("/")
+
+            navigate("/")
             console.log('new user', registerForm.username)
         }
         else {
             navigate("/auth")
         }
-        // try {
-        //     // console.log('try block')
-        //     const requestOptions = {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(registerForm)
-        //     }
-        //     const response = await fetch(BASE_URL, requestOptions)
-        //     console.log(response)
 
-        //     const newProfile = await response.json()
-        //     console.log(newProfile)
-
-        //     // setInput([...input, newProfile])
-
-        //     setProfile([...profile, newProfile])
-        //     // setRegisterForm([...registerForm, newProfile])
-        //     navigate('/')
-        // } catch (err) {
-        //     console.error(err)
-        // }
         setRegisterForm({
             username: "",
             password: "",
@@ -77,7 +55,7 @@ const RegisterForm = ({ signUp }) => {
                     value={registerForm.username}
                     onChange={handleChange}
                 />
-                <br />
+                <br /><br />
                 <label htmlFor="password">Password: </label>
                 <input
                     id="password"
@@ -85,8 +63,8 @@ const RegisterForm = ({ signUp }) => {
                     value={registerForm.password}
                     onChange={handleChange}
                 />
-                <br />
-                <div>
+                <br /><br />
+             
                     <label>
                         Age
                         <input
@@ -98,9 +76,9 @@ const RegisterForm = ({ signUp }) => {
                             onChange={handleChange}
                         />
                     </label>
-                </div>
-
-                <div>
+             
+                <br /><br />
+           
                     <label>
                         Location
                         <input
@@ -112,9 +90,9 @@ const RegisterForm = ({ signUp }) => {
                             onChange={handleChange}
                         />
                     </label>
-                </div>
-
-                <div>
+             
+                <br /><br />
+          
                     <label>
                         Bio
                         <input
@@ -126,7 +104,8 @@ const RegisterForm = ({ signUp }) => {
                             onChange={handleChange}
                         />
                     </label>
-                </div>
+                    <br /><br />
+             
                 <input type="submit" value="Sign Up" />
             </form>
         </>
