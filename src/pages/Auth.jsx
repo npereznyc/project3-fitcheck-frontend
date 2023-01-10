@@ -6,7 +6,7 @@ import RegisterForm from "../components/RegisterForm"
 import LoginForm from "../components/LoginForm"
 
 function Auth() {
-    const { setAuth, setUser } = useContext(UserContext)
+    const { setAuth, setUser, setUserID } = useContext(UserContext)
     const navigate = useNavigate()
     const token = getUserToken()
 
@@ -39,7 +39,7 @@ function Auth() {
             return parsedUser
         }
         catch (err) {
-            console.log(err)
+            console.error(err)
             clearUserToken()
             setAuth(false)
         }
@@ -73,7 +73,7 @@ function Auth() {
             }
         }
         catch (err) {
-            console.log(err)
+            console.error(err)
             clearUserToken()
             setAuth(false)
         }
@@ -82,6 +82,7 @@ function Auth() {
     const logoutUser = () => {
         clearUserToken()
         setUser(null)
+        setUserID(null)
         setAuth(null)
         navigate(`/`)
     }
