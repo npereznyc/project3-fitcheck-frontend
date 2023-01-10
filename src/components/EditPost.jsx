@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useParams, Link, useNavigate } from "react-router-dom"
 import { getUserToken } from "../utils/authToken"
 import StarRating from "./StarRating"
+import UploadImage from "./UploadImage"
 
 
 const EditPost = (props) => {
@@ -55,20 +56,20 @@ const EditPost = (props) => {
         e.preventDefault()
         const updatedPost = { ...editForm }
         console.log(updatedPost)
-        // try {
-        //     const requestOptions = {
-        //         method: "PUT",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             Authorization: `Bearer ${token}`,
-        //         },
-        //         body: JSON.stringify(updatedPost),
-        //     }
-        //     await fetch(URL, requestOptions)
-        //     navigate(`/`)
-        // } catch (err) {
-        //     console.error(err)
-        // }
+        try {
+            const requestOptions = {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(updatedPost),
+            }
+            await fetch(URL, requestOptions)
+            navigate(`/`)
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     const deletePost = async (e) => {
@@ -86,6 +87,15 @@ const EditPost = (props) => {
             //stretch goal: populate error message on page when delete fails
             //populate some state for 3 seconds, then redirect to a 404 page
         }
+    }
+
+    const setImage = (newImage) => {
+        setEditForm((oldPostForm) => {
+            const formCopy = { ...oldPostForm }
+            formCopy.image = newImage
+            console.log("Post form is now: ", formCopy)
+            return formCopy
+        })
     }
 
     const setWorkoutRating = (newRating) => {
@@ -110,49 +120,69 @@ const EditPost = (props) => {
         <>
             <section className="edit-post">
                 <h2>Edit post</h2>
+                <UploadImage
+                    uploadedImage={setImage}
+                />
+
                 <form onSubmit={updatePost}>
-                    <input
-                        type="text"
-                        value={editForm.image}
-                        name="image"
-                        placeholder="update image URL"
-                        onChange={handleChange}
-                    />
+                    <div>
+                        <label>
+                            <input
+                                hidden={true}
+                                type="url"
+                                id="image"
+                                name="image"
+                                value={editForm.image}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+
+                    <br />
+                    <div>
+                        <label>
+                            Edit Description: 
+                            <input
+                                type="text"
+                                value={editForm.description}
+                                name="description"
+                                placeholder="edit description"
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+
 
                     <br />
 
-                    <input
-                        type="text"
-                        value={editForm.description}
-                        name="description"
-                        placeholder="edit description"
-                        onChange={handleChange}
-                    />
-
-                    <br />
-
-                    <input
+                    <div>
+                        <label>
+                            Edit Tags: 
+                            <input
                         type="text"
                         value={editForm.tags}
                         name="tags"
                         placeholder="edit tags"
                         onChange={handleChange}
                     />
+                        </label>
+                    </div>
+                    
 
                     <br />
 
                     <label>
-                        Workout Rating
+                        Edit Workout Rating
                         <StarRating setRating={setWorkoutRating} />
                     </label>
 
                     <br />
 
                     <label>
-                        Workout Difficulty
+                        Edit Workout Difficulty
                         <StarRating setRating={setDifficultyRating} />
                     </label>
-                    
+
                     <input type="submit" value="Edit Post" />
                 </form>
             </section>
