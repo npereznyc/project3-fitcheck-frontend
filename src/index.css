@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
 /* * {
     border: 1px dashed pink;
 } */
@@ -131,6 +133,18 @@ span {
     }
 }
 
-.Fitcheck {
+.header h1 {
     font-family:'Permanent Marker', cursive;
+    margin-left: 25px;
+}
+
+h1 .repo {
+    color: #1CE5FF; 
+}
+
+.about {
+   border: black solid; 
+   border-radius: 5%;
+   padding: 20px;
+
 }
