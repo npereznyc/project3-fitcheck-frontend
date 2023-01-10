@@ -7,7 +7,7 @@ import { getUserToken, clearUserToken } from "../utils/authToken"
 
 
 const CreateProfile = (props) => {
-    const { setAuth, setUser, currentUser } = useContext(UserContext)
+    const { setAuth, setUser, currentUserID } = useContext(UserContext)
     const navigate = useNavigate()
 
     const [profile, setProfile] = useState([])
@@ -96,7 +96,7 @@ const CreateProfile = (props) => {
     return (
         <div>
             <h1>(This page may be refactored, redirect to your own profile/:id, or be deleted)</h1>
-            <p>Your User ID is: {currentUser ? currentUser._id : `unavailable`}</p>
+            <p>Your User ID is: {currentUserID ? currentUserID : `unavailable`}</p>
             {token ? <button onClick={logoutUser} className="logout-button">Log Out</button> : null}
             <section>
                 <h2>Create New Profile</h2>
