@@ -14,7 +14,7 @@ const Navbar = (props) => {
                 <FontAwesomeIcon icon="fa-solid fa-house" />
                 <p>Home</p>
             </Link>
-            <Link to='/post'>
+            <Link to='/post/'>
                 <FontAwesomeIcon icon="fa-solid fa-circle-plus" />
                 <p>Create Post</p>
             </Link>
