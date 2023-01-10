@@ -6,7 +6,7 @@ import Profile from '../../pages/Profile'
 import CreateProfile from '../../pages/CreateProfile'
 import Auth from '../../pages/Auth'
 import { getUserToken } from '../../utils/authToken'
-import about from '../../pages/about'
+import About from '../../pages/About'
 // import { decodeToken } from '../../utils/authToken'
 // import { useNavigate } from 'react-router-dom'
 
@@ -18,6 +18,7 @@ const Feed = (props) => {
         <section className="feed-container">
             <Routes>
                 <Route path="/" element={<Posts />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/post" element={
                     token ? <CreatePost /> : <Auth />
                 } />
