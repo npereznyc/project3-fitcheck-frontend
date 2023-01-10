@@ -1,10 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from 'react-router'
-
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../data";
+import { getUserToken, clearUserToken } from "../utils/authToken"
 
 
 const Profile = (props) => {
+    const { setAuth, setUser, currentUserID } = useContext(UserContext)
     const [profile, setProfile] = useState(null)
+    console.log(currentUserID)
+    const navigate = useNavigate()
 
     const { id } = useParams()
 
@@ -17,7 +22,8 @@ const Profile = (props) => {
             // console.log(result)
             setProfile(result)
 
-        } catch (err) {
+        }
+        catch (err) {
             console.error(err)
         }
     }
@@ -26,6 +32,14 @@ const Profile = (props) => {
         getProfile()
     }, [])
 
+    const logoutUser = () => {
+        clearUserToken()
+        setUser(null)
+        setAuth(null)
+        navigate(`/`)
+    }
+    const token = getUserToken()
+
     const loaded = () => {
         return (
             <div className="profile-container">
@@ -33,6 +47,7 @@ const Profile = (props) => {
                 <p>Age: {profile.age}</p>
                 <p>Location: {profile.location}</p>
                 <p>Bio: {profile.bio}</p>
+            {token ? <button onClick={logoutUser} className="logout-button">Log Out</button> : null}
             </div>
         )
     }
