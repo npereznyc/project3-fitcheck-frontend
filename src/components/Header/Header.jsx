@@ -10,7 +10,7 @@ const Header = (props) => {
 
     return (
         <div className="header">
-            <Link to="/"><h1>Fitness Check</h1></Link>
+            <Link to="/about"><h1>FitCheck</h1></Link>
             <Link to="/profile">{token ? <p>Logged in: <span className='logged-in'>{currentUserName}</span></p> : <p><span className='not-logged-in'>Not logged in</span></p>}</Link>
         </div>
     )
