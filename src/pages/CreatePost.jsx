@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "../data"
 // import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import StarRating from "../components/StarRating"
@@ -8,6 +9,8 @@ import UploadImage from "../components/UploadImage"
 
 const CreatePost = (props) => {
     const token = getUserToken()
+    const { currentUserName } = useContext(UserContext)
+    // console.log(currentUserName)
 
     const [posts, setPosts] = useState([])
 
@@ -19,6 +22,7 @@ const CreatePost = (props) => {
         tags: "",
         rating: "",
         difficulty: "",
+        ownerName: currentUserName
     })
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/post/"
@@ -58,7 +62,7 @@ const CreatePost = (props) => {
                 description: "",
                 tags: "",
                 rating: "",
-                difficulty: "",
+                difficulty: ""
             })
             navigate("/")
         } catch (err) {

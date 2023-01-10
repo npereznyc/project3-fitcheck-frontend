@@ -39,7 +39,7 @@ const PostDetail = (props) => {
     const loaded = () => {
         return (
             <div className="post-container">
-                <h4>Posted by user: {post.owner}</h4>
+                <h4>Posted by user: {post.ownerName || post.owner}</h4>
                 <img src={post.image} alt={post.description} />
                 <div className="details">
                     <p>{post.description}</p>
