@@ -8,21 +8,30 @@ import EditPost from './EditPost'
 const PostDetail = (props) => {
     const { currentUserID } = useContext(UserContext)
     // const token = getUserToken()
-    
+
     const [post, setPost] = useState(null)
+    const [users, setUsers] = useState([])
 
     //Show route/GET request
     const { id } = useParams()
-
-    const URL = `https://fitness-accountability.herokuapp.com/post/${id}`
+    const BASE_URL = `https://fitness-accountability.herokuapp.com/`
 
     const getPost = async () => {
         try {
-            const response = await fetch(URL)
+            const response = await fetch(BASE_URL + `post/${id}`)
             const result = await response.json()
-            // console.log(result)
             setPost(result)
 
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    const getUsers = async () => {
+        try {
+            const response = await fetch(BASE_URL + `profile/`)
+            const allUsers = await response.json()
+            setUsers(allUsers)
         } catch (err) {
             console.error(err)
         }
@@ -31,15 +40,24 @@ const PostDetail = (props) => {
     //make a fetch:
     useEffect(() => {
         getPost()
+        getUsers()
     }, [])
     // Needs empty dependency array, otherwise causes an infinite loop
 
     const isOwner = currentUserID === post?.owner
 
     const loaded = () => {
+        const findUsernameByOwner = (owner) => {
+            for (let i = 0; i < users.length; i++) {
+                if (owner === users[i]._id) {
+                    return users[i].username
+                }
+            }
+        }
+
         return (
             <div className="post-container">
-                <h4>Posted by user: {post.ownerName || post.owner}</h4>
+                <h4>Posted by: {post.owner ? findUsernameByOwner(post.owner) : `dummy`}</h4>
                 <img src={post.image} alt={post.description} />
                 <div className="details">
                     <p>{post.description}</p>
