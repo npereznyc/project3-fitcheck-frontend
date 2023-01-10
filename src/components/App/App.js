@@ -25,7 +25,7 @@ function App() {
             const { id, username } = decodeToken(token)
             setCurrentUserName(username)
             setCurrentUserID(id)
-            console.log('username', username, 'id', id)
+            // console.log('username', username, 'id', id)
         }
     }, [token])
 
