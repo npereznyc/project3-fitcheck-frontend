@@ -1,22 +1,28 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "../data"
 // import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import StarRating from "../components/StarRating"
 import '../components/star.css'
 import { getUserToken } from "../utils/authToken"
+import UploadImage from "../components/UploadImage"
 
 const CreatePost = (props) => {
     const token = getUserToken()
+    const { currentUserName } = useContext(UserContext)
+    // console.log(currentUserName)
 
     const [posts, setPosts] = useState([])
+
     const navigate = useNavigate()
     //form state
     const [postForm, setPostForm] = useState({
         image: "",
         description: "",
         tags: "",
-        workout_rating: "",
-        workout_difficulty: "",
+        rating: "",
+        difficulty: "",
+        ownerName: currentUserName
     })
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/post/"
@@ -24,7 +30,7 @@ const CreatePost = (props) => {
     const handleChange = (e) => {
         const userInput = { ...postForm }
         userInput[e.target.name] = e.target.value
-        // console.log(userInput)
+        console.log('user input', userInput)
         setPostForm(userInput)
     }
 
@@ -55,31 +61,59 @@ const CreatePost = (props) => {
                 image: "",
                 description: "",
                 tags: "",
-                workout_rating: "",
-                workout_difficulty: "",
+                rating: "",
+                difficulty: ""
             })
             navigate("/")
         } catch (err) {
             console.error(err)
         }
     }
+    
+    const setImage = (newImage) => {
+        setPostForm((oldPostForm) => {
+            const formCopy = {...oldPostForm}
+            formCopy.image = newImage
+            console.log("Post form is now: ", formCopy)
+            return formCopy
+        })
+    }
 
+    const setWorkoutRating = (newRating) => {
+        setPostForm((oldPostFormValues) => {
+            const copyOfPostForm = { ...oldPostFormValues };
+            copyOfPostForm.rating = newRating;
+            console.log("Post form is now: ", copyOfPostForm)
+            return copyOfPostForm;
+        })
+    }
+
+    const setDifficultyRating = (newRating) => {
+        setPostForm((oldPostFormValues) => {
+            const copyOfPostForm = { ...oldPostFormValues };
+            copyOfPostForm.difficulty = newRating;
+            console.log("Post form is now: ", copyOfPostForm)
+            return copyOfPostForm;
+        })
+    }
     return (
 
         <div>
 
             <section>
                 <h2>Create New Post</h2>
+               <UploadImage 
+               uploadedImage={setImage}
+               />
 
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>
                             Image
                             <input
-                                type="text"
+                                type="url"
                                 id="image"
                                 name="image"
-                                placeholder="image url"
                                 value={postForm.image}
                                 onChange={handleChange}
                             />
@@ -115,47 +149,23 @@ const CreatePost = (props) => {
                     </div>
 
                     <div>
-
                         <label>
-
                             Workout Rating
                             <StarRating
-                                onChange={handleChange}
-                                value={postForm.workout_rating}
-                            />
-
-                            <input
-                                // type=??
-                                // id="rating"
-                                // name="rating"
-                                placeholder="workout rating"
-                            //  value= {postForm.workout_rating}
-                            //  onChange={{handleChange}}
+                                setRating={setWorkoutRating}
                             />
                         </label>
                     </div>
 
                     <div>
                         <label>
-
                             Workout Difficulty
-                            <StarRating />
-
-                            <input
-                                // type=??
-                                // id="difficulty"
-                                // name="difficulty"
-
-                                placeholder="workout difficulty"
-                            // value={}
-                            // onChange={}
-                            />
+                            <StarRating setRating={setDifficultyRating} />
                         </label>
-
                         <br />
-
                         <input type="submit" value="Post" />
                     </div>
+
                 </form>
             </section>
         </div>

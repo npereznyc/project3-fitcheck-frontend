@@ -4,9 +4,11 @@ import { UserContext } from "../data"
 import { getUserToken, setUserToken, clearUserToken } from "../utils/authToken"
 import RegisterForm from "../components/RegisterForm"
 import LoginForm from "../components/LoginForm"
+import CreateProfile from "./CreateProfile"
+import CreateAccount from './CreateAccount'
 
-function Auth() {
-    const { setAuth, setUser } = useContext(UserContext)
+function Login() {
+    const { setAuth, setUser, setUserID } = useContext(UserContext)
     const navigate = useNavigate()
     const token = getUserToken()
 
@@ -39,7 +41,7 @@ function Auth() {
             return parsedUser
         }
         catch (err) {
-            console.log(err)
+            console.error(err)
             clearUserToken()
             setAuth(false)
         }
@@ -64,7 +66,7 @@ function Auth() {
                 // sets local storage
                 setUserToken(currentUser.token)
                 // put the returned user object in state
-                setUser(currentUser.user)
+                setUser(currentUser.username)
                 setAuth(currentUser.isLoggedIn)
 
                 return currentUser
@@ -73,7 +75,7 @@ function Auth() {
             }
         }
         catch (err) {
-            console.log(err)
+            console.error(err)
             clearUserToken()
             setAuth(false)
         }
@@ -82,18 +84,22 @@ function Auth() {
     const logoutUser = () => {
         clearUserToken()
         setUser(null)
+        setUserID(null)
         setAuth(null)
         navigate(`/`)
     }
 
     return (
         <section>
+            {/* "Don't have an account?" => <Link to=///> */}
             <h1>Auth Container</h1>
-            <RegisterForm signUp={registerUser} />
+            {/* <RegisterForm signUp={registerUser} /> */}
+            <CreateAccount signUp={registerUser}/>
+            {/* <CreateProfile /> */}
             <LoginForm signIn={loginUser} />
-            {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null}
+            {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null }
         </section>
     )
 }
 
-export default Auth
+export default Login
