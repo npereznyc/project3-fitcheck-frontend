@@ -4,58 +4,40 @@ import { getUserToken } from "../utils/authToken"
 import StarRating from "./StarRating"
 import UploadImage from "./UploadImage"
 
-
 const EditPost = (props) => {
+    const { data } = props
+    const [editForm, setEditForm] = useState({
+        image: data.image,
+        description: data.description,
+        tags: data.tags.toString(),
+        rating: data.rating,
+        difficulty: data.difficulty
+    })
     const token = getUserToken()
-
-    // Update route/PUT request
-    // const [post, setPost] = useState(null)
-    // console.log(post)
-    const [editForm, setEditForm] = useState("")
-
     const { id } = useParams()
     const navigate = useNavigate()
     const URL = `https://fitness-accountability.herokuapp.com/post/${id}`
 
-    // const getPost = async () => {
-    //     try {
-    //         const response = await fetch(URL)
-    //         const result = await response.json()
-    //         // console.log(result)
-    //         setPost(result)
-    //     }
-    //     catch (err) {
-    //         console.error(err)
-    //     }
-    // }
 
-    // useEffect(() => {
-    //     getPost()
-    // }, [])
-
-    // Uncomment this function after making architectural changes, and figure out how to implement it!
-    // const createTags = (str) => {
-    //     let arr = str.split(',')
-    //     for (let i = 0; i < arr.length; i++) {
-    //         if (arr[i][0] === ' ') {
-    //             arr[i] = arr[i].substring(1, arr[i].length)
-    //         }
-    //     }
-    //     return arr
-    // }
-
-    // Why is useState yelling at us?
     const handleChange = (event) => {
-        // editForm.tags = createTags(editForm.tags)
-        setEditForm({ ...editForm, [event.target.name]: event.target.value })
-        // console.log(editForm.tags)
+        const userInput = { ...editForm }
+        userInput[event.target.name] = event.target.value
+        setEditForm(userInput)
     }
-    console.log(editForm)
 
     const updatePost = async (e) => {
+        const createTags = (str) => {
+            let arr = str.split(',')
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i][0] === ' ') {
+                    arr[i] = arr[i].substring(1, arr[i].length)
+                }
+            }
+            return arr
+        }
         e.preventDefault()
+        editForm.tags = createTags(editForm.tags)
         const updatedPost = { ...editForm }
-        console.log(updatedPost)
         try {
             const requestOptions = {
                 method: "PUT",
@@ -67,7 +49,8 @@ const EditPost = (props) => {
             }
             await fetch(URL, requestOptions)
             navigate(`/`)
-        } catch (err) {
+        }
+        catch (err) {
             console.error(err)
         }
     }
@@ -93,7 +76,7 @@ const EditPost = (props) => {
         setEditForm((oldPostForm) => {
             const formCopy = { ...oldPostForm }
             formCopy.image = newImage
-            console.log("Post form is now: ", formCopy)
+            // console.log("Post form is now: ", formCopy)
             return formCopy
         })
     }
@@ -141,7 +124,7 @@ const EditPost = (props) => {
                     <br />
                     <div>
                         <label>
-                            Edit Description: 
+                            Edit Description:
                             <input
                                 type="text"
                                 value={editForm.description}
@@ -157,17 +140,17 @@ const EditPost = (props) => {
 
                     <div>
                         <label>
-                            Edit Tags: 
+                            Edit Tags:
                             <input
-                        type="text"
-                        value={editForm.tags}
-                        name="tags"
-                        placeholder="edit tags"
-                        onChange={handleChange}
-                    />
+                                type="text"
+                                value={editForm.tags}
+                                name="tags"
+                                placeholder="edit tags"
+                                onChange={handleChange}
+                            />
                         </label>
                     </div>
-                    
+
 
                     <br />
 
@@ -190,8 +173,6 @@ const EditPost = (props) => {
                 <h2>Delete post</h2>
                 <button className="logout-button" onClick={deletePost}>Delete</button>
             </section>
-            <br />
-            <Link to="/">Back to Home</Link>
         </>
     )
 }
