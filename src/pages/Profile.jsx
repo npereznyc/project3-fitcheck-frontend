@@ -6,9 +6,9 @@ import { getUserToken, clearUserToken } from "../utils/authToken"
 
 
 const Profile = (props) => {
-    const { setAuth, setUser, currentUserID } = useContext(UserContext)
+    const { setAuth, setUser, setUserID } = useContext(UserContext)
     const [profile, setProfile] = useState(null)
-    console.log(currentUserID)
+    // console.log(currentUserID)
     const navigate = useNavigate()
 
     const { id } = useParams()
@@ -35,6 +35,7 @@ const Profile = (props) => {
     const logoutUser = () => {
         clearUserToken()
         setUser(null)
+        setUserID(null)
         setAuth(null)
         navigate(`/`)
     }
