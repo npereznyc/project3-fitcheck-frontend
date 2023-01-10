@@ -1,7 +1,3 @@
-import { useEffect } from "react";
-import {useState } from "react";
-
-
 
 const About = (props) => {
     
@@ -13,7 +9,7 @@ const About = (props) => {
             <p>Mary Rodriguez</p>
             <h1>General Assembly Cohort:</h1>
             <p>October 31, 2022</p>
-            <h1>Github Repo</h1>
+            <h1><a href="https://github.com/jordbort/project-3-fitness-frontend">Github Repo</a></h1>
             <h2>Technologies:</h2>
             <p>Javascript</p>
             <p>React</p>
