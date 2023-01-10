@@ -60,6 +60,8 @@ const RegisterForm = ({ signUp }) => {
                 <input
                     id="password"
                     name="password"
+                    type="password"
+                    autoComplete='current-password'
                     value={registerForm.password}
                     onChange={handleChange}
                 />
