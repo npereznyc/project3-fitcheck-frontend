@@ -1,7 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHouse, faCirclePlus, faUser } from '@fortawesome/free-solid-svg-icons'
 import { UserContext } from '../../data'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './App.css'
 import Header from '../Header/Header'
 import Navbar from '../Navbar/Navbar'
@@ -25,6 +25,7 @@ function App() {
             const { id, username } = decodeToken(token)
             setCurrentUserName(username)
             setCurrentUserID(id)
+            console.log('username', username, 'id', id)
         }
     }, [token])
 
