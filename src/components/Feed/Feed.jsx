@@ -12,13 +12,15 @@ import { getUserToken } from '../../utils/authToken'
 
 const Feed = (props) => {
     const token = getUserToken()
-    
+
     // const navigate = useNavigate()
     return (
         <section className="feed-container">
             <Routes>
                 <Route path="/" element={<Posts />} />
-                <Route path="/post" element={<CreatePost />} />
+                <Route path="/post" element={
+                    token ? <CreatePost /> : <Auth />
+                } />
                 <Route path="/:id" element={<PostDetail />} />
                 <Route path="/profile/:id" element={<Profile />} />
                 <Route path="/profile" element={

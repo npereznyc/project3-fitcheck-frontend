@@ -35,7 +35,8 @@ function App() {
                 currentUserName,
                 currentUserID,
                 setAuth: setIsAuthenticated,
-                setUser: setCurrentUserName
+                setUser: setCurrentUserName,
+                setUserID: setCurrentUserID
             }}>
                 <Header />
                 <Navbar />
