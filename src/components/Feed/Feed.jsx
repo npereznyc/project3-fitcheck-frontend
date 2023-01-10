@@ -6,9 +6,9 @@ import Profile from '../../pages/Profile'
 import CreateProfile from '../../pages/CreateProfile'
 import Auth from '../../pages/Auth'
 import { getUserToken } from '../../utils/authToken'
+import about from '../../pages/about'
 // import { decodeToken } from '../../utils/authToken'
 // import { useNavigate } from 'react-router-dom'
-
 
 const Feed = (props) => {
     const token = getUserToken()
