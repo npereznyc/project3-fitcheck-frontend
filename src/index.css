@@ -138,13 +138,15 @@ span {
     margin-left: 25px;
 }
 
-h1 .repo {
-    color: #1CE5FF; 
+.repo span{
+    color: #1CE5FF;
+    text-decoration: underline;
 }
 
 .about {
    border: black solid; 
    border-radius: 5%;
    padding: 20px;
+   text-align: center;
 
 }
