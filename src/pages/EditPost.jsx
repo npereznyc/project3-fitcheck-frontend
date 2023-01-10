@@ -8,45 +8,67 @@ const EditPost = (props) => {
     const token = getUserToken()
 
     // Update route/PUT request
-    const [post, setPost] = useState(null)
+    // const [post, setPost] = useState(null)
+    // console.log(post)
     const [editForm, setEditForm] = useState("")
 
     const { id } = useParams()
     const navigate = useNavigate()
     const URL = `https://fitness-accountability.herokuapp.com/post/${id}`
 
-    const getPost = async () => {
-        try {
-            const response = await fetch(URL)
-            const result = await response.json()
-            // console.log(result)
-            setPost(result)
-        } catch (err) {
-            console.error(err)
-        }
-    }
+    // const getPost = async () => {
+    //     try {
+    //         const response = await fetch(URL)
+    //         const result = await response.json()
+    //         // console.log(result)
+    //         setPost(result)
+    //     }
+    //     catch (err) {
+    //         console.error(err)
+    //     }
+    // }
 
-    useEffect(() => {
-        getPost()
-    }, [])
+    // useEffect(() => {
+    //     getPost()
+    // }, [])
+
+    // Uncomment this function after making architectural changes, and figure out how to implement it!
+    // const createTags = (str) => {
+    //     let arr = str.split(',')
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if (arr[i][0] === ' ') {
+    //             arr[i] = arr[i].substring(1, arr[i].length)
+    //         }
+    //     }
+    //     return arr
+    // }
+
+    // Why is useState yelling at us?
+    const handleChange = (event) => {
+        // editForm.tags = createTags(editForm.tags)
+        setEditForm({ ...editForm, [event.target.name]: event.target.value })
+        // console.log(editForm.tags)
+    }
+    console.log(editForm)
 
     const updatePost = async (e) => {
         e.preventDefault()
         const updatedPost = { ...editForm }
-        try {
-            const requestOptions = {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify(updatedPost),
-            }
-            await fetch(URL, requestOptions)
-            navigate(`/`)
-        } catch (err) {
-            console.error(err)
-        }
+        console.log(updatedPost)
+        // try {
+        //     const requestOptions = {
+        //         method: "PUT",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             Authorization: `Bearer ${token}`,
+        //         },
+        //         body: JSON.stringify(updatedPost),
+        //     }
+        //     await fetch(URL, requestOptions)
+        //     navigate(`/`)
+        // } catch (err) {
+        //     console.error(err)
+        // }
     }
 
     const deletePost = async (e) => {
@@ -64,10 +86,6 @@ const EditPost = (props) => {
             //stretch goal: populate error message on page when delete fails
             //populate some state for 3 seconds, then redirect to a 404 page
         }
-    }
-
-    const handleChange = (event) => {
-        setEditForm({ ...editForm, [event.target.name]: event.target.value })
     }
 
     const setWorkoutRating = (newRating) => {
@@ -139,12 +157,8 @@ const EditPost = (props) => {
                 </form>
             </section>
             <section className="delete-post">
-                {/* <h1>{profile.name}</h1> ?? will need authentication in order to detect the user's name */}
-                {/* <div> */}
-                {/* <br /> */}
                 <h2>Delete post</h2>
-                <button className="logout-button" onClick={deletePost}> Delete </button>
-                {/* </div> */}
+                <button className="logout-button" onClick={deletePost}>Delete</button>
             </section>
             <br />
             <Link to="/">Back to Home</Link>
