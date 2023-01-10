@@ -33,24 +33,13 @@ const EditPost = (props) => {
     //     getPost()
     // }, [])
 
-    // Uncomment this function after making architectural changes, and figure out how to implement it!
-    // const createTags = (str) => {
-    //     let arr = str.split(',')
-    //     for (let i = 0; i < arr.length; i++) {
-    //         if (arr[i][0] === ' ') {
-    //             arr[i] = arr[i].substring(1, arr[i].length)
-    //         }
-    //     }
-    //     return arr
-    // }
-
     // Why is useState yelling at us?
     const handleChange = (event) => {
         // editForm.tags = createTags(editForm.tags)
         setEditForm({ ...editForm, [event.target.name]: event.target.value })
         // console.log(editForm.tags)
     }
-    console.log(editForm)
+    // console.log(editForm)
 
     const updatePost = async (e) => {
         e.preventDefault()

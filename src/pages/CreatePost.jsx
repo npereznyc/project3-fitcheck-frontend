@@ -10,7 +10,6 @@ import UploadImage from "../components/UploadImage"
 const CreatePost = (props) => {
     const token = getUserToken()
     const { currentUserName } = useContext(UserContext)
-    // console.log(currentUserName)
 
     const [posts, setPosts] = useState([])
 
@@ -21,8 +20,7 @@ const CreatePost = (props) => {
         description: "",
         tags: "",
         rating: "",
-        difficulty: "",
-        ownerName: currentUserName
+        difficulty: ""
     })
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/post/"
@@ -30,15 +28,23 @@ const CreatePost = (props) => {
     const handleChange = (e) => {
         const userInput = { ...postForm }
         userInput[e.target.name] = e.target.value
-        console.log('user input', userInput)
         setPostForm(userInput)
     }
 
     const handleSubmit = async (e) => {
+        const createTags = (str) => {
+            let arr = str.split(',')
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i][0] === ' ') {
+                    arr[i] = arr[i].substring(1, arr[i].length)
+                }
+            }
+            return arr
+        }
         // 0. prevent default (event object method)
-        // console.log("handling submit")
         e.preventDefault()
         // 1. capturing our local state
+        postForm.tags = createTags(postForm.tags)
         const currentState = { ...postForm }
         // check any fields for property data types / truthy value
         try {
