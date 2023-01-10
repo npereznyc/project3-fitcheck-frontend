@@ -7,7 +7,7 @@ import LoginForm from "../components/LoginForm"
 import CreateProfile from "./CreateProfile"
 import CreateAccount from './CreateAccount'
 
-function Auth() {
+function Login() {
     const { setAuth, setUser, setUserID } = useContext(UserContext)
     const navigate = useNavigate()
     const token = getUserToken()
@@ -47,39 +47,39 @@ function Auth() {
         }
     }
 
-    // const loginUser = async (data) => {
-    //     try {
-    //         const configs = {
-    //             method: "POST",
-    //             body: JSON.stringify(data),
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //         }
+    const loginUser = async (data) => {
+        try {
+            const configs = {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
 
-    //         const response = await fetch("https://fitness-accountability.herokuapp.com/auth/login", configs)
+            const response = await fetch("https://fitness-accountability.herokuapp.com/auth/login", configs)
 
-    //         const currentUser = await response.json()
-    //         // console.log(currentUser)
+            const currentUser = await response.json()
+            // console.log(currentUser)
 
-    //         if (currentUser.token) {
-    //             // sets local storage
-    //             setUserToken(currentUser.token)
-    //             // put the returned user object in state
-    //             setUser(currentUser.username)
-    //             setAuth(currentUser.isLoggedIn)
+            if (currentUser.token) {
+                // sets local storage
+                setUserToken(currentUser.token)
+                // put the returned user object in state
+                setUser(currentUser.username)
+                setAuth(currentUser.isLoggedIn)
 
-    //             return currentUser
-    //         } else {
-    //             console.error(`Server Error: ${currentUser.error}`)
-    //         }
-    //     }
-    //     catch (err) {
-    //         console.error(err)
-    //         clearUserToken()
-    //         setAuth(false)
-    //     }
-    // }
+                return currentUser
+            } else {
+                console.error(`Server Error: ${currentUser.error}`)
+            }
+        }
+        catch (err) {
+            console.error(err)
+            clearUserToken()
+            setAuth(false)
+        }
+    }
 
     const logoutUser = () => {
         clearUserToken()
@@ -91,14 +91,15 @@ function Auth() {
 
     return (
         <section>
+            {/* "Don't have an account?" => <Link to=///> */}
             <h1>Auth Container</h1>
             {/* <RegisterForm signUp={registerUser} /> */}
             <CreateAccount signUp={registerUser}/>
             {/* <CreateProfile /> */}
-            {/* <LoginForm signIn={loginUser} /> */}
+            <LoginForm signIn={loginUser} />
             {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null }
         </section>
     )
 }
 
-export default Auth
+export default Login

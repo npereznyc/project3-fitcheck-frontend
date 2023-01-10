@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import { UserContext } from '../data'
 // import { getUserToken } from '../utils/authToken'
 import { useParams } from 'react-router'
-import EditPost from './EditPost'
+import EditPost from '../components/EditPost'
 // import { useCallback } from 'react'
 
 const PostDetail = (props) => {

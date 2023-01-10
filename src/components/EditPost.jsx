@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useParams, Link, useNavigate } from "react-router-dom"
 import { getUserToken } from "../utils/authToken"
-import StarRating from "../components/StarRating"
+import StarRating from "./StarRating"
 
 
 const EditPost = (props) => {

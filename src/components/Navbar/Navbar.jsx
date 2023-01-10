@@ -18,7 +18,8 @@ const Navbar = (props) => {
                 <FontAwesomeIcon icon="fa-solid fa-circle-plus" />
                 <p>Create Post</p>
             </Link>
-            <Link to={token ? '/profile/' + currentUserID : '/profile/'}>
+            <Link to={token ? '/profile/' + currentUserID : '/login/'}>
+                {/* Change to login page */}
                 <FontAwesomeIcon icon="fa-solid fa-user" />
                 <p>Profile</p>
             </Link>
