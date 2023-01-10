@@ -109,8 +109,8 @@ const CreatePost = (props) => {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>
-                            Image
                             <input
+                                hidden={true}
                                 type="url"
                                 id="image"
                                 name="image"
