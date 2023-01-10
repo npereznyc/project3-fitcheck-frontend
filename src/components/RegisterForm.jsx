@@ -28,29 +28,29 @@ const RegisterForm = ({ signUp }) => {
         else {
             navigate("/auth")
         }
-        try {
-            // console.log('try block')
-            const requestOptions = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(registerForm)
-            }
-            const response = await fetch(BASE_URL, requestOptions)
-            console.log(response)
+        // try {
+        //     // console.log('try block')
+        //     const requestOptions = {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify(registerForm)
+        //     }
+        //     const response = await fetch(BASE_URL, requestOptions)
+        //     console.log(response)
 
-            const newProfile = await response.json()
-            console.log(newProfile)
+        //     const newProfile = await response.json()
+        //     console.log(newProfile)
 
-            // setInput([...input, newProfile])
+        //     // setInput([...input, newProfile])
 
-            setProfile([...profile, newProfile])
-            // setRegisterForm([...registerForm, newProfile])
-            navigate('/')
-        } catch (err) {
-            console.error(err)
-        }
+        //     setProfile([...profile, newProfile])
+        //     // setRegisterForm([...registerForm, newProfile])
+        //     navigate('/')
+        // } catch (err) {
+        //     console.error(err)
+        // }
         setRegisterForm({
             username: "",
             password: "",
