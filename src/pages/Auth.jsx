@@ -64,7 +64,7 @@ function Auth() {
                 // sets local storage
                 setUserToken(currentUser.token)
                 // put the returned user object in state
-                setUser(currentUser.user)
+                setUser(currentUser.username)
                 setAuth(currentUser.isLoggedIn)
 
                 return currentUser
@@ -92,7 +92,7 @@ function Auth() {
             <h1>Auth Container</h1>
             <RegisterForm signUp={registerUser} />
             <LoginForm signIn={loginUser} />
-            {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null}
+            {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null }
         </section>
     )
 }
