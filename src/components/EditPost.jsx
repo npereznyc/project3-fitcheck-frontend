@@ -127,8 +127,8 @@ const EditPost = (props) => {
                 <form onSubmit={updatePost}>
                     <div>
                         <label>
-                            Image
                             <input
+                                hidden={true}
                                 type="url"
                                 id="image"
                                 name="image"
@@ -139,36 +139,47 @@ const EditPost = (props) => {
                     </div>
 
                     <br />
+                    <div>
+                        <label>
+                            Edit Description: 
+                            <input
+                                type="text"
+                                value={editForm.description}
+                                name="description"
+                                placeholder="edit description"
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
 
-                    <input
-                        type="text"
-                        value={editForm.description}
-                        name="description"
-                        placeholder="edit description"
-                        onChange={handleChange}
-                    />
 
                     <br />
 
-                    <input
+                    <div>
+                        <label>
+                            Edit Tags: 
+                            <input
                         type="text"
                         value={editForm.tags}
                         name="tags"
                         placeholder="edit tags"
                         onChange={handleChange}
                     />
+                        </label>
+                    </div>
+                    
 
                     <br />
 
                     <label>
-                        Workout Rating
+                        Edit Workout Rating
                         <StarRating setRating={setWorkoutRating} />
                     </label>
 
                     <br />
 
                     <label>
-                        Workout Difficulty
+                        Edit Workout Difficulty
                         <StarRating setRating={setDifficultyRating} />
                     </label>
 
