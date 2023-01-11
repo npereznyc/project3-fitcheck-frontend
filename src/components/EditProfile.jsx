@@ -98,7 +98,8 @@ const EditProfile = (props) => {
 
     return (
         <>
-            {/* <section className="edit-post">
+            <h1>Edit profile</h1>
+            <section className="edit-post">
                 <h2>Edit post</h2>
                 <UploadImage
                     uploadedImage={setImage}
@@ -169,7 +170,7 @@ const EditProfile = (props) => {
             <section className="delete-post">
                 <h2>Delete post</h2>
                 <button className="logout-button" onClick={deletePost}>Delete</button>
-            </section> */}
+            </section>
         </>
     )
 }
