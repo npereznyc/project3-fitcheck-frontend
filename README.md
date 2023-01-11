@@ -8,9 +8,11 @@ We wanted to create an app that’s not just about scrolling through pictures, b
 
 # Screenshots:
 
-### Desktop Screenshots:
+### Desktop Screenshot:
+![FitCheck desktop screenshot](https://user-images.githubusercontent.com/115664302/211726692-96dd4adb-62bd-47ff-aac6-a0a7e2c04d85.jpg)
 
-### Mobile Screenshots:
+### Mobile Screenshot:
+![FitCheck mobile screenshot](https://user-images.githubusercontent.com/115664302/211726677-dfffec2a-c8e5-4fd5-9ea6-5f4722c87c03.PNG)
 
 <br>
 
@@ -49,7 +51,7 @@ Using FitCheck is easy; simply load the [deployed page](https://fitness-check.ne
 
 # Bugs? Suggestions? Contributions?
 
-Email Jordan, Mary, and Natalie at:
+Contact Jordan, Mary, and Natalie at:
 
 - [jordan.bortner@gmail.com](mailto:jordan.bortner@gmail.com)
 - [Maryrodri3210@gmail.com](mailto:Maryrodri3210@gmail.com)
