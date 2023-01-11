@@ -75,7 +75,7 @@ const Profile = (props) => {
                 {isOwner ? <>
                     <br />
                     <button onClick={logoutUser} className="logout-button">Log Out</button>
-                    <EditProfile data={profile} />
+                    {/* <EditProfile data={profile} /> */}
                 </> : null}
                 <br />
                 {userPosts && userPosts.length ? <>
