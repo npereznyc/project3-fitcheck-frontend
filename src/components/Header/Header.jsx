@@ -6,9 +6,6 @@ import '../../index.css'
 
 const Header = (props) => {
     const { currentUserName, currentUserID } = useContext(UserContext)
-    // const token = getUserToken()
-    console.log(`useContext username:`, currentUserName)
-    console.log(`useContext user ID:`, currentUserID)
 
     return (
         <div className="header">
