@@ -35,16 +35,16 @@ const Posts = (props) => {
                 }
             }
         }
-        
+
         return (
             <div className="posts-container">
                 {posts?.map((post) => {
                     return (
                         <Link key={post._id} to={`/${post._id}`}>
                             <div className="post">
-                                <p>{post.owner ? findUsernameByOwner(post.owner) : `dummy post`}</p>
+                                {post.owner ? <p>{findUsernameByOwner(post.owner)}</p> : null}
                                 <img alt={post.tags} src={post.image} />
-                                <p className="post-description">{post.description}</p>
+                                {post.description ? <p className="post-description">{post.description}</p> : null}
                                 <p className="post-tags">
                                     {post.tags?.map((tag) => `#${tag} `)}
                                 </p>
