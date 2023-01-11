@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from 'react-router'
 import { useNavigate, Link } from "react-router-dom";
+import EditProfile from "../components/EditProfile";
 import { UserContext } from "../data";
 import { getUserToken, clearUserToken } from "../utils/authToken"
 
 
 const Profile = (props) => {
+    const { currentUserID } = useContext(UserContext)
     const [profile, setProfile] = useState(null)
     const [posts, setPosts] = useState([])
     const navigate = useNavigate()
@@ -50,15 +52,16 @@ const Profile = (props) => {
     }
     const token = getUserToken()
 
+    const isOwner = currentUserID === profile?._id
+
     const loaded = () => {
         const findPostsByOwner = (owner) => {
             let userPosts = []
             for (let i = 0; i < posts.length; i++) {
-                if (owner == posts[i].owner) {
+                if (owner === posts[i].owner) {
                     userPosts.push(posts[i])
                 }
             }
-            // console.log(userPosts)
             return userPosts
         }
 
@@ -68,6 +71,7 @@ const Profile = (props) => {
                 <p>Age: {profile.age}</p>
                 <p>Location: {profile.location}</p>
                 <p>Bio: {profile.bio}</p>
+                {isOwner ? <EditProfile data={profile} /> : null}
                 {token ? <button onClick={logoutUser} className="logout-button">Log Out</button> : null}
                 {posts && posts.length ? findPostsByOwner(profile._id).map((post) => (
                     <div className="posts-container" key={post._id}>
