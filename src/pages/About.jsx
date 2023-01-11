@@ -13,7 +13,7 @@ const About = () => {
                 <h3><a href="https://github.com/jordbort/project-3-fitness-frontend"><span>GitHub Frontend Repo</span></a></h3>
                 <h3><a href="https://github.com/jordbort/project-3-fitness-backend"><span>GitHub Backend Repo</span></a></h3>
             </div>
-            <h2>Technologies Used:</h2>
+            <h2>Technologies used:</h2>
             <p>React.js</p>
             <p>Node.js</p>
             <p>Mongoose.js</p>
