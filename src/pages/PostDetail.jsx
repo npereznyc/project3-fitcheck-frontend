@@ -51,7 +51,7 @@ const PostDetail = (props) => {
         return (
             <div className="post-container">
                 {post.owner ? <h4>Posted by: <Link to={"/profile/" + post.owner}>{findUsernameByOwner(post.owner)} (see profile)</Link></h4> : null}
-                <img src={post.image} alt={post.description} />
+                    <img src={post.image} alt={post.description} />
                 <div className="details">
                     <p>{post.description}</p>
                     <p>Tagged: {post.tags?.map((tag) => `#${tag} `)}</p>
