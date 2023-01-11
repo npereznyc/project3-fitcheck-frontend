@@ -1,5 +1,4 @@
 import { useContext } from "react"
-// import { useNavigate } from "react-router-dom"
 import { UserContext } from "../data"
 import { setUserToken, clearUserToken } from "../utils/authToken"
 import RegisterForm from "../components/RegisterForm"
@@ -17,17 +16,11 @@ function CreateAccount() {
                 },
             }
             const newUser = await fetch("https://fitness-accountability.herokuapp.com/auth/register", configs)
-
             const parsedUser = await newUser.json()
-
             setUserToken(parsedUser.token)
-
             setUser(parsedUser.username)
-
             setAuth(parsedUser.isLoggedIn)
-
             setUserID(parsedUser._id)
-
             return parsedUser
         }
         catch (err) {

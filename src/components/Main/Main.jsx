@@ -1,19 +1,16 @@
 import { Routes, Route } from 'react-router-dom'
+import { getUserToken } from '../../utils/authToken'
+import Posts from '../../pages/Posts'
+import About from '../../pages/About'
 import CreatePost from '../../pages/CreatePost'
 import PostDetail from '../../pages/PostDetail'
-import Posts from '../../pages/Posts'
 import Profile from '../../pages/Profile'
-import CreateAccount from '../../pages/CreateAccount'
 import Login from '../../pages/Login'
-import { getUserToken } from '../../utils/authToken'
-import About from '../../pages/About'
-// import { decodeToken } from '../../utils/authToken'
-// import { useNavigate } from 'react-router-dom'
+import CreateAccount from '../../pages/CreateAccount'
 
 const Feed = (props) => {
     const token = getUserToken()
 
-    // const navigate = useNavigate()
     return (
         <section className="feed-container">
             <Routes>

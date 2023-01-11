@@ -1,7 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-/* * {
-    border: 1px dashed pink;
-} */
 
 body {
     margin: 40px 0 0 0;
@@ -26,11 +23,22 @@ span {
 }
 
 input {
-    border-radius: 3px;
-    background-color:#F3EDFD;
+    border-radius: 8px;
+    background-color: #F3EDFD;
     margin: 5px;
     padding: 5px;
     font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    border-radius: 8px;
+}
+
+.logout-button {
+    background-color: #EE5247;
+    color: white;
+    font-weight: 600;
+    padding: 5px 16px;
 }
 
 .logged-in {
@@ -39,6 +47,11 @@ input {
 
 .not-logged-in {
     color: #EE5247;
+}
+
+.details {
+    margin: 0 32px;
+    font-size: 1rem;
 }
 
 .header {
@@ -107,14 +120,6 @@ input {
     margin: 8px 16px;
 }
 
-.logout-button {
-    background-color: #EE5247;
-    color: white;
-    font-weight: 600;
-    padding: 5px 16px;
-    border-radius: 10px;
-}
-
 .create-post, .edit-post {
     display: flex;
     flex-direction: column;
@@ -132,21 +137,21 @@ input {
 }
 
 .header h1 {
-    font-family:'Permanent Marker', cursive;
+    font-family: 'Permanent Marker', cursive;
     margin-left: 25px;
 }
 
-.repo span{
+.repo span {
     color: #1CE5FF;
     text-decoration: underline;
 }
 
 .about {
-   border: black solid; 
-   border-radius: 5%;
-   padding: 20px;
-   text-align: center;
-   background-color: white;
+    border: black solid;
+    border-radius: 5%;
+    padding: 20px;
+    text-align: center;
+    background-color: white;
 
 }
 
@@ -155,10 +160,12 @@ input {
         width: 100%;
         margin: 0 0 88px;
     }
+
     .post {
         border: none;
         border-radius: 0px;
     }
+
     .nav {
         width: auto;
         flex-direction: row;
@@ -168,25 +175,13 @@ input {
         top: auto;
         right: 0;
     }
+
     .nav a {
         flex-direction: column;
         gap: 2px;
     }
+
     .nav svg {
         padding: 0;
-    }
-
-    .profile-container {
-        padding: 20px;
-        align-items: center;
-    }
-
-    input {
-        border-radius: 3px;
-        background-color:#F3EDFD;
-        margin: 5px;
-        padding: 5px;
-        font-family: 'Montserrat', sans-serif;
-        color: black;
     }
 }

@@ -1,10 +1,8 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react"
 import { useParams } from 'react-router'
-import { useNavigate, Link } from "react-router-dom";
-import EditProfile from "../components/EditProfile";
-import { UserContext } from "../data";
-import { getUserToken, clearUserToken } from "../utils/authToken"
-
+import { useNavigate, Link } from "react-router-dom"
+import { UserContext } from "../data"
+import { clearUserToken } from "../utils/authToken"
 
 const Profile = (props) => {
     const { currentUserID } = useContext(UserContext)
@@ -50,7 +48,6 @@ const Profile = (props) => {
         setAuth(null)
         navigate(`/`)
     }
-    const token = getUserToken()
 
     const isOwner = currentUserID === profile?._id
 
@@ -64,18 +61,27 @@ const Profile = (props) => {
             }
             return userPosts
         }
+        const userPosts = findPostsByOwner(profile._id)
 
         return (
             <div className="profile-container">
-                <h1>User profile: {profile.username}</h1>
-                <p>Age: {profile.age}</p>
-                <p>Location: {profile.location}</p>
-                <p>Bio: {profile.bio}</p>
-                {isOwner ? <EditProfile data={profile} /> : null}
-                {token ? <button onClick={logoutUser} className="logout-button">Log Out</button> : null}
-                {posts && posts.length ? findPostsByOwner(profile._id).map((post) => (
-                    <div className="posts-container" key={post._id}>
-                        <Link to={`/${post._id}`}>
+                <div className="details">
+                    <h1>User profile: {profile.username}</h1>
+                    <p>Age: {profile.age}</p>
+                    <p>Location: {profile.location}</p>
+                    <p>Bio: {profile.bio}</p>
+                    {isOwner ? <>
+                        <br />
+                        <button onClick={logoutUser} className="logout-button">Log Out</button>
+                        {/* <EditProfile data={profile} /> */}
+                    </> : null}
+                </div>
+                <br />
+                {userPosts && userPosts.length ? <>
+                    <p>Posts from {profile.username}:</p>
+                    <br />
+                    <div className="posts-container">{userPosts.map((post) => (
+                        <Link to={`/${post._id}`} key={post._id}>
                             <div className="post">
                                 {post.owner ? <p>{profile.username}</p> : null}
                                 <img alt={post.tags} src={post.image} />
@@ -85,8 +91,8 @@ const Profile = (props) => {
                                 </p>
                             </div>
                         </Link>
-                    </div>
-                )) : <p>No posts to show</p>} {/* Why am I not seeing this if the user has no posts? */}
+                    ))}</div>
+                </> : <p className="details">No posts to show from user</p>}
             </div>
         )
     }
@@ -104,6 +110,7 @@ const Profile = (props) => {
             </span>
         </h1>
     }
+    
     return (
         <section className="Profile">
             {profile ? loaded() : loading()}
