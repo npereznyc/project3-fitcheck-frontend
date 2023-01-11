@@ -1,16 +1,15 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react"
 import { useParams } from 'react-router'
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "../data";
-import { getUserToken, clearUserToken } from "../utils/authToken"
-
+import { useNavigate, Link } from "react-router-dom"
+import { UserContext } from "../data"
+import { clearUserToken } from "../utils/authToken"
 
 const Profile = (props) => {
-    const { setAuth, setUser, currentUserID } = useContext(UserContext)
+    const { currentUserID } = useContext(UserContext)
     const [profile, setProfile] = useState(null)
-    console.log(currentUserID)
+    const [posts, setPosts] = useState([])
     const navigate = useNavigate()
-
+    const { setAuth, setUser, setUserID } = useContext(UserContext)
     const { id } = useParams()
 
     const URL = `https://fitness-accountability.herokuapp.com/profile/${id}`
@@ -19,9 +18,18 @@ const Profile = (props) => {
         try {
             const response = await fetch(URL)
             const result = await response.json()
-            // console.log(result)
             setProfile(result)
+        }
+        catch (err) {
+            console.error(err)
+        }
+    }
 
+    const getAllPosts = async () => {
+        try {
+            const response = await fetch("https://fitness-accountability.herokuapp.com/")
+            const allPosts = await response.json()
+            setPosts(allPosts)
         }
         catch (err) {
             console.error(err)
@@ -30,24 +38,61 @@ const Profile = (props) => {
 
     useEffect(() => {
         getProfile()
+        getAllPosts()
     }, [])
 
     const logoutUser = () => {
         clearUserToken()
         setUser(null)
+        setUserID(null)
         setAuth(null)
         navigate(`/`)
     }
-    const token = getUserToken()
+
+    const isOwner = currentUserID === profile?._id
 
     const loaded = () => {
+        const findPostsByOwner = (owner) => {
+            let userPosts = []
+            for (let i = 0; i < posts.length; i++) {
+                if (owner === posts[i].owner) {
+                    userPosts.push(posts[i])
+                }
+            }
+            return userPosts
+        }
+        const userPosts = findPostsByOwner(profile._id)
+
         return (
             <div className="profile-container">
-                <h4>{profile.name}</h4>
-                <p>Age: {profile.age}</p>
-                <p>Location: {profile.location}</p>
-                <p>Bio: {profile.bio}</p>
-            {token ? <button onClick={logoutUser} className="logout-button">Log Out</button> : null}
+                <div className="details">
+                    <h1>User profile: {profile.username}</h1>
+                    <p>Age: {profile.age}</p>
+                    <p>Location: {profile.location}</p>
+                    <p>Bio: {profile.bio}</p>
+                    {isOwner ? <>
+                        <br />
+                        <button onClick={logoutUser} className="logout-button">Log Out</button>
+                        {/* <EditProfile data={profile} /> */}
+                    </> : null}
+                </div>
+                <br />
+                {userPosts && userPosts.length ? <>
+                    <p>Posts from {profile.username}:</p>
+                    <br />
+                    <div className="posts-container">{userPosts.map((post) => (
+                        <Link to={`/${post._id}`} key={post._id}>
+                            <div className="post">
+                                {post.owner ? <p>{profile.username}</p> : null}
+                                <img alt={post.tags} src={post.image} />
+                                {post.description ? <p className="post-description">{post.description}</p> : null}
+                                <p className="post-tags">
+                                    {post.tags?.map((tag) => `#${tag} `)}
+                                </p>
+                            </div>
+                        </Link>
+                    ))}</div>
+                </> : <p className="details">No posts to show from user</p>}
             </div>
         )
     }
@@ -65,6 +110,7 @@ const Profile = (props) => {
             </span>
         </h1>
     }
+    
     return (
         <section className="Profile">
             {profile ? loaded() : loading()}

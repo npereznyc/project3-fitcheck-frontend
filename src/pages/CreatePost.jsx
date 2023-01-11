@@ -1,6 +1,4 @@
-import { useState, useContext } from "react"
-import { UserContext } from "../data"
-// import { useEffect } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import StarRating from "../components/StarRating"
 import '../components/star.css'
@@ -9,20 +7,14 @@ import UploadImage from "../components/UploadImage"
 
 const CreatePost = (props) => {
     const token = getUserToken()
-    const { currentUserName } = useContext(UserContext)
-    // console.log(currentUserName)
-
     const [posts, setPosts] = useState([])
-
     const navigate = useNavigate()
-    //form state
     const [postForm, setPostForm] = useState({
         image: "",
         description: "",
         tags: "",
         rating: "",
-        difficulty: "",
-        ownerName: currentUserName
+        difficulty: ""
     })
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/post/"
@@ -30,17 +22,22 @@ const CreatePost = (props) => {
     const handleChange = (e) => {
         const userInput = { ...postForm }
         userInput[e.target.name] = e.target.value
-        console.log('user input', userInput)
         setPostForm(userInput)
     }
 
     const handleSubmit = async (e) => {
-        // 0. prevent default (event object method)
-        // console.log("handling submit")
+        const createTags = (str) => {
+            let arr = str.split(',')
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i][0] === ' ') {
+                    arr[i] = arr[i].substring(1, arr[i].length)
+                }
+            }
+            return arr
+        }
         e.preventDefault()
-        // 1. capturing our local state
+        postForm.tags = createTags(postForm.tags)
         const currentState = { ...postForm }
-        // check any fields for property data types / truthy value
         try {
             const requestOptions = {
                 method: "POST",
@@ -51,11 +48,7 @@ const CreatePost = (props) => {
                 body: JSON.stringify(currentState),
             }
             const response = await fetch(BASE_URL, requestOptions)
-            // console.log(response)
-
             const newPost = await response.json()
-            // console.log(newPost)
-
             setPosts([...posts, newPost])
             setPostForm({
                 image: "",
@@ -65,108 +58,103 @@ const CreatePost = (props) => {
                 difficulty: ""
             })
             navigate("/")
-        } catch (err) {
+        }
+        catch (err) {
             console.error(err)
         }
     }
-    
+
     const setImage = (newImage) => {
         setPostForm((oldPostForm) => {
-            const formCopy = {...oldPostForm}
+            const formCopy = { ...oldPostForm }
             formCopy.image = newImage
-            console.log("Post form is now: ", formCopy)
             return formCopy
         })
     }
 
     const setWorkoutRating = (newRating) => {
         setPostForm((oldPostFormValues) => {
-            const copyOfPostForm = { ...oldPostFormValues };
-            copyOfPostForm.rating = newRating;
-            console.log("Post form is now: ", copyOfPostForm)
-            return copyOfPostForm;
+            const copyOfPostForm = { ...oldPostFormValues }
+            copyOfPostForm.rating = newRating
+            return copyOfPostForm
         })
     }
 
     const setDifficultyRating = (newRating) => {
         setPostForm((oldPostFormValues) => {
-            const copyOfPostForm = { ...oldPostFormValues };
-            copyOfPostForm.difficulty = newRating;
-            console.log("Post form is now: ", copyOfPostForm)
-            return copyOfPostForm;
+            const copyOfPostForm = { ...oldPostFormValues }
+            copyOfPostForm.difficulty = newRating
+            return copyOfPostForm
         })
     }
     return (
-
         <div>
-
             <section>
                 <h2>Create New Post</h2>
-               <UploadImage 
-               uploadedImage={setImage}
-               />
-
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>
-                            Image
-                            <input
-                                type="url"
-                                id="image"
-                                name="image"
-                                value={postForm.image}
-                                onChange={handleChange}
-                            />
-                        </label>
-                    </div>
-
-                    <div>
-                        <label>
-                            Description
-                            <input
-                                type="text"
-                                id="description"
-                                name="description"
-                                placeholder="description"
-                                value={postForm.description}
-                                onChange={handleChange}
-                            />
-                        </label>
-                    </div>
-
-                    <div>
-                        <label>
-                            Tags
-                            <input
-                                type="text"
-                                id="tags"
-                                name="tags"
-                                placeholder="tags"
-                                value={postForm.tags}
-                                onChange={handleChange}
-                            />
-                        </label>
-                    </div>
-
-                    <div>
-                        <label>
-                            Workout Rating
-                            <StarRating
-                                setRating={setWorkoutRating}
-                            />
-                        </label>
-                    </div>
-
-                    <div>
-                        <label>
-                            Workout Difficulty
-                            <StarRating setRating={setDifficultyRating} />
-                        </label>
+                <div className="create-post">
+                    <UploadImage uploadedImage={setImage} />
+                    <br />
+                    <form  onSubmit={handleSubmit}>
+                        <div>
+                            <label>
+                                <input
+                                    hidden={true}
+                                    type="url"
+                                    id="image"
+                                    name="image"
+                                    value={postForm.image}
+                                    onChange={handleChange}
+                                />
+                            </label>
+                        </div>
                         <br />
-                        <input type="submit" value="Post" />
-                    </div>
+                        <div>
+                            <label>
+                                Description
+                                <input
+                                    type="text"
+                                    id="description"
+                                    name="description"
+                                    placeholder="Enter description"
+                                    value={postForm.description}
+                                    onChange={handleChange}
+                                />
+                            </label>
+                        </div>
+                        <br />
+                        <div>
+                            <label>
+                                Tags
+                                <input
+                                    type="text"
+                                    id="tags"
+                                    name="tags"
+                                    placeholder="separated by commas"
+                                    value={postForm.tags}
+                                    onChange={handleChange}
+                                />
+                            </label>
+                        </div>
+                        <br />
+                        <div>
+                            <label>
+                                Workout Rating
+                                <StarRating
+                                    setRating={setWorkoutRating}
+                                />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                Workout Difficulty
+                                <StarRating setRating={setDifficultyRating} />
+                            </label>
+                            <input type="submit" value="Post" />
+                        </div>
 
-                </form>
+                    </form>
+                </div>
+
             </section>
         </div>
     )

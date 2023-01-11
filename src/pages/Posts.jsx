@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const Posts = (props) => {
-    // console.log(`Posts page`, currentUserID, currentUserName)
     const [posts, setPosts] = useState([])
     const [users, setUsers] = useState([])
 
@@ -17,6 +16,7 @@ const Posts = (props) => {
             console.error(err)
         }
     }
+
     const getUsers = async () => {
         try {
             const response = await fetch(BASE_URL + `profile/`)
@@ -35,16 +35,16 @@ const Posts = (props) => {
                 }
             }
         }
-        
+
         return (
             <div className="posts-container">
                 {posts?.map((post) => {
                     return (
                         <Link key={post._id} to={`/${post._id}`}>
                             <div className="post">
-                                <p>{post.owner ? findUsernameByOwner(post.owner) : `dummy post`}</p>
+                                {post.owner ? <p>{findUsernameByOwner(post.owner)}</p> : null}
                                 <img alt={post.tags} src={post.image} />
-                                <p className="post-description">{post.description}</p>
+                                {post.description ? <p className="post-description">{post.description}</p> : null}
                                 <p className="post-tags">
                                     {post.tags?.map((tag) => `#${tag} `)}
                                 </p>
@@ -71,6 +71,7 @@ const Posts = (props) => {
             </h1>
         </section>
     )
+
     useEffect(() => {
         getPosts()
         getUsers()

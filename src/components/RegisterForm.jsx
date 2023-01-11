@@ -1,9 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-const RegisterForm = ({ signUp }) => {
 
-    const [profile, setProfile] = useState([])
+const RegisterForm = ({ signUp }) => {
     const [registerForm, setRegisterForm] = useState({
         username: "",
         password: "",
@@ -12,52 +11,24 @@ const RegisterForm = ({ signUp }) => {
         bio: "",
     })
 
-    const BASE_URL = "https://fitness-accountability.herokuapp.com/profile/"
-
-    // const [input, setInput] = useState(initialState)
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const createdUserToken = await signUp(registerForm)
-
         if (createdUserToken) {
-            // navigate("/")
-            console.log('new user', registerForm.username)
+            setRegisterForm({
+                username: "",
+                password: "",
+                age: "",
+                location: "",
+                bio: "",
+            })
+            navigate("/")
         }
         else {
             navigate("/auth")
         }
-        // try {
-        //     // console.log('try block')
-        //     const requestOptions = {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(registerForm)
-        //     }
-        //     const response = await fetch(BASE_URL, requestOptions)
-        //     console.log(response)
-
-        //     const newProfile = await response.json()
-        //     console.log(newProfile)
-
-        //     // setInput([...input, newProfile])
-
-        //     setProfile([...profile, newProfile])
-        //     // setRegisterForm([...registerForm, newProfile])
-        //     navigate('/')
-        // } catch (err) {
-        //     console.error(err)
-        // }
-        setRegisterForm({
-            username: "",
-            password: "",
-            age: "",
-            location: "",
-            bio: "",
-        })
     }
 
     const handleChange = (e) => {
@@ -77,56 +48,52 @@ const RegisterForm = ({ signUp }) => {
                     value={registerForm.username}
                     onChange={handleChange}
                 />
+
                 <br />
                 <label htmlFor="password">Password: </label>
                 <input
                     id="password"
                     name="password"
+                    type="password"
+                    autoComplete='password'
                     value={registerForm.password}
                     onChange={handleChange}
                 />
+
                 <br />
-                <div>
-                    <label>
-                        Age
-                        <input
-                            type="text"
-                            id="age"
-                            name="age"
-                            placeholder="age"
-                            value={registerForm.age}
-                            onChange={handleChange}
-                        />
-                    </label>
-                </div>
+                <label htmlFor='age'>Age: </label>
+                <input
+                    type="text"
+                    id="age"
+                    name="age"
+                    placeholder="age"
+                    value={registerForm.age}
+                    onChange={handleChange}
+                />
 
-                <div>
-                    <label>
-                        Location
-                        <input
-                            type="text"
-                            id="location"
-                            name="location"
-                            placeholder="location"
-                            value={registerForm.location}
-                            onChange={handleChange}
-                        />
-                    </label>
-                </div>
+                <br />
+                <label htmlFor='location'>Location: </label>
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="location"
+                    value={registerForm.location}
+                    onChange={handleChange}
+                />
 
-                <div>
-                    <label>
-                        Bio
-                        <input
-                            type="text"
-                            id="bio"
-                            name="bio"
-                            placeholder="workout bio"
-                            value={registerForm.bio}
-                            onChange={handleChange}
-                        />
-                    </label>
-                </div>
+                <br />
+                <label htmlFor='bio'>Bio: </label>
+                <input
+                    type="text"
+                    id="bio"
+                    name="bio"
+                    placeholder="workout bio"
+                    value={registerForm.bio}
+                    onChange={handleChange}
+                />
+
+                <br />
                 <input type="submit" value="Sign Up" />
             </form>
         </>

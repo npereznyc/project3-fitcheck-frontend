@@ -1,6 +1,4 @@
-/* * {
-    border: 1px dashed pink;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 body {
     margin: 40px 0 0 0;
@@ -24,12 +22,36 @@ span {
     font-weight: 600;
 }
 
+input {
+    border-radius: 8px;
+    background-color: #F3EDFD;
+    margin: 5px;
+    padding: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    border-radius: 8px;
+}
+
+.logout-button {
+    background-color: #EE5247;
+    color: white;
+    font-weight: 600;
+    padding: 5px 16px;
+}
+
 .logged-in {
-    color: blue;
+    color: #5D49F5;
 }
 
 .not-logged-in {
-    color: red;
+    color: #EE5247;
+}
+
+.details {
+    margin: 0 32px;
+    font-size: 1rem;
 }
 
 .header {
@@ -41,6 +63,7 @@ span {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-right: 10px;
 }
 
 .nav {
@@ -52,7 +75,7 @@ span {
     top: 40px;
     bottom: 0;
     left: 0;
-    background-color: #444444;
+    background-color: #5D49F5;
     padding: 40px 0;
 }
 
@@ -97,11 +120,39 @@ span {
     margin: 8px 16px;
 }
 
-.logout-button {
-    background-color: red;
-    color: white;
-    font-weight: 600;
-    padding: 8px 16px;
+.create-post, .edit-post {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #454545;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header h1 {
+    font-family: 'Permanent Marker', cursive;
+    margin-left: 25px;
+}
+
+.repo span {
+    color: #1CE5FF;
+    text-decoration: underline;
+}
+
+.about {
+    border: black solid;
+    border-radius: 5%;
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+
 }
 
 @media (orientation: portrait), (max-width: 959px) {
@@ -109,28 +160,28 @@ span {
         width: 100%;
         margin: 0 0 88px;
     }
+
     .post {
         border: none;
         border-radius: 0px;
     }
+
     .nav {
         width: auto;
         flex-direction: row;
         justify-content: space-around;
         gap: 0px;
-        padding: 12px 0 36px;
+        padding: 12px 0 12px;
         top: auto;
         right: 0;
     }
+
     .nav a {
         flex-direction: column;
         gap: 2px;
     }
+
     .nav svg {
         padding: 0;
     }
-}
-
-.Fitcheck {
-    font-family:'Permanent Marker', cursive;
 }

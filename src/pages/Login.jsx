@@ -1,51 +1,13 @@
 import { useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { UserContext } from "../data"
 import { getUserToken, setUserToken, clearUserToken } from "../utils/authToken"
-import RegisterForm from "../components/RegisterForm"
 import LoginForm from "../components/LoginForm"
-import CreateProfile from "./CreateProfile"
-import CreateAccount from './CreateAccount'
 
 function Login() {
     const { setAuth, setUser, setUserID } = useContext(UserContext)
     const navigate = useNavigate()
     const token = getUserToken()
-
-    const registerUser = async (data) => {
-        try {
-            const configs = {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            }
-            const newUser = await fetch("https://fitness-accountability.herokuapp.com/auth/register", configs)
-
-            const parsedUser = await newUser.json()
-            // console.log(parsedUser)
-
-            // sets local storage
-            setUserToken(parsedUser.token)
-
-            // put the returned user object in state
-            setUser(parsedUser.user)
-
-            // adds a boolean cast of the responses isAuthenticated prop
-            setAuth(parsedUser.isLoggedIn)
-
-            // alternative (safer) implementation would be to use jwt decode library - <https://www.npmjs.com/package/jwt-decode>
-            // this would also require reconfiguring our backend so we only send tokens with a signup
-
-            return parsedUser
-        }
-        catch (err) {
-            console.error(err)
-            clearUserToken()
-            setAuth(false)
-        }
-    }
 
     const loginUser = async (data) => {
         try {
@@ -58,19 +20,16 @@ function Login() {
             }
 
             const response = await fetch("https://fitness-accountability.herokuapp.com/auth/login", configs)
-
             const currentUser = await response.json()
-            // console.log(currentUser)
 
             if (currentUser.token) {
-                // sets local storage
                 setUserToken(currentUser.token)
-                // put the returned user object in state
                 setUser(currentUser.username)
+                setUserID(currentUser._id)
                 setAuth(currentUser.isLoggedIn)
-
                 return currentUser
-            } else {
+            }
+            else {
                 console.error(`Server Error: ${currentUser.error}`)
             }
         }
@@ -91,13 +50,10 @@ function Login() {
 
     return (
         <section>
-            {/* "Don't have an account?" => <Link to=///> */}
-            <h1>Auth Container</h1>
-            {/* <RegisterForm signUp={registerUser} /> */}
-            <CreateAccount signUp={registerUser}/>
-            {/* <CreateProfile /> */}
             <LoginForm signIn={loginUser} />
-            {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null }
+            {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null}
+            <h4>Don't have an account? Click below to create one:</h4>
+            <Link to='/register'><button>Create Account</button></Link>
         </section>
     )
 }
