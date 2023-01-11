@@ -1,23 +1,25 @@
 import '../index.css'
 
-const About = (props) => {
-
+const About = () => {
     return (
         <div className='about'>
             <h1>The only platform you need to keep your fitness in check</h1>
-            <h1>Developers:</h1>
+            <h1>Developed by:</h1>
             <p>Natalie Perez</p>
             <p>Jordan Bortner</p>
             <p>Mary Rodriguez</p>
-            <h1>General Assembly Cohort:</h1>
-            <p>October 31, 2022</p>
+            <h4>General Assembly October 31, 2022 cohort</h4>
             <div className="repo">
-                <h1 ><a href="https://github.com/jordbort/project-3-fitness-frontend"><span>Github Repo</span></a></h1>
+                <h3><a href="https://github.com/jordbort/project-3-fitness-frontend"><span>GitHub Frontend Repo</span></a></h3>
+                <h3><a href="https://github.com/jordbort/project-3-fitness-backend"><span>GitHub Backend Repo</span></a></h3>
             </div>
-            <h2>Technologies:</h2>
-            <p>Javascript</p>
-            <p>React</p>
-            <p>Node</p>
+            <h2>Technologies Used:</h2>
+            <p>React.js</p>
+            <p>Node.js</p>
+            <p>Mongoose.js</p>
+            <p>Express.js</p>
+            <p>Passport.js</p>
+            <p>JavaScript / XML</p>
             <p>HTML</p>
             <p>CSS</p>
         </div>
