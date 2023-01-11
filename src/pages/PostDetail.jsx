@@ -62,6 +62,7 @@ const PostDetail = (props) => {
             </div>
         )
     }
+
     const loading = () => {
         return <h1>
             Loading...
@@ -75,6 +76,7 @@ const PostDetail = (props) => {
             </span>
         </h1>
     }
+
     return (
         <section className="PostDetail">
             {post ? loaded() : loading()}

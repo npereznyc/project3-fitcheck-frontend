@@ -1,18 +1,12 @@
 import { useState, useContext } from 'react'
-// import { useParams } from 'react-router'
-
 import { UserContext } from "../data"
 import { useNavigate } from "react-router-dom"
 import { getUserToken, clearUserToken } from "../utils/authToken"
 
-
 const CreateProfile = (props) => {
     const { setAuth, setUser, currentUserID } = useContext(UserContext)
-    const navigate = useNavigate()
 
     const [profile, setProfile] = useState([])
-
-    //form state
     const [profileForm, setProfileForm] = useState({
         name: "",
         age: "",
@@ -20,45 +14,19 @@ const CreateProfile = (props) => {
         bio: "",
     })
 
+    const navigate = useNavigate()
     const BASE_URL = "https://fitness-accountability.herokuapp.com/profile/"
-
-    // const navigate = useNavigate()    
-    // const { id } = useParams()
-    // const URL = `https://fitness-accountability.herokuapp.com/profile/${id}`
-
-    // const getProfile = async () => {
-    //     try {
-    //         const response = await fetch(URL)
-    //         const result = await response.json()
-    //         console.log(result)
-    //         setProfile(result)
-
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getProfile()
-    // }, [])
-
 
     const handleChange = (e) => {
         const userInput = { ...profileForm }
         userInput[e.target.name] = e.target.value
-        // console.log(userInput)
         setProfileForm(userInput)
     }
 
     const handleSubmit = async (e) => {
-        // 0. prevent default (event object method)
-        // console.log('handling submit')
         e.preventDefault()
-        // 1. capturing our local state
         const currentState = { ...profileForm }
-        // check any fields for property data types / truthy value
         try {
-            // console.log('try block')
             const requestOptions = {
                 method: "POST",
                 headers: {
@@ -67,11 +35,7 @@ const CreateProfile = (props) => {
                 body: JSON.stringify(currentState)
             }
             const response = await fetch(BASE_URL, requestOptions)
-            console.log(response)
-
             const newProfile = await response.json()
-            console.log(newProfile)
-
             setProfile([...profile, newProfile])
             setProfileForm({
                 name: "",
@@ -80,12 +44,14 @@ const CreateProfile = (props) => {
                 bio: "",
             })
             navigate('/')
-        } catch (err) {
+        }
+        catch (err) {
             console.error(err)
         }
     }
 
     const token = getUserToken()
+
     const logoutUser = () => {
         clearUserToken()
         setUser(null)

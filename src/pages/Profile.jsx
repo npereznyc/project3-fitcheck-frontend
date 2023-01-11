@@ -1,10 +1,8 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react"
 import { useParams } from 'react-router'
-import { useNavigate, Link } from "react-router-dom";
-// import EditProfile from "../components/EditProfile";
-import { UserContext } from "../data";
+import { useNavigate, Link } from "react-router-dom"
+import { UserContext } from "../data"
 import { clearUserToken } from "../utils/authToken"
-
 
 const Profile = (props) => {
     const { currentUserID } = useContext(UserContext)
@@ -112,6 +110,7 @@ const Profile = (props) => {
             </span>
         </h1>
     }
+    
     return (
         <section className="Profile">
             {profile ? loaded() : loading()}

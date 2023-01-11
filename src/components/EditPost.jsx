@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { useParams, Link, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { getUserToken } from "../utils/authToken"
 import StarRating from "./StarRating"
 import UploadImage from "./UploadImage"
 
 const EditPost = (props) => {
     const { data } = props
+
     const [editForm, setEditForm] = useState({
         image: data.image,
         description: data.description,
@@ -13,11 +14,11 @@ const EditPost = (props) => {
         rating: data.rating,
         difficulty: data.difficulty
     })
-    const token = getUserToken()
-    const { id } = useParams()
-    const navigate = useNavigate()
-    const URL = `https://fitness-accountability.herokuapp.com/post/${id}`
 
+    const navigate = useNavigate()
+    const { id } = useParams()
+    const token = getUserToken()
+    const URL = `https://fitness-accountability.herokuapp.com/post/${id}`
 
     const handleChange = (event) => {
         const userInput = { ...editForm }
@@ -67,8 +68,6 @@ const EditPost = (props) => {
             navigate(`/`)
         } catch (err) {
             console.error(err)
-            //stretch goal: populate error message on page when delete fails
-            //populate some state for 3 seconds, then redirect to a 404 page
         }
     }
 
@@ -76,7 +75,6 @@ const EditPost = (props) => {
         setEditForm((oldPostForm) => {
             const formCopy = { ...oldPostForm }
             formCopy.image = newImage
-            // console.log("Post form is now: ", formCopy)
             return formCopy
         })
     }
@@ -85,7 +83,6 @@ const EditPost = (props) => {
         setEditForm((oldEditFormValues) => {
             const copyOfEditForm = { ...oldEditFormValues }
             copyOfEditForm.rating = newRating
-            // console.log("Post form is now:", copyOfEditForm)
             return copyOfEditForm
         })
     }
@@ -94,7 +91,6 @@ const EditPost = (props) => {
         setEditForm((oldEditFormValues) => {
             const copyOfEditForm = { ...oldEditFormValues }
             copyOfEditForm.difficulty = newRating
-            // console.log("Edit form is now:", copyOfEditForm)
             return copyOfEditForm
         })
     }
@@ -138,7 +134,6 @@ const EditPost = (props) => {
 
 
                     <br />
-
                     <div>
                         <label>
                             Edit Tags:
@@ -151,6 +146,7 @@ const EditPost = (props) => {
                             />
                         </label>
                     </div>
+
                     <br />
                     <div>
                         <label>
@@ -164,7 +160,6 @@ const EditPost = (props) => {
                             <StarRating setRating={setDifficultyRating} />
                         </label>
                     </div>
-
 
                     <input type="submit" value="Edit Post" />
                 </form>

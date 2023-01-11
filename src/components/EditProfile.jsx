@@ -1,21 +1,21 @@
 import { useState } from "react"
-import { useParams, Link, useNavigate } from "react-router-dom"
-import { getUserToken, clearUserToken } from "../utils/authToken"
+import { useParams, useNavigate } from "react-router-dom"
+import { getUserToken } from "../utils/authToken"
 
 const EditProfile = (props) => {
     const { data } = props
-    console.log(data)
+
     const [editForm, setEditForm] = useState({
         username: data.username,
         age: data.age,
         bio: data.bio,
         location: data.location
     })
+
     const token = getUserToken()
     const { id } = useParams()
     const navigate = useNavigate()
     const URL = `https://fitness-accountability.herokuapp.com/profile/${id}`
-
 
     const handleChange = (event) => {
         const userInput = { ...editForm }
@@ -26,7 +26,6 @@ const EditProfile = (props) => {
     const updateProfile = async (e) => {
         e.preventDefault()
         const updatedProfile = { ...editForm }
-        console.log(updatedProfile)
         try {
             const requestOptions = {
                 method: "PUT",
@@ -46,6 +45,7 @@ const EditProfile = (props) => {
 
     return (
         <>
+            <br />
             <h1>Edit profile</h1>
             <section className="edit-post">
                 <h2>Edit profile</h2>

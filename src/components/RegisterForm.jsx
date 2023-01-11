@@ -3,8 +3,6 @@ import { useState } from 'react'
 
 
 const RegisterForm = ({ signUp }) => {
-
-    // const [profile, setProfile] = useState([])
     const [registerForm, setRegisterForm] = useState({
         username: "",
         password: "",
@@ -13,13 +11,11 @@ const RegisterForm = ({ signUp }) => {
         bio: "",
     })
 
-
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const createdUserToken = await signUp(registerForm)
-
         if (createdUserToken) {
             setRegisterForm({
                 username: "",
@@ -33,7 +29,6 @@ const RegisterForm = ({ signUp }) => {
         else {
             navigate("/auth")
         }
-
     }
 
     const handleChange = (e) => {
@@ -53,7 +48,8 @@ const RegisterForm = ({ signUp }) => {
                     value={registerForm.username}
                     onChange={handleChange}
                 />
-                <br /><br />
+
+                <br />
                 <label htmlFor="password">Password: </label>
                 <input
                     id="password"
@@ -63,49 +59,41 @@ const RegisterForm = ({ signUp }) => {
                     value={registerForm.password}
                     onChange={handleChange}
                 />
-                <br /><br />
 
-                <label>
-                    Age
-                    <input
-                        type="text"
-                        id="age"
-                        name="age"
-                        placeholder="age"
-                        value={registerForm.age}
-                        onChange={handleChange}
-                    />
-                </label>
+                <br />
+                <label htmlFor='age'>Age: </label>
+                <input
+                    type="text"
+                    id="age"
+                    name="age"
+                    placeholder="age"
+                    value={registerForm.age}
+                    onChange={handleChange}
+                />
 
-                <br /><br />
+                <br />
+                <label htmlFor='location'>Location: </label>
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="location"
+                    value={registerForm.location}
+                    onChange={handleChange}
+                />
 
-                <label>
-                    Location
-                    <input
-                        type="text"
-                        id="location"
-                        name="location"
-                        placeholder="location"
-                        value={registerForm.location}
-                        onChange={handleChange}
-                    />
-                </label>
+                <br />
+                <label htmlFor='bio'>Bio: </label>
+                <input
+                    type="text"
+                    id="bio"
+                    name="bio"
+                    placeholder="workout bio"
+                    value={registerForm.bio}
+                    onChange={handleChange}
+                />
 
-                <br /><br />
-
-                <label>
-                    Bio
-                    <input
-                        type="text"
-                        id="bio"
-                        name="bio"
-                        placeholder="workout bio"
-                        value={registerForm.bio}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br /><br />
-
+                <br />
                 <input type="submit" value="Sign Up" />
             </form>
         </>

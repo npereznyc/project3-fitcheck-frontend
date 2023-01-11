@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 const Posts = (props) => {
-    // console.log(`Posts page`, currentUserID, currentUserName)
     const [posts, setPosts] = useState([])
     const [users, setUsers] = useState([])
 
@@ -17,6 +16,7 @@ const Posts = (props) => {
             console.error(err)
         }
     }
+
     const getUsers = async () => {
         try {
             const response = await fetch(BASE_URL + `profile/`)
@@ -71,6 +71,7 @@ const Posts = (props) => {
             </h1>
         </section>
     )
+
     useEffect(() => {
         getPosts()
         getUsers()

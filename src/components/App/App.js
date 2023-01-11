@@ -2,16 +2,14 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHouse, faCirclePlus, faUser } from '@fortawesome/free-solid-svg-icons'
 import { UserContext } from '../../data'
 import { useState, useEffect } from 'react'
-import './App.css'
+import { getUserToken, decodeToken } from '../../utils/authToken'
 import Header from '../Header/Header'
 import Navbar from '../Navbar/Navbar'
 import Feed from '../Main/Main'
-import { getUserToken, decodeToken } from '../../utils/authToken'
+import './App.css'
 
 function App() {
     library.add(faHouse, faCirclePlus, faUser)
-
-    const token = getUserToken()
 
     const { Provider: UserInfo } = UserContext
 
@@ -19,13 +17,13 @@ function App() {
     const [currentUserName, setCurrentUserName] = useState(null)
     const [currentUserID, setCurrentUserID] = useState(null)
 
+    const token = getUserToken()
+
     useEffect(() => {
         if (token) {
-            // getUserToken()
             const { id, username } = decodeToken(token)
             setCurrentUserName(username)
             setCurrentUserID(id)
-            // console.log('username', username, 'id', id)
         }
     }, [token])
 

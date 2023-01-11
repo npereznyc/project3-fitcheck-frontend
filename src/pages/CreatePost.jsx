@@ -35,9 +35,7 @@ const CreatePost = (props) => {
             }
             return arr
         }
-        // 0. prevent default (event object method)
         e.preventDefault()
-        // 1. capturing our local state
         postForm.tags = createTags(postForm.tags)
         const currentState = { ...postForm }
         try {
@@ -70,26 +68,23 @@ const CreatePost = (props) => {
         setPostForm((oldPostForm) => {
             const formCopy = { ...oldPostForm }
             formCopy.image = newImage
-            console.log("Post form is now: ", formCopy)
             return formCopy
         })
     }
 
     const setWorkoutRating = (newRating) => {
         setPostForm((oldPostFormValues) => {
-            const copyOfPostForm = { ...oldPostFormValues };
-            copyOfPostForm.rating = newRating;
-            console.log("Post form is now: ", copyOfPostForm)
-            return copyOfPostForm;
+            const copyOfPostForm = { ...oldPostFormValues }
+            copyOfPostForm.rating = newRating
+            return copyOfPostForm
         })
     }
 
     const setDifficultyRating = (newRating) => {
         setPostForm((oldPostFormValues) => {
-            const copyOfPostForm = { ...oldPostFormValues };
-            copyOfPostForm.difficulty = newRating;
-            console.log("Post form is now: ", copyOfPostForm)
-            return copyOfPostForm;
+            const copyOfPostForm = { ...oldPostFormValues }
+            copyOfPostForm.difficulty = newRating
+            return copyOfPostForm
         })
     }
     return (

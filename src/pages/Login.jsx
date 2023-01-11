@@ -20,18 +20,16 @@ function Login() {
             }
 
             const response = await fetch("https://fitness-accountability.herokuapp.com/auth/login", configs)
-
             const currentUser = await response.json()
-            // console.log(currentUser)
 
             if (currentUser.token) {
                 setUserToken(currentUser.token)
                 setUser(currentUser.username)
                 setUserID(currentUser._id)
                 setAuth(currentUser.isLoggedIn)
-
                 return currentUser
-            } else {
+            }
+            else {
                 console.error(`Server Error: ${currentUser.error}`)
             }
         }
@@ -53,9 +51,9 @@ function Login() {
     return (
         <section>
             <LoginForm signIn={loginUser} />
-            {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null }
-            <h4>Don't have an account? Click below to create one: </h4>
-            <Link to='/register'><button >Create Account</button></Link>
+            {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null}
+            <h4>Don't have an account? Click below to create one:</h4>
+            <Link to='/register'><button>Create Account</button></Link>
         </section>
     )
 }
