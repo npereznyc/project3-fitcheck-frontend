@@ -150,21 +150,20 @@ const EditPost = (props) => {
                             />
                         </label>
                     </div>
-
-
                     <br />
+                    <div>
+                        <label>
+                            Edit Workout Rating
+                            <StarRating setRating={setWorkoutRating} />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Edit Workout Difficulty
+                            <StarRating setRating={setDifficultyRating} />
+                        </label>
+                    </div>
 
-                    <label>
-                        Edit Workout Rating
-                        <StarRating setRating={setWorkoutRating} />
-                    </label>
-
-                    <br />
-
-                    <label>
-                        Edit Workout Difficulty
-                        <StarRating setRating={setDifficultyRating} />
-                    </label>
 
                     <input type="submit" value="Edit Post" />
                 </form>
