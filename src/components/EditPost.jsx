@@ -101,6 +101,7 @@ const EditPost = (props) => {
 
     return (
         <>
+            <br />
             <section className="edit-post">
                 <h2>Edit post</h2>
                 <UploadImage

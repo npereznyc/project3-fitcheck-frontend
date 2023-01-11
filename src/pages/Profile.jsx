@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from 'react-router'
 import { useNavigate, Link } from "react-router-dom";
-import EditProfile from "../components/EditProfile";
+// import EditProfile from "../components/EditProfile";
 import { UserContext } from "../data";
-import { getUserToken, clearUserToken } from "../utils/authToken"
+import { clearUserToken } from "../utils/authToken"
 
 
 const Profile = (props) => {
@@ -50,7 +50,6 @@ const Profile = (props) => {
         setAuth(null)
         navigate(`/`)
     }
-    const token = getUserToken()
 
     const isOwner = currentUserID === profile?._id
 
@@ -68,15 +67,17 @@ const Profile = (props) => {
 
         return (
             <div className="profile-container">
-                <h1>User profile: {profile.username}</h1>
-                <p>Age: {profile.age}</p>
-                <p>Location: {profile.location}</p>
-                <p>Bio: {profile.bio}</p>
-                {isOwner ? <>
-                    <br />
-                    <button onClick={logoutUser} className="logout-button">Log Out</button>
-                    {/* <EditProfile data={profile} /> */}
-                </> : null}
+                <div className="details">
+                    <h1>User profile: {profile.username}</h1>
+                    <p>Age: {profile.age}</p>
+                    <p>Location: {profile.location}</p>
+                    <p>Bio: {profile.bio}</p>
+                    {isOwner ? <>
+                        <br />
+                        <button onClick={logoutUser} className="logout-button">Log Out</button>
+                        {/* <EditProfile data={profile} /> */}
+                    </> : null}
+                </div>
                 <br />
                 {userPosts && userPosts.length ? <>
                     <p>Posts from {profile.username}:</p>
@@ -93,7 +94,7 @@ const Profile = (props) => {
                             </div>
                         </Link>
                     ))}</div>
-                </> : <p>No posts to show from user</p>}
+                </> : <p className="details">No posts to show from user</p>}
             </div>
         )
     }
