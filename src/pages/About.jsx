@@ -19,6 +19,7 @@ const About = () => {
             <p>Mongoose.js</p>
             <p>Express.js</p>
             <p>Passport.js</p>
+            <p>MongoDB</p>
             <p>JavaScript / XML</p>
             <p>HTML</p>
             <p>CSS</p>
