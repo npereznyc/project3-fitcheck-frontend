@@ -40,6 +40,7 @@ const LoginForm = ({ signIn }) => {
                     id="password"
                     name="password"
                     type="password"
+                    autoComplete='password'
                     value={input.password}
                     onChange={handleChange}
                 />
