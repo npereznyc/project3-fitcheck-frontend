@@ -4,44 +4,63 @@ import { useNavigate, Link } from "react-router-dom"
 import { UserContext } from "../data"
 import { clearUserToken } from "../utils/authToken"
 
-const Profile = (props) => {
+export default function Profile(props) {
+    // useContext data
     const { currentUserID } = useContext(UserContext)
+    const { setAuth, setUser, setUserID } = useContext(UserContext)
+
+    // useState variables
     const [profile, setProfile] = useState(null)
     const [posts, setPosts] = useState([])
-    const navigate = useNavigate()
-    const { setAuth, setUser, setUserID } = useContext(UserContext)
+
     const { id } = useParams()
+    const navigate = useNavigate()
 
-    const URL = `https://fitness-accountability.herokuapp.com/profile/${id}`
-
-    const getProfile = async () => {
+    async function getProfile() {
+        console.log(`getProfile() invoked`)
         try {
-            const response = await fetch(URL)
+            const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/${id}`)
             const result = await response.json()
-            setProfile(result)
+            console.log(`getProfile() result:`, result)
+            return setProfile(result)
         }
         catch (err) {
             console.error(err)
         }
+        // return console.log(`> return from getProfile(), setProfile(result)`, profile)
     }
 
-    const getAllPosts = async () => {
+    async function getAllPosts() {
+        console.log(`getAllPosts() invoked`)
         try {
-            const response = await fetch("https://fitness-accountability.herokuapp.com/")
+            const response = await fetch(`https://fitness-accountability.herokuapp.com/`)
             const allPosts = await response.json()
-            setPosts(allPosts)
+            console.log(`getAllPosts() result:`, allPosts)
+            return setPosts(allPosts)
         }
         catch (err) {
             console.error(err)
         }
+        // return console.log(`> return from getAllPosts(), setPosts(allPosts)`, posts)
     }
 
     useEffect(() => {
+        console.log(`*** useEffect() was invoked, profile:`, profile, `posts:`, posts)
         getProfile()
         getAllPosts()
+        // const userProfile = getProfile()
+        // const userPosts = getAllPosts()
+        // setProfile(userProfile)
+        return (
+            console.log(`* > return 1 from useEffect(), profile:`, profile, `posts:`, posts),
+            setPosts([]),
+            setProfile(null),
+            console.log(`* > return 2 from useEffect(), profile:`, profile, `posts:`, posts)
+        )
     }, [])
 
-    const logoutUser = () => {
+    function logoutUser() {
+        console.log(`logoutUser() invoked`)
         clearUserToken()
         setUser(null)
         setUserID(null)
@@ -49,19 +68,20 @@ const Profile = (props) => {
         navigate(`/`)
     }
 
-    const isOwner = currentUserID === profile?._id
-
-    const loaded = () => {
-        const findPostsByOwner = (owner) => {
+    function loaded() {
+        console.log(`Loaded!`)
+        function findPostsByOwner(owner) {
             let userPosts = []
             for (let i = 0; i < posts.length; i++) {
                 if (owner === posts[i].owner) {
                     userPosts.push(posts[i])
                 }
             }
+            console.log(userPosts)
             return userPosts
         }
         const userPosts = findPostsByOwner(profile._id)
+        const isOwner = currentUserID === profile._id
 
         return (
             <div className="profile-container">
@@ -97,25 +117,28 @@ const Profile = (props) => {
         )
     }
 
-    const loading = () => {
-        return <h1>
-            Loading...
-            <span>
-                {" "}
-                <img
-                    className="spinner"
-                    src="https://freesvg.org/img/1544764567.png"
-                    alt="Loading animation"
-                />
-            </span>
-        </h1>
+    function loading() {
+        console.log(`Loading...`)
+        return (
+            <h1>
+                Loading...
+                <span>
+                    {" "}
+                    <img
+                        className="spinner"
+                        src="https://freesvg.org/img/1544764567.png"
+                        alt="Loading animation"
+                    />
+                </span>
+            </h1>
+        )
     }
-    
+
+    profile || posts ? console.log(`Profile() invoked:`, profile, posts) : console.log(`Profile() invoked, no data yet`)
+
     return (
         <section className="Profile">
             {profile ? loaded() : loading()}
         </section>
     )
 }
-
-export default Profile
