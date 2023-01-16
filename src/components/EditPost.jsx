@@ -100,25 +100,7 @@ const EditPost = (props) => {
             <br />
             <section className="edit-post">
                 <h2>Edit post</h2>
-                <UploadImage
-                    uploadedImage={setImage}
-                />
-
                 <form onSubmit={updatePost}>
-                    <div>
-                        <label>
-                            <input
-                                hidden={true}
-                                type="url"
-                                id="image"
-                                name="image"
-                                value={editForm.image}
-                                onChange={handleChange}
-                            />
-                        </label>
-                    </div>
-
-                    <br />
                     <div>
                         <label>
                             Edit Description:
@@ -131,7 +113,6 @@ const EditPost = (props) => {
                             />
                         </label>
                     </div>
-
 
                     <br />
                     <div>
@@ -161,7 +142,7 @@ const EditPost = (props) => {
                         </label>
                     </div>
 
-                    <input type="submit" value="Edit Post" />
+                    <input type="submit" className="submit-button" value="Edit Post" />
                 </form>
             </section>
             <section className="delete-post">
