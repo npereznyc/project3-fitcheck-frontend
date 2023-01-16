@@ -5,6 +5,8 @@ import { UserContext } from "../data"
 import { clearUserToken } from "../utils/authToken"
 
 export default function Profile(props) {
+    console.log(`*** Profile() invoked...`)
+    
     // useContext data
     const { currentUserID } = useContext(UserContext)
     const { setAuth, setUser, setUserID } = useContext(UserContext)
@@ -69,6 +71,7 @@ export default function Profile(props) {
 
     function loaded() {
         console.log(`Loaded!`, profile.username, posts.length)
+
         function findPostsByOwner(owner) {
             let userPosts = []
             for (let i = 0; i < posts.length; i++) {
@@ -79,6 +82,7 @@ export default function Profile(props) {
             console.log(`> Found`, userPosts.length, `posts from`, profile.username)
             return userPosts
         }
+
         const userPosts = findPostsByOwner(profile._id)
         const isOwner = currentUserID === profile._id
 
@@ -117,7 +121,7 @@ export default function Profile(props) {
     }
 
     function loading() {
-        console.log(`Loading... User?`, Boolean(profile?.username), `Posts:`, posts?.length)
+        console.log(`Loading... User?`, Boolean(profile), `Posts:`, posts?.length)
         return (
             <h1>
                 Loading...&nbsp;
@@ -130,12 +134,11 @@ export default function Profile(props) {
         )
     }
 
-    console.log(`*** Profile() invoked...`)
     return (
         <section className="Profile">
             {profile &&
                 posts?.length &&
-                id === profile?._id ?
+                id === profile._id ?
                 loaded() : loading()
             }
         </section>

@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import EditPost from '../components/EditPost'
 
 export default function PostDetail() {
+    console.log(`*** PostDetail() invoked...`)
+
     // useContext data
     const { currentUserID } = useContext(UserContext)
 
@@ -30,7 +32,7 @@ export default function PostDetail() {
     }
 
     async function getPost(userPost) {
-        console.log(`> getPost() ending -` + userPost.substring(16, userPost.length) + `...!`)
+        console.log(`> getPost() ending -` + userPost.substring(16, userPost.length) + `...`)
         let result
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/post/${userPost}`)
@@ -39,7 +41,7 @@ export default function PostDetail() {
         } catch (err) {
             console.error(err.message)
         } finally {
-            console.log(`> getPost() found:`, result.description.substring(0, 17) + `...!`)
+            console.log(`> getPost() found: "` + result.description.substring(0, 10) + `..."!`)
             setPost(result)
         }
     }
@@ -57,7 +59,8 @@ export default function PostDetail() {
     }, [id])
 
     function loaded() {
-        console.log(`** Loaded!`, post.description.substring(0, 17) + `... Users:`, users.length)
+        console.log(`** Loaded! Post?`, Boolean(post), `Users:`, users.length)
+
         function findUsernameByOwner(owner) {
             for (let i = 0; i < users.length; i++) {
                 if (owner === users[i]._id) {
@@ -86,7 +89,7 @@ export default function PostDetail() {
     }
 
     function loading() {
-        console.log(`** Loading... Post?`, Boolean(post?.description), `Users:`, users?.length)
+        console.log(`** Loading... Post?`, Boolean(post), `Users:`, users?.length)
         return (
             <h1>
                 Loading...&nbsp;
@@ -99,12 +102,9 @@ export default function PostDetail() {
         )
     }
 
-    console.log(`*** PostDetail() invoked...`)
-
     return (
         <section className="PostDetail">
             {post && users.length ? loaded() : loading()}
         </section>
     )
-
 }
