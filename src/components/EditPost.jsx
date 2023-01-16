@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { getUserToken } from "../utils/authToken"
 import StarRating from "./StarRating"
-import UploadImage from "./UploadImage"
 
 const EditPost = (props) => {
     const { data } = props
@@ -69,14 +68,6 @@ const EditPost = (props) => {
         } catch (err) {
             console.error(err)
         }
-    }
-
-    const setImage = (newImage) => {
-        setEditForm((oldPostForm) => {
-            const formCopy = { ...oldPostForm }
-            formCopy.image = newImage
-            return formCopy
-        })
     }
 
     const setWorkoutRating = (newRating) => {

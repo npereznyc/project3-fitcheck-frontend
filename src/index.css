@@ -18,7 +18,7 @@ a {
     color: #000000;
 }
 
-a:hover {
+a:hover:not(.header a) {
     color: #5D49F5;
 }
 
@@ -74,7 +74,19 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 10px;
+}
+
+.header h1 {
+    font-family: 'Permanent Marker', cursive;
+    margin: 0 0 0 20px;
+}
+
+.header p {
+    margin-right: 18px;
+}
+
+.header a {
+    padding: 0;
 }
 
 .nav {
@@ -156,11 +168,6 @@ button {
     align-items: flex-start;
 }
 
-.header h1 {
-    font-family: 'Permanent Marker', cursive;
-    margin-left: 25px;
-}
-
 .repo span {
     color: #1CE5FF;
     text-decoration: underline;
@@ -187,6 +194,14 @@ button {
 
     .post {
         border-radius: 0px;
+    }
+
+    .header h1 {
+        margin-left: 8px;
+    }
+
+    .header p {
+        margin-right: 6px;
     }
 
     .nav {
