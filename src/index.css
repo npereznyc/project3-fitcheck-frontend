@@ -18,7 +18,7 @@ a {
     color: #000000;
 }
 
-a:hover:not(.header a) {
+a:hover:not(.header a, .nav a) {
     color: #5D49F5;
 }
 

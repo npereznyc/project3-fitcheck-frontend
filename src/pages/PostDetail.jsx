@@ -18,7 +18,7 @@ export default function PostDetail() {
     const { id } = useParams()
 
     async function getAllUsers() {
-        console.log(`> getAllUsers() invoked...`)
+        console.log(`> getAllUsers()...`)
         let allUsers
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/`)
@@ -59,12 +59,12 @@ export default function PostDetail() {
     }, [id])
 
     function loaded() {
-        console.log(`** Loaded! Post?`, Boolean(post), `Users:`, users.length)
+        console.log(`** Loaded post!`, Boolean(post), `Users:`, users.length)
 
         function findUsernameByOwner(owner) {
             for (let i = 0; i < users.length; i++) {
                 if (owner === users[i]._id) {
-                    console.log(`> Found`, users[i].username, `by _id`)
+                    console.log(`Found`, users[i].username, `by _id`)
                     return users[i].username
                 }
             }
@@ -104,7 +104,10 @@ export default function PostDetail() {
 
     return (
         <section className="PostDetail">
-            {post && users.length ? loaded() : loading()}
+            {post &&
+                users.length &&
+                id === post._id ?
+                loaded() : loading()}
         </section>
     )
 }
