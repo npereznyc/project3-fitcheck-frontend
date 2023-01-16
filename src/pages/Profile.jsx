@@ -33,7 +33,7 @@ export default function Profile(props) {
     }
 
     async function getProfile(userProfile) {
-        console.log(`> getProfile() ending -` + userProfile.substring(16, userProfile.length) + `...`)
+        console.log(`> getProfile() ending -` + userProfile.substring(16, userProfile.length) + `...!`)
         let result
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/${userProfile}`)
