@@ -27,7 +27,7 @@ export default function Profile(props) {
         } catch (err) {
             console.error(err)
         } finally {
-            console.log(`> getAllPosts() found`, allPosts.length, `posts`)
+            console.log(`> getAllPosts() found`, allPosts.length, `posts!`)
             setPosts(allPosts)
         }
     }

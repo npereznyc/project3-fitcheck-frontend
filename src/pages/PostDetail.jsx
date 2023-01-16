@@ -24,7 +24,7 @@ export default function PostDetail() {
         } catch (err) {
             console.error(err.message)
         } finally {
-            console.log(`> getAllUsers() found`, allUsers.length, `users`)
+            console.log(`> getAllUsers() found`, allUsers.length, `users!`)
             setUsers(allUsers)
         }
     }
