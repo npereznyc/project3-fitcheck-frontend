@@ -18,20 +18,6 @@ export default function Profile(props) {
 
     const navigate = useNavigate()
 
-    async function getProfile(userProfile) {
-        console.log(`> getProfile() ending -` + userProfile.substring(16, userProfile.length) + `...`)
-        let result
-        try {
-            const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/${userProfile}`)
-            result = await response.json()
-        } catch (err) {
-            console.error(err.message)
-        } finally {
-            console.log(`> getProfile() found:`, result.username)
-            setProfile(result)
-        }
-    }
-
     async function getAllPosts() {
         console.log(`> getAllPosts() invoked...`)
         let allPosts
@@ -46,10 +32,24 @@ export default function Profile(props) {
         }
     }
 
+    async function getProfile(userProfile) {
+        console.log(`> getProfile() ending -` + userProfile.substring(16, userProfile.length) + `...`)
+        let result
+        try {
+            const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/${userProfile}`)
+            result = await response.json()
+        } catch (err) {
+            console.error(err.message)
+        } finally {
+            console.log(`> getProfile() found:`, result.username)
+            setProfile(result)
+        }
+    }
+
     useEffect(() => {
         console.log(`* useEffect() invoked...`)
-        getProfile(id)
         getAllPosts()
+        getProfile(id)
 
         return (() => {
             console.log(`* Profile and Posts wiped out!`)

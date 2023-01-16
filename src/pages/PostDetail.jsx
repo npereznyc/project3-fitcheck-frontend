@@ -15,21 +15,6 @@ export default function PostDetail() {
     // useParams - useEffect dependency
     const { id } = useParams()
 
-    async function getPost(userPost) {
-        console.log(`> getPost() ending -` + userPost.substring(1, userPost.length) + `...`)
-        let result
-        try {
-            const response = await fetch(`https://fitness-accountability.herokuapp.com/post/${userPost}`)
-            result = await response.json()
-
-        } catch (err) {
-            console.error(err.message)
-        } finally {
-            console.log(`> getPost() found:`, result.description.substring(0, 17) + `...`)
-            setPost(result)
-        }
-    }
-
     async function getAllUsers() {
         console.log(`> getAllUsers() invoked...`)
         let allUsers
@@ -44,10 +29,25 @@ export default function PostDetail() {
         }
     }
 
+    async function getPost(userPost) {
+        console.log(`> getPost() ending -` + userPost.substring(16, userPost.length) + `...`)
+        let result
+        try {
+            const response = await fetch(`https://fitness-accountability.herokuapp.com/post/${userPost}`)
+            result = await response.json()
+
+        } catch (err) {
+            console.error(err.message)
+        } finally {
+            console.log(`> getPost() found:`, result.description.substring(0, 17) + `...`)
+            setPost(result)
+        }
+    }
+
     useEffect(() => {
         console.log(`* useEffect() invoked...`)
-        getPost(id)
         getAllUsers()
+        getPost(id)
 
         return (() => {
             console.log(`* Post and Users wiped out!`)
@@ -57,7 +57,7 @@ export default function PostDetail() {
     }, [id])
 
     function loaded() {
-        console.log(`Loaded!`, post.description.substring(0, 17) + `... Users:`, users.length)
+        console.log(`** Loaded!`, post.description.substring(0, 17) + `... Users:`, users.length)
         function findUsernameByOwner(owner) {
             for (let i = 0; i < users.length; i++) {
                 if (owner === users[i]._id) {
@@ -86,7 +86,7 @@ export default function PostDetail() {
     }
 
     function loading() {
-        console.log(`Loading... Post?`, Boolean(post?.description), `Users:`, users?.length)
+        console.log(`** Loading... Post?`, Boolean(post?.description), `Users:`, users?.length)
         return (
             <h1>
                 Loading...&nbsp;
