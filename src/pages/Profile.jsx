@@ -19,7 +19,7 @@ export default function Profile(props) {
     const navigate = useNavigate()
 
     async function getProfile(userProfile) {
-        console.log(`> getProfile() ending`, userProfile.substring(12, userProfile.length) + `...`)
+        console.log(`> getProfile() ending ...` + userProfile.substring(12, userProfile.length))
         let result
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/${userProfile}`)

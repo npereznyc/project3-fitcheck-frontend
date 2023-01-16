@@ -16,7 +16,7 @@ export default function PostDetail() {
     const { id } = useParams()
 
     async function getPost(userPost) {
-        console.log(`> getPost() ending`, userPost.substring(12, userPost.length) + `...`)
+        console.log(`> getPost() ending ...` + userPost.substring(12, userPost.length))
         let result
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/post/${userPost}`)
