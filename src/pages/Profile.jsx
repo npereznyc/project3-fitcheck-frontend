@@ -121,7 +121,7 @@ export default function Profile(props) {
     }
 
     function loading() {
-        console.log(`Loading... User?`, profile?.username === profile?._id ? Boolean(profile) : `MISMATCH`, `Posts:`, posts?.length)
+        console.log(`Loading... User?`, profile?.username || Boolean(profile), `Posts:`, posts?.length)
         return (
             <h1>
                 Loading...&nbsp;
