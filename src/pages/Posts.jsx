@@ -40,7 +40,7 @@ const Posts = (props) => {
             <div className="posts-container">
                 {posts?.map((post) => {
                     return (
-                        <Link key={post._id} to={`/${post._id}`}>
+                        <Link key={post._id} to={`/post/${post._id}`}>
                             <div className="post">
                                 {post.owner ? <p>{findUsernameByOwner(post.owner)}</p> : null}
                                 <img alt={post.tags} src={post.image} />

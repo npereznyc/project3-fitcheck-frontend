@@ -104,7 +104,7 @@ export default function Profile(props) {
                     {profile.username ? <><p>Posts from {profile.username}:</p>
                         <br /></> : null}
                     <div className="posts-container">{userPosts.map((post) => (
-                        <Link to={`/${post._id}`} key={post._id}>
+                        <Link to={`/post/${post._id}`} key={post._id}>
                             <div className="post">
                                 {post.owner ? <p>{profile.username}</p> : null}
                                 <img alt={post.tags} src={post.image} />
