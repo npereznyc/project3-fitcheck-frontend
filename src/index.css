@@ -78,8 +78,6 @@ button {
 
 .welcome {
     font-family: 'Permanent Marker', cursive;
-    /* display: flex; */
-    /* flex-direction: column; */
     width: 450px;
     margin-top: -10px;
 }
@@ -91,12 +89,10 @@ button {
 }
 
 .welcome p {
-    /* margin: 0; */
     font-size: 2rem;
 }
 
 .welcome-bottom {
-    width: 90%;
     text-align: right;
 }
 
@@ -226,6 +222,19 @@ button {
 
     .post {
         border-radius: 0px;
+    }
+
+    .welcome {
+        width: 80%;
+        /* margin-top: -10px; */
+    }
+
+    .welcome h1 {
+        font-size: 4rem;
+    }
+
+    .welcome-invite {
+        font-size: 1rem;
     }
 
     .header h1 {
