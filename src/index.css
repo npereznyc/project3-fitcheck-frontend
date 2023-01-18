@@ -76,6 +76,36 @@ button {
     justify-content: space-between;
 }
 
+.welcome {
+    font-family: 'Permanent Marker', cursive;
+    /* display: flex; */
+    /* flex-direction: column; */
+    width: 450px;
+    margin-top: -10px;
+}
+
+.welcome h1 {
+    margin: -10px 0;
+    font-size: 6rem;
+    transform: rotate(-8deg);
+}
+
+.welcome p {
+    /* margin: 0; */
+    font-size: 2rem;
+}
+
+.welcome-bottom {
+    width: 90%;
+    text-align: right;
+}
+
+.welcome-invite {
+    font-size: 1.25rem;
+    margin: -20px 0;
+    font-weight: 600;
+}
+
 .header h1 {
     font-family: 'Permanent Marker', cursive;
     margin: 0 0 0 20px;
@@ -100,6 +130,7 @@ button {
     left: 0;
     background-color: #5D49F5;
     padding: 40px 0;
+    z-index: 1;
 }
 
 .nav a {
@@ -126,6 +157,7 @@ button {
     display: flex;
     flex-direction: column-reverse;
     gap: 40px;
+    align-items: center;
 }
 
 .post {

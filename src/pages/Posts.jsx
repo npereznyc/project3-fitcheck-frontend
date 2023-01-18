@@ -1,44 +1,73 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { getUserToken } from "../utils/authToken"
 
-const Posts = (props) => {
+export default function Posts(props) {
+    console.log(`*** Posts() invoked...`)
+
+    // useState variables
     const [posts, setPosts] = useState([])
     const [users, setUsers] = useState([])
 
-    const BASE_URL = "https://fitness-accountability.herokuapp.com/"
+    const token = getUserToken()
 
-    const getPosts = async () => {
+    async function getAllPosts() {
+        console.log(`> getAllPosts()...`)
+        let allPosts
         try {
-            const response = await fetch(BASE_URL)
-            const allPosts = await response.json()
+            const response = await fetch(`https://fitness-accountability.herokuapp.com/`)
+            allPosts = await response.json()
+        } catch (err) {
+            console.error(err)
+        } finally {
+            console.log(`> getAllPosts() found`, allPosts.length, `posts!`)
             setPosts(allPosts)
-        } catch (err) {
-            console.error(err)
         }
     }
 
-    const getUsers = async () => {
+    async function getAllUsers() {
+        console.log(`> getAllUsers()...`)
+        let allUsers
         try {
-            const response = await fetch(BASE_URL + `profile/`)
-            const allUsers = await response.json()
-            setUsers(allUsers)
+            const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/`)
+            allUsers = await response.json()
         } catch (err) {
             console.error(err)
+        } finally {
+            console.log(`> getAllUsers() found`, allUsers.length, `users!`)
+            setUsers(allUsers)
         }
     }
 
-    const loaded = () => {
-        const findUsernameByOwner = (owner) => {
+    useEffect(() => {
+        console.log(`* useEffect() invoked...`)
+        getAllPosts()
+        getAllUsers()
+
+        return (() => {
+            console.log(`* Users and Posts wiped out!`)
+            setPosts([])
+            setUsers([])
+        })
+    }, [])
+
+    function loaded() {
+        console.log(`Loaded`, users.length, `users and`, posts.length, `posts!`)
+
+        function findUsernameByOwner(owner) {
             for (let i = 0; i < users.length; i++) {
                 if (owner === users[i]._id) {
                     return users[i].username
                 }
             }
         }
+        const previewPost = posts[posts.length - 1]
+        const previewUsername = findUsernameByOwner(previewPost.owner)
+        // console.log(previewUsername)
 
         return (
             <div className="posts-container">
-                {posts?.map((post) => {
+                {token ? posts.map((post) => {
                     return (
                         <Link key={post._id} to={`/post/${post._id}`}>
                             <div className="post">
@@ -46,38 +75,49 @@ const Posts = (props) => {
                                 <img alt={post.tags} src={post.image} />
                                 {post.description ? <p className="post-description">{post.description}</p> : null}
                                 <p className="post-tags">
-                                    {post.tags?.map((tag) => `#${tag} `)}
+                                    {post.tags.map((tag) => `#${tag} `)}
                                 </p>
                             </div>
                         </Link>
                     )
-                })}
+                }) :
+                    <>
+                        <p className="welcome-invite">
+                            <Link to="/login/">Log in</Link> or <Link to="/register/">create an account</Link> today!
+                        </p>
+                        <div className="welcome">
+                            <p className="welcome-top">{previewUsername} is on</p>
+                            <h1>FitCheck!</h1>
+                            <p className="welcome-bottom">...why not you?</p>
+                        </div>
+                        <Link key={previewPost._id} to={`/post/${previewPost._id}`}>
+                            <div className="post">
+                                {previewPost.owner ? <p>{findUsernameByOwner(previewPost.owner)}</p> : null}
+                                <img alt={previewPost.tags} src={previewPost.image} />
+                                {previewPost.description ? <p className="post-description">{previewPost.description}</p> : null}
+                                <p className="post-tags">
+                                    {previewPost.tags.map((tag) => `#${tag} `)}
+                                </p>
+                            </div>
+                        </Link>
+                    </>}
             </div>
         )
     }
 
-    const loading = () => (
-        <section className="loading">
+    function loading() {
+        console.log(`Loading... Users:`, users?.length, `Posts:`, posts?.length)
+        return (
             <h1>
-                Loading...
-                <span>
-                    {" "}
-                    <img
-                        alt="spinner"
-                        className="spinner"
-                        src="https://freesvg.org/img/1544764567.png"
-                    />
-                </span>
+                Loading...&nbsp;
+                <img
+                    className="spinner"
+                    src="https://freesvg.org/img/1544764567.png"
+                    alt="Loading animation"
+                />
             </h1>
-        </section>
-    )
+        )
+    }
 
-    useEffect(() => {
-        getPosts()
-        getUsers()
-    }, [])
-
-    return posts && posts.length ? loaded() : loading()
+    return users.length && posts.length ? loaded() : loading()
 }
-
-export default Posts
