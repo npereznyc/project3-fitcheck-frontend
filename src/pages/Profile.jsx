@@ -5,7 +5,7 @@ import { UserContext } from "../data"
 import { clearUserToken } from "../utils/authToken"
 
 export default function Profile(props) {
-    console.log(`*** Profile() invoked...`)
+    // console.log(`*** Profile() invoked...`)
 
     // useContext data
     const { currentUserID } = useContext(UserContext)
@@ -21,7 +21,7 @@ export default function Profile(props) {
     const navigate = useNavigate()
 
     async function getAllPosts() {
-        console.log(`> getAllPosts()...`)
+        // console.log(`> getAllPosts()...`)
         let allPosts
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/`)
@@ -29,13 +29,13 @@ export default function Profile(props) {
         } catch (err) {
             console.error(err)
         } finally {
-            console.log(`> getAllPosts() found`, allPosts.length, `posts!`)
+            // console.log(`> getAllPosts() found`, allPosts.length, `posts!`)
             setPosts(allPosts)
         }
     }
 
     async function getProfile(userProfile) {
-        console.log(`> getProfile() ending -` + userProfile.substring(16, userProfile.length) + `...`)
+        // console.log(`> getProfile() ending -` + userProfile.substring(16, userProfile.length) + `...`)
         let result
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/${userProfile}`)
@@ -43,25 +43,25 @@ export default function Profile(props) {
         } catch (err) {
             console.error(err.message)
         } finally {
-            console.log(`> getProfile() found`, result.username + `!`)
+            // console.log(`> getProfile() found`, result.username + `!`)
             setProfile(result)
         }
     }
 
     useEffect(() => {
-        console.log(`* useEffect() invoked...`)
+        // console.log(`* useEffect() invoked...`)
         getAllPosts()
         getProfile(id)
 
         return (() => {
-            console.log(`* Profile and Posts wiped out!`)
+            // console.log(`* Profile and Posts wiped out!`)
             setPosts([])
             setProfile(undefined)
         })
     }, [id])
 
     function logoutUser() {
-        console.log(`logoutUser() invoked!`)
+        // console.log(`logoutUser() invoked!`)
         clearUserToken()
         setUser(null)
         setUserID(null)
@@ -70,7 +70,7 @@ export default function Profile(props) {
     }
 
     function loaded() {
-        console.log(`Loaded`, profile.username, `and`, posts.length, `posts!`)
+        // console.log(`Loaded`, profile.username, `and`, posts.length, `posts!`)
 
         function findPostsByOwner(owner) {
             let userPosts = []
@@ -79,7 +79,7 @@ export default function Profile(props) {
                     userPosts.push(posts[i])
                 }
             }
-            console.log(`Found`, userPosts.length, `posts from`, profile.username)
+            // console.log(`Found`, userPosts.length, `posts from`, profile.username)
             return userPosts
         }
 
@@ -121,7 +121,7 @@ export default function Profile(props) {
     }
 
     function loading() {
-        console.log(`Loading... User?`, profile?.username || Boolean(profile), `Posts:`, posts?.length)
+        // console.log(`Loading... User?`, profile?.username || Boolean(profile), `Posts:`, posts?.length)
         return (
             <h1>
                 Loading...&nbsp;
