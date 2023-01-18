@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { UserContext } from '../../data'
 import { getUserToken } from '../../utils/authToken'
 
-const Navbar = (props) => {
+export default function Navbar() {
     const { currentUserID } = useContext(UserContext)
     const token = getUserToken()
 
@@ -14,17 +14,16 @@ const Navbar = (props) => {
                 <FontAwesomeIcon icon="fa-solid fa-house" />
                 <p>Home</p>
             </Link>
-            <Link to='/post/'>
+
+            <Link to={token ? '/post/' : '/login/'}>
                 <FontAwesomeIcon icon="fa-solid fa-circle-plus" />
                 <p>Create Post</p>
             </Link>
+
             <Link to={token ? '/profile/' + currentUserID : '/login/'}>
-                {/* Change to login page */}
                 <FontAwesomeIcon icon="fa-solid fa-user" />
                 <p>Profile</p>
             </Link>
         </nav>
     )
 }
-
-export default Navbar

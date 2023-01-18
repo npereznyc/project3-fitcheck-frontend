@@ -4,53 +4,78 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import EditPost from '../components/EditPost'
 
-const PostDetail = (props) => {
+export default function PostDetail() {
+    console.log(`*** PostDetail() invoked...`)
+
+    // useContext data
     const { currentUserID } = useContext(UserContext)
-    const [post, setPost] = useState(null)
+
+    // useState variables
+    const [post, setPost] = useState(undefined)
     const [users, setUsers] = useState([])
+
+    // useParams - useEffect dependency
     const { id } = useParams()
-    const BASE_URL = `https://fitness-accountability.herokuapp.com/`
 
-    const getPost = async () => {
+    async function getAllUsers() {
+        console.log(`> getAllUsers()...`)
+        let allUsers
         try {
-            const response = await fetch(BASE_URL + `post/${id}`)
-            const result = await response.json()
-            setPost(result)
-
+            const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/`)
+            allUsers = await response.json()
         } catch (err) {
-            console.error(err)
+            console.error(err.message)
+        } finally {
+            console.log(`> getAllUsers() found`, allUsers.length, `users!`)
+            setUsers(allUsers)
         }
     }
 
-    const getUsers = async () => {
+    async function getPost(userPost) {
+        console.log(`> getPost() ending -` + userPost.substring(16, userPost.length) + `...`)
+        let result
         try {
-            const response = await fetch(BASE_URL + `profile/`)
-            const allUsers = await response.json()
-            setUsers(allUsers)
+            const response = await fetch(`https://fitness-accountability.herokuapp.com/post/${userPost}`)
+            result = await response.json()
+
         } catch (err) {
-            console.error(err)
+            console.error(err.message)
+        } finally {
+            console.log(`> getPost() found: "` + result.description.substring(0, 10) + `..."!`)
+            setPost(result)
         }
     }
 
     useEffect(() => {
-        getPost()
-        getUsers()
-    }, [])
+        console.log(`* useEffect() invoked...`)
+        getAllUsers()
+        getPost(id)
 
-    const isOwner = currentUserID === post?.owner
+        return (() => {
+            console.log(`* Post and Users wiped out!`)
+            setUsers([])
+            setPost(undefined)
+        })
+    }, [id])
 
-    const loaded = () => {
-        const findUsernameByOwner = (owner) => {
+    function loaded() {
+        console.log(`** Loaded post!`, Boolean(post), `Users:`, users.length)
+
+        function findUsernameByOwner(owner) {
             for (let i = 0; i < users.length; i++) {
                 if (owner === users[i]._id) {
+                    console.log(`Found`, users[i].username, `by _id`)
                     return users[i].username
                 }
             }
         }
 
+        const foundUsername = findUsernameByOwner(post.owner)
+        const isOwner = currentUserID === post.owner
+
         return (
             <div className="post-container">
-                {post.owner ? <h4>Posted by: <Link to={"/profile/" + post.owner}>{findUsernameByOwner(post.owner)} (see profile)</Link></h4> : null}
+                {post.owner ? <h4>Posted by: <Link to={"/profile/" + post.owner}>{foundUsername} (see profile)</Link></h4> : null}
                 <img src={post.image} alt={post.description} />
                 <div className="details">
                     <h4>{post.description}</h4>
@@ -63,26 +88,26 @@ const PostDetail = (props) => {
         )
     }
 
-    const loading = () => {
-        return <h1>
-            Loading...
-            <span>
-                {" "}
+    function loading() {
+        console.log(`** Loading... Post?`, Boolean(post), `Users:`, users?.length)
+        return (
+            <h1>
+                Loading...&nbsp;
                 <img
                     className="spinner"
                     src="https://freesvg.org/img/1544764567.png"
                     alt='loading'
                 />
-            </span>
-        </h1>
+            </h1>
+        )
     }
 
     return (
         <section className="PostDetail">
-            {post ? loaded() : loading()}
+            {post &&
+                users.length &&
+                id === post._id ?
+                loaded() : loading()}
         </section>
     )
-
 }
-
-export default PostDetail

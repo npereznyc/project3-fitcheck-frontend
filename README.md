@@ -8,26 +8,31 @@ We wanted to create an app that’s not just about scrolling through pictures, b
 
 # Screenshots:
 
-### Desktop Screenshots:
+### Desktop Screenshot:
+<img src="https://user-images.githubusercontent.com/115664302/211726692-96dd4adb-62bd-47ff-aac6-a0a7e2c04d85.jpg" alt="FitCheck desktop screenshot" />
 
-### Mobile Screenshots:
+### Mobile Screenshot:
+<img src="https://user-images.githubusercontent.com/115664302/211726677-dfffec2a-c8e5-4fd5-9ea6-5f4722c87c03.PNG" alt="FitCheck mobile screenshot" width=50% />
 
 <br>
 
 # Technologies Used
 
-- JavaScript
 - React.js
 - Node.js
-- Express
+- Mongoose.js
+- Express.js
+- Passport.js
 - MongoDB
-- Mongoose
+- JSX
+- HTML
+- CSS
 
 <br>
 
 # Getting Started/Installation Instructions:
 
-Using FitCheck is easy; simply load the [deployed page](https://fitness-check.netlify.app/) and click the Profile icon to create your account. To access the code and make contributions:
+Using FitCheck is easy; simply load the <a href="https://fitness-check.netlify.app/" target="_blank" rel="noopener noreferrer">deployed page</a> and click the Profile icon to create your account. To access the code and make contributions:
 
 - Fork and clone this repository.
 - Change into the new directory.
@@ -49,7 +54,7 @@ Using FitCheck is easy; simply load the [deployed page](https://fitness-check.ne
 
 # Bugs? Suggestions? Contributions?
 
-Email Jordan, Mary, and Natalie at:
+Contact Jordan, Mary, and Natalie at:
 
 - [jordan.bortner@gmail.com](mailto:jordan.bortner@gmail.com)
 - [Maryrodri3210@gmail.com](mailto:Maryrodri3210@gmail.com)

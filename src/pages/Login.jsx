@@ -53,7 +53,7 @@ function Login() {
             <LoginForm signIn={loginUser} />
             {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null}
             <h4>Don't have an account? Click below to create one:</h4>
-            <Link to='/register'><button>Create Account</button></Link>
+            <Link to='/register'><button className="submit-button">Create Account</button></Link>
         </section>
     )
 }

@@ -2,7 +2,6 @@ import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { getUserToken } from "../utils/authToken"
 import StarRating from "./StarRating"
-import UploadImage from "./UploadImage"
 
 const EditPost = (props) => {
     const { data } = props
@@ -71,14 +70,6 @@ const EditPost = (props) => {
         }
     }
 
-    const setImage = (newImage) => {
-        setEditForm((oldPostForm) => {
-            const formCopy = { ...oldPostForm }
-            formCopy.image = newImage
-            return formCopy
-        })
-    }
-
     const setWorkoutRating = (newRating) => {
         setEditForm((oldEditFormValues) => {
             const copyOfEditForm = { ...oldEditFormValues }
@@ -100,25 +91,7 @@ const EditPost = (props) => {
             <br />
             <section className="edit-post">
                 <h2>Edit post</h2>
-                <UploadImage
-                    uploadedImage={setImage}
-                />
-
                 <form onSubmit={updatePost}>
-                    <div>
-                        <label>
-                            <input
-                                hidden={true}
-                                type="url"
-                                id="image"
-                                name="image"
-                                value={editForm.image}
-                                onChange={handleChange}
-                            />
-                        </label>
-                    </div>
-
-                    <br />
                     <div>
                         <label>
                             Edit Description:
@@ -131,7 +104,6 @@ const EditPost = (props) => {
                             />
                         </label>
                     </div>
-
 
                     <br />
                     <div>
@@ -161,7 +133,7 @@ const EditPost = (props) => {
                         </label>
                     </div>
 
-                    <input type="submit" value="Edit Post" />
+                    <input type="submit" className="submit-button" value="Edit Post" />
                 </form>
             </section>
             <section className="delete-post">

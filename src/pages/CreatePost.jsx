@@ -88,75 +88,70 @@ const CreatePost = (props) => {
         })
     }
     return (
-        <div>
-            <section>
-                <h2>Create New Post</h2>
-                <div className="create-post">
-                    <UploadImage uploadedImage={setImage} />
+        <section>
+            <h2>Create New Post</h2>
+            <div className="create-post">
+                <UploadImage uploadedImage={setImage} />
+                <br />
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label>
+                            <input
+                                hidden={true}
+                                type="url"
+                                id="image"
+                                name="image"
+                                value={postForm.image}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Description
+                            <input
+                                type="text"
+                                id="description"
+                                name="description"
+                                placeholder="Enter description"
+                                value={postForm.description}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
                     <br />
-                    <form  onSubmit={handleSubmit}>
-                        <div>
-                            <label>
-                                <input
-                                    hidden={true}
-                                    type="url"
-                                    id="image"
-                                    name="image"
-                                    value={postForm.image}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-                        <br />
-                        <div>
-                            <label>
-                                Description
-                                <input
-                                    type="text"
-                                    id="description"
-                                    name="description"
-                                    placeholder="Enter description"
-                                    value={postForm.description}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-                        <br />
-                        <div>
-                            <label>
-                                Tags
-                                <input
-                                    type="text"
-                                    id="tags"
-                                    name="tags"
-                                    placeholder="separated by commas"
-                                    value={postForm.tags}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-                        <br />
-                        <div>
-                            <label>
-                                Workout Rating
-                                <StarRating
-                                    setRating={setWorkoutRating}
-                                />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                Workout Difficulty
-                                <StarRating setRating={setDifficultyRating} />
-                            </label>
-                            <input type="submit" value="Post" />
-                        </div>
-
-                    </form>
-                </div>
-
-            </section>
-        </div>
+                    <div>
+                        <label>
+                            Tags
+                            <input
+                                type="text"
+                                id="tags"
+                                name="tags"
+                                placeholder="separated by commas"
+                                value={postForm.tags}
+                                onChange={handleChange}
+                            />
+                        </label>
+                    </div>
+                    <br />
+                    <div>
+                        <label>
+                            Workout Rating
+                            <StarRating
+                                setRating={setWorkoutRating}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Workout Difficulty
+                            <StarRating setRating={setDifficultyRating} />
+                        </label>
+                        <input type="submit" className="submit-button" value="Post" />
+                    </div>
+                </form>
+            </div>
+        </section>
     )
 }
 

@@ -50,7 +50,7 @@ const LoginForm = ({ signIn }) => {
                 />
 
                 <br />
-                <input type="submit" value="Sign In" />
+                <input type="submit" className="submit-button" value="Sign In" />
             </form>
         </>
     )
