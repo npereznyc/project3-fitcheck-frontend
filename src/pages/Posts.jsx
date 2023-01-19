@@ -85,7 +85,7 @@ export default function Posts(props) {
                             <Link to="/login/">Log in</Link> or <Link to="/register/">create an account</Link> today!
                         </p>
                         <div className="welcome">
-                            <p className="welcome-top">{previewUsername} is on</p>
+                            <p className="welcome-top">{previewUsername.toUpperCase()} is on</p>
                             <h1>FitCheck!</h1>
                             <p className="welcome-bottom">...why not you?</p>
                         </div>
@@ -99,7 +99,8 @@ export default function Posts(props) {
                                 </p>
                             </div>
                         </Link>
-                    </>}
+                    </>
+                }
             </div>
         )
     }
