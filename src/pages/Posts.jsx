@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { getUserToken } from "../utils/authToken"
 
 export default function Posts(props) {
-    // console.log(`*** Posts() invoked...`)
+    console.log(`*** Posts() invoked...`)
 
     // useState variables
     const [posts, setPosts] = useState([])
@@ -12,7 +12,7 @@ export default function Posts(props) {
     const token = getUserToken()
 
     async function getAllPosts() {
-        // console.log(`> getAllPosts()...`)
+        console.log(`> getAllPosts()...`)
         let allPosts
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/`)
@@ -20,13 +20,13 @@ export default function Posts(props) {
         } catch (err) {
             console.error(err)
         } finally {
-            // console.log(`> getAllPosts() found`, allPosts.length, `posts!`)
+            console.log(`> getAllPosts() found`, allPosts.length, `posts!`)
             setPosts(allPosts)
         }
     }
 
     async function getAllUsers() {
-        // console.log(`> getAllUsers()...`)
+        console.log(`> getAllUsers()...`)
         let allUsers
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/`)
@@ -34,25 +34,25 @@ export default function Posts(props) {
         } catch (err) {
             console.error(err)
         } finally {
-            // console.log(`> getAllUsers() found`, allUsers.length, `users!`)
+            console.log(`> getAllUsers() found`, allUsers.length, `users!`)
             setUsers(allUsers)
         }
     }
 
     useEffect(() => {
-        // console.log(`* useEffect() invoked...`)
+        console.log(`* useEffect() invoked...`)
         getAllPosts()
         getAllUsers()
 
         return (() => {
-            // console.log(`* Users and Posts wiped out!`)
+            console.log(`* Users and Posts wiped out!`)
             setPosts([])
             setUsers([])
         })
     }, [])
 
     function loaded() {
-        // console.log(`Loaded`, users.length, `users and`, posts.length, `posts!`)
+        console.log(`Loaded`, users.length, `users and`, posts.length, `posts!`)
 
         function findUsernameByOwner(owner) {
             for (let i = 0; i < users.length; i++) {
@@ -63,7 +63,6 @@ export default function Posts(props) {
         }
         const previewPost = posts[posts.length - 1]
         const previewUsername = findUsernameByOwner(previewPost.owner)
-        // console.log(previewUsername)
 
         return (
             <div className="posts-container">
@@ -107,7 +106,7 @@ export default function Posts(props) {
     }
 
     function loading() {
-        // console.log(`Loading... Users:`, users?.length, `Posts:`, posts?.length)
+        console.log(`Loading... Users:`, users?.length, `Posts:`, posts?.length)
         return (
             <h1>
                 Loading...&nbsp;
