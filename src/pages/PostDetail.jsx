@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import EditPost from '../components/EditPost'
 
 export default function PostDetail() {
-    console.log(`*** PostDetail() invoked...`)
 
     // useContext data
     const { currentUserID } = useContext(UserContext)
@@ -18,7 +17,6 @@ export default function PostDetail() {
     const { id } = useParams()
 
     async function getAllUsers() {
-        console.log(`> getAllUsers()...`)
         let allUsers
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/profile/`)
@@ -26,13 +24,11 @@ export default function PostDetail() {
         } catch (err) {
             console.error(err.message)
         } finally {
-            console.log(`> getAllUsers() found`, allUsers.length, `users!`)
             setUsers(allUsers)
         }
     }
 
     async function getPost(userPost) {
-        console.log(`> getPost() ending -` + userPost.substring(16, userPost.length) + `...`)
         let result
         try {
             const response = await fetch(`https://fitness-accountability.herokuapp.com/post/${userPost}`)
@@ -41,30 +37,25 @@ export default function PostDetail() {
         } catch (err) {
             console.error(err.message)
         } finally {
-            console.log(`> getPost() found: "` + result.description.substring(0, 10) + `..."!`)
             setPost(result)
         }
     }
 
     useEffect(() => {
-        console.log(`* useEffect() invoked...`)
         getAllUsers()
         getPost(id)
 
         return (() => {
-            console.log(`* Post and Users wiped out!`)
             setUsers([])
             setPost(undefined)
         })
     }, [id])
 
     function loaded() {
-        console.log(`** Loaded post!`, Boolean(post), `Users:`, users.length)
 
         function findUsernameByOwner(owner) {
             for (let i = 0; i < users.length; i++) {
                 if (owner === users[i]._id) {
-                    console.log(`Found`, users[i].username, `by _id`)
                     return users[i].username
                 }
             }
@@ -89,7 +80,6 @@ export default function PostDetail() {
     }
 
     function loading() {
-        console.log(`** Loading... Post?`, Boolean(post), `Users:`, users?.length)
         return (
             <h1>
                 Loading...&nbsp;

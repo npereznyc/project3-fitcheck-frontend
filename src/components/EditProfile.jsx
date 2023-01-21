@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { getUserToken } from "../utils/authToken"
 
-const EditProfile = (props) => {
+export default function EditProfile(props) {
     const { data } = props
 
     const [editForm, setEditForm] = useState({
@@ -17,13 +17,13 @@ const EditProfile = (props) => {
     const navigate = useNavigate()
     const URL = `https://fitness-accountability.herokuapp.com/profile/${id}`
 
-    const handleChange = (event) => {
+    function handleChange(event) {
         const userInput = { ...editForm }
         userInput[event.target.name] = event.target.value
         setEditForm(userInput)
     }
 
-    const updateProfile = async (e) => {
+    async function updateProfile(e) {
         e.preventDefault()
         const updatedProfile = { ...editForm }
         try {
@@ -113,5 +113,3 @@ const EditProfile = (props) => {
         </>
     )
 }
-
-export default EditProfile

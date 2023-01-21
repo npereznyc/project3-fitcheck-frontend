@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { getUserToken } from "../utils/authToken"
 import StarRating from "./StarRating"
 
-const EditPost = (props) => {
+export default function EditPost(props) {
     const { data } = props
 
     const [editForm, setEditForm] = useState({
@@ -19,14 +19,14 @@ const EditPost = (props) => {
     const token = getUserToken()
     const URL = `https://fitness-accountability.herokuapp.com/post/${id}`
 
-    const handleChange = (event) => {
+    function handleChange(event) {
         const userInput = { ...editForm }
         userInput[event.target.name] = event.target.value
         setEditForm(userInput)
     }
 
-    const updatePost = async (e) => {
-        const createTags = (str) => {
+    async function updatePost(e) {
+        function createTags(str) {
             let arr = str.split(',')
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i][0] === ' ') {
@@ -55,7 +55,7 @@ const EditPost = (props) => {
         }
     }
 
-    const deletePost = async (e) => {
+    async function deletePost(e) {
         try {
             const options = {
                 method: "DELETE",
@@ -70,7 +70,7 @@ const EditPost = (props) => {
         }
     }
 
-    const setWorkoutRating = (newRating) => {
+    function setWorkoutRating(newRating) {
         setEditForm((oldEditFormValues) => {
             const copyOfEditForm = { ...oldEditFormValues }
             copyOfEditForm.rating = newRating
@@ -78,7 +78,7 @@ const EditPost = (props) => {
         })
     }
 
-    const setDifficultyRating = (newRating) => {
+    function setDifficultyRating(newRating) {
         setEditForm((oldEditFormValues) => {
             const copyOfEditForm = { ...oldEditFormValues }
             copyOfEditForm.difficulty = newRating
@@ -143,5 +143,3 @@ const EditPost = (props) => {
         </>
     )
 }
-
-export default EditPost

@@ -3,7 +3,7 @@ import { UserContext } from "../data"
 import { useNavigate } from "react-router-dom"
 import { getUserToken, clearUserToken } from "../utils/authToken"
 
-const CreateProfile = (props) => {
+export default function CreateProfile() {
     const { setAuth, setUser, currentUserID } = useContext(UserContext)
 
     const [profile, setProfile] = useState([])
@@ -17,13 +17,13 @@ const CreateProfile = (props) => {
     const navigate = useNavigate()
     const BASE_URL = "https://fitness-accountability.herokuapp.com/profile/"
 
-    const handleChange = (e) => {
+    function handleChange(e) {
         const userInput = { ...profileForm }
         userInput[e.target.name] = e.target.value
         setProfileForm(userInput)
     }
 
-    const handleSubmit = async (e) => {
+    async function handleSubmit(e) {
         e.preventDefault()
         const currentState = { ...profileForm }
         try {
@@ -52,7 +52,7 @@ const CreateProfile = (props) => {
 
     const token = getUserToken()
 
-    const logoutUser = () => {
+    function logoutUser() {
         clearUserToken()
         setUser(null)
         setAuth(null)
@@ -132,5 +132,3 @@ const CreateProfile = (props) => {
         </div>
     )
 }
-
-export default CreateProfile

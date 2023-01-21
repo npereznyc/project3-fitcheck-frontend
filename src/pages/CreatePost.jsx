@@ -5,7 +5,7 @@ import '../components/star.css'
 import { getUserToken } from "../utils/authToken"
 import UploadImage from "../components/UploadImage"
 
-const CreatePost = (props) => {
+export default function CreatePost() {
     const token = getUserToken()
     const [posts, setPosts] = useState([])
     const navigate = useNavigate()
@@ -19,14 +19,14 @@ const CreatePost = (props) => {
 
     const BASE_URL = "https://fitness-accountability.herokuapp.com/post/"
 
-    const handleChange = (e) => {
+    function handleChange(e) {
         const userInput = { ...postForm }
         userInput[e.target.name] = e.target.value
         setPostForm(userInput)
     }
 
-    const handleSubmit = async (e) => {
-        const createTags = (str) => {
+    async function handleSubmit(e) {
+        function createTags(str) {
             let arr = str.split(',')
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i][0] === ' ') {
@@ -64,7 +64,7 @@ const CreatePost = (props) => {
         }
     }
 
-    const setImage = (newImage) => {
+    function setImage(newImage) {
         setPostForm((oldPostForm) => {
             const formCopy = { ...oldPostForm }
             formCopy.image = newImage
@@ -72,7 +72,7 @@ const CreatePost = (props) => {
         })
     }
 
-    const setWorkoutRating = (newRating) => {
+    function setWorkoutRating(newRating) {
         setPostForm((oldPostFormValues) => {
             const copyOfPostForm = { ...oldPostFormValues }
             copyOfPostForm.rating = newRating
@@ -80,7 +80,7 @@ const CreatePost = (props) => {
         })
     }
 
-    const setDifficultyRating = (newRating) => {
+    function setDifficultyRating(newRating) {
         setPostForm((oldPostFormValues) => {
             const copyOfPostForm = { ...oldPostFormValues }
             copyOfPostForm.difficulty = newRating
@@ -154,5 +154,3 @@ const CreatePost = (props) => {
         </section>
     )
 }
-
-export default CreatePost

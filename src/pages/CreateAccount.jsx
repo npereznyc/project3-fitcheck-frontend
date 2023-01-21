@@ -3,10 +3,10 @@ import { UserContext } from "../data"
 import { setUserToken, clearUserToken } from "../utils/authToken"
 import RegisterForm from "../components/RegisterForm"
 
-function CreateAccount() {
+export default function CreateAccount() {
     const { setAuth, setUser, setUserID } = useContext(UserContext)
 
-    const registerUser = async (data) => {
+    async function registerUser(data) {
         try {
             const configs = {
                 method: "POST",
@@ -35,5 +35,3 @@ function CreateAccount() {
         </section>
     )
 }
-
-export default CreateAccount

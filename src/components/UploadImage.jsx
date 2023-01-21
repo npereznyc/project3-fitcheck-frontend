@@ -1,13 +1,13 @@
 import { useState } from "react"
 
 
-const UploadImage = (props) => {
+export default function UploadImage(props) {
 
     const [loading, setLoading] = useState(false)
     const [image, setImage] = useState("")
     const uploadedImage = props.uploadedImage
 
-    const imageUpload = async (e) => {
+    async function imageUpload(e) {
         const files = e.target.files
         const data = new FormData()
         data.append('file', files[0])
@@ -41,5 +41,3 @@ const UploadImage = (props) => {
         </section>
     )
 }
-
-export default UploadImage

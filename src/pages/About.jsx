@@ -1,6 +1,6 @@
 import '../index.css'
 
-const About = () => {
+export default function About() {
     return (
         <div className='about'>
             <h1>The only platform you need to keep your fitness in check</h1>
@@ -26,4 +26,3 @@ const About = () => {
         </div>
     )
 }
-export default About

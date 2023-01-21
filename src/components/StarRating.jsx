@@ -3,7 +3,7 @@ import { useState } from "react"
 import { FaStar } from "react-icons/fa"
 import "./star.css"
 
-const StarRating = (props) => {
+export default function StarRating(props) {
     const [values, setValues] = useState(null)
     const [hover, setHover] = useState(null)
     const setRating = props.setRating
@@ -33,5 +33,3 @@ const StarRating = (props) => {
         </div>
     )
 }
-
-export default StarRating

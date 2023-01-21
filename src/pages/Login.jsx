@@ -4,12 +4,12 @@ import { UserContext } from "../data"
 import { getUserToken, setUserToken, clearUserToken } from "../utils/authToken"
 import LoginForm from "../components/LoginForm"
 
-function Login() {
+export default function Login() {
     const { setAuth, setUser, setUserID } = useContext(UserContext)
     const navigate = useNavigate()
     const token = getUserToken()
 
-    const loginUser = async (data) => {
+    async function loginUser(data) {
         try {
             const configs = {
                 method: "POST",
@@ -40,7 +40,7 @@ function Login() {
         }
     }
 
-    const logoutUser = () => {
+    function logoutUser() {
         clearUserToken()
         setUser(null)
         setUserID(null)
@@ -57,5 +57,3 @@ function Login() {
         </section>
     )
 }
-
-export default Login
