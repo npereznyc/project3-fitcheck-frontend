@@ -6,7 +6,7 @@ body {
     font-size: 1rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #EEEEEE;
+    background-color: #DDDDDD;
 }
 
 p {
@@ -16,6 +16,10 @@ p {
 a {
     text-decoration: none;
     color: #000000;
+}
+
+a:hover:not(.header a, .nav a) {
+    color: #5D49F5;
 }
 
 span {
@@ -32,12 +36,19 @@ input {
 
 button {
     border-radius: 8px;
+    font-weight: 600;
+}
+
+.submit-button {
+    border-radius: 8px;
+    background-color: #c1bafb;
+    padding: 5px 16px;
+    font-weight: 600;
 }
 
 .logout-button {
     background-color: #EE5247;
     color: white;
-    font-weight: 600;
     padding: 5px 16px;
 }
 
@@ -56,14 +67,53 @@ button {
 
 .header {
     position: fixed;
+    z-index: 1;
     top: 0;
     width: 100%;
-    background-color: #FFFFFF;
+    background-color: #F9F9F9;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 10px;
+}
+
+.welcome {
+    font-family: 'Permanent Marker', cursive;
+    width: 450px;
+    margin-top: -10px;
+}
+
+.welcome h1 {
+    margin: -10px 0;
+    font-size: 6rem;
+    transform: rotate(-8deg);
+}
+
+.welcome p {
+    font-size: 2rem;
+}
+
+.welcome-bottom {
+    text-align: right;
+}
+
+.welcome-invite {
+    font-size: 1.25rem;
+    margin: -20px 0 40px 0;
+    font-weight: 600;
+}
+
+.header h1 {
+    font-family: 'Permanent Marker', cursive;
+    margin: 0 0 0 20px;
+}
+
+.header p {
+    margin-right: 18px;
+}
+
+.header a {
+    padding: 0;
 }
 
 .nav {
@@ -77,6 +127,7 @@ button {
     left: 0;
     background-color: #5D49F5;
     padding: 40px 0;
+    z-index: 1;
 }
 
 .nav a {
@@ -103,16 +154,20 @@ button {
     display: flex;
     flex-direction: column-reverse;
     gap: 40px;
+    align-items: center;
 }
 
 .post {
-    border: 1px solid black;
-    border-radius: 16px 16px 0px 0px;
+    border-radius: 16px 16px 0 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     text-align: left;
     padding: 4px 0;
+    background-color: #F9F9F9;
+}
+
+.post:hover {
     background-color: #FFFFFF;
 }
 
@@ -120,14 +175,20 @@ button {
     margin: 8px 16px;
 }
 
-.create-post, .edit-post {
+.create-post,
+.edit-post {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     border: 1px solid #454545;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
+    border-radius: 12px;
+    padding: 12px;
+    margin: 12px;
+    background-color: #F9F9F9;
+}
+
+.delete-post {
+    margin: 12px 24px;
 }
 
 .profile-container {
@@ -136,34 +197,57 @@ button {
     align-items: flex-start;
 }
 
-.header h1 {
-    font-family: 'Permanent Marker', cursive;
-    margin-left: 25px;
-}
-
 .repo span {
     color: #1CE5FF;
     text-decoration: underline;
 }
 
 .about {
-    border: black solid;
-    border-radius: 5%;
+    border: 2px solid black;
+    border-radius: 24px;
     padding: 20px;
     text-align: center;
-    background-color: white;
-
+    background-color: #F9F9F9;
 }
 
-@media (orientation: portrait), (max-width: 959px) {
+@media (orientation: portrait),
+(max-width: 959px) {
     .feed-container {
         width: 100%;
         margin: 0 0 88px;
     }
 
+    .about {
+        margin: 24px;
+    }
+
     .post {
-        border: none;
         border-radius: 0px;
+    }
+
+    .welcome {
+        width: 80%;
+    }
+
+    .welcome h1 {
+        font-size: 4rem;
+    }
+
+    .welcome p {
+        font-size: 1.5rem;
+    }
+
+    .welcome-invite {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        margin-left: 8px;
+    }
+
+    .header p {
+        margin-right: 6px;
     }
 
     .nav {

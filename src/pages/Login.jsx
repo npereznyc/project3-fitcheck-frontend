@@ -4,12 +4,12 @@ import { UserContext } from "../data"
 import { getUserToken, setUserToken, clearUserToken } from "../utils/authToken"
 import LoginForm from "../components/LoginForm"
 
-function Login() {
+export default function Login() {
     const { setAuth, setUser, setUserID } = useContext(UserContext)
     const navigate = useNavigate()
     const token = getUserToken()
 
-    const loginUser = async (data) => {
+    async function loginUser(data) {
         try {
             const configs = {
                 method: "POST",
@@ -40,7 +40,7 @@ function Login() {
         }
     }
 
-    const logoutUser = () => {
+    function logoutUser() {
         clearUserToken()
         setUser(null)
         setUserID(null)
@@ -53,9 +53,7 @@ function Login() {
             <LoginForm signIn={loginUser} />
             {token ? <><br /><button onClick={logoutUser} className="logout-button">Log Out</button></> : null}
             <h4>Don't have an account? Click below to create one:</h4>
-            <Link to='/register'><button>Create Account</button></Link>
+            <Link to='/register'><button className="submit-button">Create Account</button></Link>
         </section>
     )
 }
-
-export default Login

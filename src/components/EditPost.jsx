@@ -2,9 +2,8 @@ import { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { getUserToken } from "../utils/authToken"
 import StarRating from "./StarRating"
-import UploadImage from "./UploadImage"
 
-const EditPost = (props) => {
+export default function EditPost(props) {
     const { data } = props
 
     const [editForm, setEditForm] = useState({
@@ -20,14 +19,14 @@ const EditPost = (props) => {
     const token = getUserToken()
     const URL = `https://fitness-accountability.herokuapp.com/post/${id}`
 
-    const handleChange = (event) => {
+    function handleChange(event) {
         const userInput = { ...editForm }
         userInput[event.target.name] = event.target.value
         setEditForm(userInput)
     }
 
-    const updatePost = async (e) => {
-        const createTags = (str) => {
+    async function updatePost(e) {
+        function createTags(str) {
             let arr = str.split(',')
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i][0] === ' ') {
@@ -56,7 +55,7 @@ const EditPost = (props) => {
         }
     }
 
-    const deletePost = async (e) => {
+    async function deletePost(e) {
         try {
             const options = {
                 method: "DELETE",
@@ -71,15 +70,7 @@ const EditPost = (props) => {
         }
     }
 
-    const setImage = (newImage) => {
-        setEditForm((oldPostForm) => {
-            const formCopy = { ...oldPostForm }
-            formCopy.image = newImage
-            return formCopy
-        })
-    }
-
-    const setWorkoutRating = (newRating) => {
+    function setWorkoutRating(newRating) {
         setEditForm((oldEditFormValues) => {
             const copyOfEditForm = { ...oldEditFormValues }
             copyOfEditForm.rating = newRating
@@ -87,7 +78,7 @@ const EditPost = (props) => {
         })
     }
 
-    const setDifficultyRating = (newRating) => {
+    function setDifficultyRating(newRating) {
         setEditForm((oldEditFormValues) => {
             const copyOfEditForm = { ...oldEditFormValues }
             copyOfEditForm.difficulty = newRating
@@ -100,25 +91,7 @@ const EditPost = (props) => {
             <br />
             <section className="edit-post">
                 <h2>Edit post</h2>
-                <UploadImage
-                    uploadedImage={setImage}
-                />
-
                 <form onSubmit={updatePost}>
-                    <div>
-                        <label>
-                            <input
-                                hidden={true}
-                                type="url"
-                                id="image"
-                                name="image"
-                                value={editForm.image}
-                                onChange={handleChange}
-                            />
-                        </label>
-                    </div>
-
-                    <br />
                     <div>
                         <label>
                             Edit Description:
@@ -131,7 +104,6 @@ const EditPost = (props) => {
                             />
                         </label>
                     </div>
-
 
                     <br />
                     <div>
@@ -161,7 +133,7 @@ const EditPost = (props) => {
                         </label>
                     </div>
 
-                    <input type="submit" value="Edit Post" />
+                    <input type="submit" className="submit-button" value="Edit Post" />
                 </form>
             </section>
             <section className="delete-post">
@@ -171,5 +143,3 @@ const EditPost = (props) => {
         </>
     )
 }
-
-export default EditPost

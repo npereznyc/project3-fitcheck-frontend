@@ -8,7 +8,7 @@ import Profile from '../../pages/Profile'
 import Login from '../../pages/Login'
 import CreateAccount from '../../pages/CreateAccount'
 
-const Feed = (props) => {
+export default function Feed() {
     const token = getUserToken()
 
     return (
@@ -19,13 +19,13 @@ const Feed = (props) => {
                 <Route path="/post" element={
                     token ? <CreatePost /> : <Login />
                 } />
-                <Route path="/:id" element={<PostDetail />} />
-                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/post/:id" element={<PostDetail />} />
+                <Route path="/profile/:id" element={
+                    token ? <Profile /> : <Login />
+                } />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<CreateAccount />} />
             </Routes>
         </section>
     )
 }
-
-export default Feed

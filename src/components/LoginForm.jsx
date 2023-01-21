@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-const LoginForm = ({ signIn }) => {
+export default function LoginForm({ signIn }) {
     const initialState = {
         username: "",
         password: ""
@@ -10,7 +10,7 @@ const LoginForm = ({ signIn }) => {
 
     const navigate = useNavigate()
 
-    const handleSubmit = async (e) => {
+    async function handleSubmit(e) {
         e.preventDefault()
         const createdUserToken = await signIn(input)
         if (createdUserToken) {
@@ -22,7 +22,7 @@ const LoginForm = ({ signIn }) => {
         setInput(initialState)
     }
 
-    const handleChange = (e) => {
+    function handleChange(e) {
         setInput({ ...input, [e.target.name]: e.target.value })
     }
 
@@ -50,10 +50,8 @@ const LoginForm = ({ signIn }) => {
                 />
 
                 <br />
-                <input type="submit" value="Sign In" />
+                <input type="submit" className="submit-button" value="Sign In" />
             </form>
         </>
     )
 }
-
-export default LoginForm

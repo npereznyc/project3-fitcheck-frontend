@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 
-const RegisterForm = ({ signUp }) => {
+export default function RegisterForm({ signUp }) {
     const [registerForm, setRegisterForm] = useState({
         username: "",
         password: "",
@@ -13,7 +13,7 @@ const RegisterForm = ({ signUp }) => {
 
     const navigate = useNavigate()
 
-    const handleSubmit = async (e) => {
+    async function handleSubmit(e) {
         e.preventDefault()
         const createdUserToken = await signUp(registerForm)
         if (createdUserToken) {
@@ -31,7 +31,7 @@ const RegisterForm = ({ signUp }) => {
         }
     }
 
-    const handleChange = (e) => {
+    function handleChange(e) {
         const userInput = { ...registerForm }
         userInput[e.target.name] = e.target.value
         setRegisterForm(userInput)
@@ -45,6 +45,7 @@ const RegisterForm = ({ signUp }) => {
                 <input
                     id="username"
                     name="username"
+                    placeholder="Enter username"
                     value={registerForm.username}
                     onChange={handleChange}
                 />
@@ -54,6 +55,7 @@ const RegisterForm = ({ signUp }) => {
                 <input
                     id="password"
                     name="password"
+                    placeholder="Enter password"
                     type="password"
                     autoComplete='password'
                     value={registerForm.password}
@@ -66,7 +68,7 @@ const RegisterForm = ({ signUp }) => {
                     type="text"
                     id="age"
                     name="age"
-                    placeholder="age"
+                    placeholder="Enter your age"
                     value={registerForm.age}
                     onChange={handleChange}
                 />
@@ -77,7 +79,7 @@ const RegisterForm = ({ signUp }) => {
                     type="text"
                     id="location"
                     name="location"
-                    placeholder="location"
+                    placeholder="Enter your location"
                     value={registerForm.location}
                     onChange={handleChange}
                 />
@@ -88,16 +90,15 @@ const RegisterForm = ({ signUp }) => {
                     type="text"
                     id="bio"
                     name="bio"
-                    placeholder="workout bio"
+                    placeholder="Tell us about you!"
                     value={registerForm.bio}
                     onChange={handleChange}
                 />
 
                 <br />
-                <input type="submit" value="Sign Up" />
+                <br />
+                <input type="submit" className="submit-button" value="Sign Up" />
             </form>
         </>
     )
 }
-
-export default RegisterForm
