@@ -8,7 +8,7 @@ We wanted to create an app that’s not just about scrolling through pictures, b
 
 # Screenshots:
 
-### Desktop Screenshot:
+### Desktop screenshots:
 
 ![FitCheck home page](https://user-images.githubusercontent.com/115664302/218784735-2974908b-8cee-4246-bab1-92d3a5589bce.png)
 When not logged in, the homepage shows only the most recent post, with an invitation to create an account or log in.
@@ -22,8 +22,8 @@ On the post detail page, the user can see additional details, such as the workou
 ![FitCheck profile detail](https://user-images.githubusercontent.com/115664302/218784820-1eeea6e8-78c7-45af-922e-a6ea01be05f7.png)
 On a profile page, the user can see more details about the poster, and all the other posts that belong to them.
 
-### Mobile Screenshot:
-<img src="https://user-images.githubusercontent.com/115664302/211726677-dfffec2a-c8e5-4fd5-9ea6-5f4722c87c03.PNG" alt="FitCheck mobile screenshot" width=50% />
+### Mobile screenshots:
+<img src="https://user-images.githubusercontent.com/115664302/218788223-2dfb60cb-7ee6-4b54-9bff-7c591fad5cb6.PNG" alt="FitCheck mobile home page" width=24% />&nbsp;<img src="https://user-images.githubusercontent.com/115664302/218788243-4bacae38-66c9-4a2d-92cb-46994649a051.PNG" alt="FitCheck mobile posts index" width=24% />&nbsp;<img src="https://user-images.githubusercontent.com/115664302/218789185-f08e4708-dfbe-4029-8c17-b58e51c6196a.PNG" alt="FitCheck edit post mobile" width=24% />&nbsp;<img src="https://user-images.githubusercontent.com/115664302/218789200-787f9ee3-b94f-4129-a8fa-0d69101d72d4.PNG" alt="FitCheck about page mobile" width=24% />
 
 <br>
 
